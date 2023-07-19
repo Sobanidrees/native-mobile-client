@@ -2,7 +2,14 @@ import React, {useState, useEffect} from 'react';
 import {View, Text, StyleSheet} from 'react-native';
 import {PRIMARY_COLOR, WHITE} from '../../utils/colors';
 import {styles} from './styles';
-const SplashScreen = ({navigation}) => {
+import { NativeStackScreenProps } from '@react-navigation/native-stack';
+import { RootStackParams } from '../../../routes/routeStack';
+
+
+type Props = NativeStackScreenProps<RootStackParams, 'SplashScreen'>;
+
+const SplashScreen = ({ navigation }: Props) => {
+
   useEffect(() => {
     const timer = setTimeout(() => {
       navigation.navigate('LoginScreen');

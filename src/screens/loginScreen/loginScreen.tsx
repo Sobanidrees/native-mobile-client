@@ -8,8 +8,14 @@ import {
   TouchableOpacity,
 } from 'react-native';
 import {styles} from './styles';
+import { NativeStackScreenProps } from '@react-navigation/native-stack';
+import { RootStackParams } from '../../../routes/routeStack';
 
-const LoginScreen = ({navigation}) => {
+
+type Props = NativeStackScreenProps<RootStackParams, 'LoginScreen'>;
+
+
+const LoginScreen = ({ navigation }: Props) => {
   const [number, onChangeNumber] = useState('');
   const [password, setPassword] = useState('');
   console.log(number, '-------------------');

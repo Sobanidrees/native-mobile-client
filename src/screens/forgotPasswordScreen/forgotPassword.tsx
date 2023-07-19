@@ -1,7 +1,15 @@
-import React, {useState} from 'react';
-import {View, Text, TextInput, TouchableOpacity} from 'react-native';
-import {styles} from './styles';
-const ForgotPassword = ({navigation}) => {
+import React, { useState } from 'react';
+import { View, Text, TextInput, TouchableOpacity } from 'react-native';
+import { styles } from './styles';
+import { NativeStackScreenProps } from '@react-navigation/native-stack';
+import { RootStackParams } from '../../../routes/routeStack';
+
+
+type Props = NativeStackScreenProps<RootStackParams, 'ForgotPassword'>;
+
+
+const ForgotPassword = ({ navigation }: Props) => {
+
   const [number, onChangeNumber] = useState('');
 
   return (

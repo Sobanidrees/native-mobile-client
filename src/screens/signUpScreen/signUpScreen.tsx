@@ -1,8 +1,15 @@
-import React, {useState, useEffect} from 'react';
-import {View, Text, TextInput, TouchableOpacity} from 'react-native';
-import {PRIMARY_COLOR, SOLID_BLACK, WHITE} from '../../utils/colors';
-import {styles} from './styles';
-const SignUpScreen = ({navigation}) => {
+import React, { useState, useEffect } from 'react';
+import { View, Text, TextInput, TouchableOpacity } from 'react-native';
+import { PRIMARY_COLOR, SOLID_BLACK, WHITE } from '../../utils/colors';
+import { styles } from './styles';
+import { NativeStackScreenProps } from '@react-navigation/native-stack';
+import { RootStackParams } from '../../../routes/routeStack';
+
+type Props = NativeStackScreenProps<RootStackParams, 'SignUpScreen'>;
+
+
+const SignUpScreen = ({ navigation }: Props) => {
+
   const [fullName, setFullName] = useState('');
   const [number, onChangeNumber] = useState('');
   const [password, setPassword] = useState('');
@@ -40,11 +47,11 @@ const SignUpScreen = ({navigation}) => {
       <TouchableOpacity style={styles.btn}>
         <Text style={styles.btnText}>SignUp</Text>
       </TouchableOpacity>
-        <TouchableOpacity
-          onPress={() => navigation.navigate('LoginScreen')}
-          style={{alignItems: 'flex-end'}}>
-          <Text style={styles.loginText}>back to login</Text>
-        </TouchableOpacity>
+      <TouchableOpacity
+        onPress={() => navigation.navigate('LoginScreen')}
+        style={{ alignItems: 'flex-end' }}>
+        <Text style={styles.loginText}>back to login</Text>
+      </TouchableOpacity>
     </View>
   );
 };
