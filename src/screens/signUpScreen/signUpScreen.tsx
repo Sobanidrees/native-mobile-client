@@ -4,7 +4,7 @@ import { PRIMARY_COLOR, SOLID_BLACK, WHITE } from '../../utils/colors';
 import { styles } from './styles';
 import { NativeStackScreenProps } from '@react-navigation/native-stack';
 import { RootStackParams } from '../../../routes/routeStack';
-
+import LinearGradient from 'react-native-linear-gradient';
 type Props = NativeStackScreenProps<RootStackParams, 'SignUpScreen'>;
 
 
@@ -16,7 +16,7 @@ const SignUpScreen = ({ navigation }: Props) => {
   const [confirmPassword, setConfirmPassword] = useState('');
 
   return (
-    <View style={[styles.container]}>
+    <LinearGradient start={{ x: -0.5, y: -0.9 }} colors={['#008080', '#d8eeef']} style={styles.container}>
       <Text style={styles.title}>Sign Up</Text>
       <TextInput
         style={styles.input}
@@ -52,7 +52,7 @@ const SignUpScreen = ({ navigation }: Props) => {
         style={{ alignItems: 'flex-end' }}>
         <Text style={styles.loginText}>back to login</Text>
       </TouchableOpacity>
-    </View>
+    </LinearGradient>
   );
 };
 

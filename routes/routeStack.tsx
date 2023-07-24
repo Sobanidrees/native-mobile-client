@@ -34,6 +34,7 @@ import LoginScreen from '../src/screens/loginScreen/loginScreen';
 import SignUpScreen from '../src/screens/signUpScreen/signUpScreen';
 import ForgotPassword from '../src/screens/forgotPasswordScreen/forgotPassword';
 import SplashScreen from '../src/screens/splashScreen/splashScreen';
+import HomeScreen from '../src/screens/homeScreen/homeScreen';
 
 const Stack = createNativeStackNavigator<RootStackParams>();
 
@@ -42,6 +43,7 @@ export type RootStackParams = {
   LoginScreen: undefined;
   SignUpScreen: undefined;
   ForgotPassword: undefined;
+  HomeScreen: undefined;
 }
 
 export default function RoutesStack() {
@@ -52,6 +54,8 @@ export default function RoutesStack() {
         <Stack.Screen name="LoginScreen" component={LoginScreen} />
         <Stack.Screen name="SignUpScreen" component={SignUpScreen} />
         <Stack.Screen name="ForgotPassword" component={ForgotPassword} />
+        <Stack.Screen name="HomeScreen" component={HomeScreen} />
+
       </Stack.Navigator>
     </NavigationContainer>
   );

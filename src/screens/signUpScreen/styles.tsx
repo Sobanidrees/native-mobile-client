@@ -1,5 +1,5 @@
-import {StyleSheet} from 'react-native';
-import {PRIMARY_COLOR, WHITE} from '../../utils/colors';
+import { StyleSheet } from 'react-native';
+import { PRIMARY_COLOR, WHITE } from '../../utils/colors';
 
 export const styles = StyleSheet.create({
   container: {
@@ -7,7 +7,7 @@ export const styles = StyleSheet.create({
     alignItems: 'center',
     justifyContent: 'center',
   },
-  title: {fontSize: 24, fontWeight: '500', marginBottom: '4%'},
+  title: { fontSize: 28, fontWeight: '500', color: WHITE, marginTop: '0%' },
 
   input: {
     height: '6%',
@@ -17,7 +17,7 @@ export const styles = StyleSheet.create({
     backgroundColor: WHITE,
     borderRadius: 6,
     elevation: 1,
-    shadowOffset: {width: 0, height: 0.1},
+    shadowOffset: { width: 0, height: 0.1 },
     shadowColor: '#000000',
     shadowOpacity: 0.04,
   },
@@ -30,6 +30,6 @@ export const styles = StyleSheet.create({
     alignItems: 'center',
     justifyContent: 'center',
   },
-  btnText: {fontSize: 20, fontWeight: 'bold', color: WHITE},
-  loginText: {fontSize: 15, color: PRIMARY_COLOR, marginTop: '2%'},
+  btnText: { fontSize: 20, fontWeight: 'bold', color: WHITE },
+  loginText: { fontSize: 15, color: WHITE, marginTop: '2%' },
 });

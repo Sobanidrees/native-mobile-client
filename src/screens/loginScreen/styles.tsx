@@ -1,6 +1,8 @@
-import {StyleSheet} from 'react-native';
-import {PRIMARY_COLOR, WHITE, RED_ERROR} from '../../utils/colors';
+import { Dimensions, StyleSheet } from 'react-native';
+import { PRIMARY_COLOR, WHITE, RED_ERROR } from '../../utils/colors';
 
+const windowWidth = Dimensions.get('window').width;
+const windowHeight = Dimensions.get('window').height;
 export const styles = StyleSheet.create({
   container: {
     flex: 1,
@@ -8,21 +10,29 @@ export const styles = StyleSheet.create({
     alignItems: 'center',
     justifyContent: 'center',
   },
-  title: {fontSize: 24, fontWeight: '500', marginBottom: '4%'},
+  linearGradient: {
+    // alignItems: 'center',
+    justifyContent: 'center',
+    height: windowHeight * 0.33,
+    width: windowWidth * 1,
+    borderBottomLeftRadius: 30,
+    borderBottomRightRadius: 30
+  },
+  title: { fontSize: 28, fontWeight: '500',  color: WHITE, marginTop: '0%' },
   input: {
     height: '6%',
     width: '90%',
-    marginVertical: '2%',
+    marginVertical: '2.5%',
     padding: 10,
     backgroundColor: WHITE,
     borderRadius: 6,
     elevation: 1,
-    shadowOffset: {width: 0, height: 0.1},
+    shadowOffset: { width: 0, height: 0.1 },
     shadowColor: '#000000',
     shadowOpacity: 0.04,
   },
-  forgotBtn: {fontSize: 16, color: RED_ERROR, marginTop: '2%'},
-  newAcc: {fontSize: 16, color: PRIMARY_COLOR, marginVertical: '2%'},
+  forgotBtn: { fontSize: 16, color: RED_ERROR, marginVertical: '3%' },
+  newAcc: { fontSize: 18, color: PRIMARY_COLOR, marginVertical: '2%' },
   loginButton: {
     backgroundColor: PRIMARY_COLOR,
     height: '6%',
@@ -31,5 +41,5 @@ export const styles = StyleSheet.create({
     alignItems: 'center',
     justifyContent: 'center',
   },
-  loginText: {fontSize: 20, fontWeight: 'bold', color: WHITE},
+  loginText: { fontSize: 20, fontWeight: 'bold', color: WHITE },
 });

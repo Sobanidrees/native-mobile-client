@@ -9,7 +9,7 @@ export const styles = StyleSheet.create({
     justifyContent: 'center',
   },
   inspectKar: {
-    fontSize: 22,
+    fontSize: 34,
     fontWeight: '500',
     color: WHITE,
   },
