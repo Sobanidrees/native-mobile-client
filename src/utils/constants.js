@@ -74,7 +74,7 @@ export const ServicesArray = [
   },
   {
     id: 3,
-    serviceName: 'Booked Requests',
+    serviceName: 'U Requests',
     name: 'Ijaz',
     desc: 'Your home electrition',
     image: require('../assets/images/booking.png'),

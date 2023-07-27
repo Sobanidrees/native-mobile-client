@@ -22,7 +22,7 @@ export const styles = StyleSheet.create({
   input: {
     height: '6%',
     width: '90%',
-    marginVertical: '2.5%',
+    marginVertical: '3%',
     padding: 10,
     backgroundColor: WHITE,
     borderRadius: 6,

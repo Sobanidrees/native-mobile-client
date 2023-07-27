@@ -1,39 +1,35 @@
 import { NativeStackScreenProps } from '@react-navigation/native-stack';
 import React from 'react';
-import { Image, SafeAreaView, ScrollView, Text, TouchableOpacity, View } from 'react-native';
+import {
+    Image,
+    SafeAreaView,
+    ScrollView,
+    Text,
+    TouchableOpacity,
+    View,
+    Dimensions,
+} from 'react-native';
 import { RootStackParams } from '../../../routes/routeStack';
 import { styles } from './styles';
 import LinearGradient from 'react-native-linear-gradient';
 import Category from '../../components/category';
 import { PRIMARY_COLOR, WHITE } from '../../utils/colors';
 
+const windowWidth = Dimensions.get('window').width;
+const windowHeight = Dimensions.get('window').height;
+
 type Props = NativeStackScreenProps<RootStackParams, 'HomeScreen'>;
 
 const HomeScreen = ({ navigation }: Props) => {
     return (
         <SafeAreaView style={styles.container}>
-            <View
-                style={{
-                    flexDirection: 'row',
-                    justifyContent: 'space-between',
-                    height: '5%',
-                    marginHorizontal: '4%',
-                    backgroundColor: WHITE,
-                    alignItems: 'center',
-                }}>
-                <Text style={{ fontWeight: '500', fontSize: 20, color: PRIMARY_COLOR }}>
-                    Talha Shabbir
-                </Text>
-                <View
-                    style={{
-                        // backgroundColor: 'green',
-                        flexDirection: 'row',
-                        justifyContent: 'space-between',
-                        width: '18%'
-                    }}>
-                    <TouchableOpacity>
+            <View style={styles.header}>
+                <Text style={styles.providerName}>Talha Shabbir</Text>
+                <View style={styles.iconView}>
+                    <TouchableOpacity
+                        onPress={() => navigation.navigate('SettingScreen')}>
                         <Image
-                            source={require('../../assets/images/bell.png')}
+                            source={require('../../assets/images/setting.png')}
                             style={{ height: 25, width: 25 }}
                         />
                     </TouchableOpacity>
@@ -51,12 +47,7 @@ const HomeScreen = ({ navigation }: Props) => {
                 style={styles.linearGradient}>
                 <Text style={styles.title}>EFYX</Text>
 
-                <View
-                    style={{
-                        flexDirection: 'row',
-                        justifyContent: 'space-between',
-                        alignItems: 'center',
-                    }}>
+                <View style={styles.bannerInnerView}>
                     <Text style={styles.title}>You Fix Every Car</Text>
                     <Image
                         source={require('../../assets/images/carImg.png')}
@@ -64,11 +55,46 @@ const HomeScreen = ({ navigation }: Props) => {
                     />
                 </View>
             </LinearGradient>
-            <ScrollView style={{backgroundColor: WHITE, height: '70%', marginTop: '0.5%'}}>
+            <View
+                style={{
+                    flexDirection: 'row',
+                    justifyContent: 'space-between',
+                    marginHorizontal: '2%',
+                    marginVertical: '2%',
+                }}>
+                <TouchableOpacity
+                    onPress={() => navigation.navigate('ToolCheckList')}
+                    style={styles.subCat}>
+                    <Text style={styles.subText}>Tools</Text>
+                </TouchableOpacity>
+                <TouchableOpacity style={styles.subCat}>
+                    <Text style={styles.subText}>E-FYX</Text>
+                </TouchableOpacity>
+                <TouchableOpacity style={styles.subCat}>
+                    <Text style={styles.subText}>E-FYX</Text>
+                </TouchableOpacity>
+                <TouchableOpacity style={styles.subCat}>
+                    <Text style={styles.subText}>Recent Inspection</Text>
+                </TouchableOpacity>
+            </View>
+            <ScrollView style={styles.scrollView}>
                 <View style={styles.categoryView}>
-                    {[1, 2, 3, 4, 5].map((item, index) => {
-                        return <Category key={index} />;
-                    })}
+                    <Category
+                        catImg={require('../../assets/images/technology.png')}
+                        homeCat={'Start New inspection'}
+                    />
+                    <Category
+                        catImg={require('../../assets/images/bell-1.png')}
+                        homeCat={'Notification'}
+                    />
+                    <Category
+                        catImg={require('../../assets/images/pending.png')}
+                        homeCat={'Pending inspection'}
+                    />
+                    <Category
+                        catImg={require('../../assets/images/document.png')}
+                        homeCat={'Completed Inspection'}
+                    />
                 </View>
             </ScrollView>
         </SafeAreaView>
