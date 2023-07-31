@@ -82,18 +82,25 @@ const HomeScreen = ({ navigation }: Props) => {
                     <Category
                         catImg={require('../../assets/images/technology.png')}
                         homeCat={'Start New inspection'}
+                        onPress={()=> navigation.navigate('StartInspection')}
                     />
                     <Category
                         catImg={require('../../assets/images/bell-1.png')}
                         homeCat={'Notification'}
+                        onPress={()=> navigation.navigate('NotificationScreen')}
+
                     />
                     <Category
                         catImg={require('../../assets/images/pending.png')}
                         homeCat={'Pending inspection'}
+                        onPress={()=> navigation.navigate('UncommingInspections')}
+
                     />
                     <Category
                         catImg={require('../../assets/images/document.png')}
                         homeCat={'Completed Inspection'}
+                        onPress={()=> navigation.navigate('CompletedInspections')}
+
                     />
                 </View>
             </ScrollView>

@@ -39,7 +39,7 @@ const SettingScreen = ({ navigation }: Props) => {
         <TouchableOpacity style={styles.btn}>
           <Text style={styles.btnText}>Reset</Text>
         </TouchableOpacity>
-       
+
       </View>
     </SafeAreaView>
   );

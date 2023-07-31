@@ -58,23 +58,8 @@ const LoginScreen = ({ navigation }: Props) => {
         placeholder="Mobile number"
         keyboardType="numeric"
       />
-      {/* <TextInput
-        style={styles.input}
-        onChangeText={setPassword}
-        // value={password}
-        placeholder="Enter Password"
-        secureTextEntry={true}
-      /> */}
 
-      {/* <TouchableOpacity>
-        <Text
-          onPress={() => navigation.navigate('ForgotPassword')}
-          style={styles.forgotBtn}>
-          Forgot Password?
-        </Text>
-      </TouchableOpacity> */}
-
-      <TouchableOpacity onPress={() => navigation.navigate('HomeScreen')} style={styles.loginButton}>
+      <TouchableOpacity onPress={() => navigation.navigate('OTPInput')} style={styles.loginButton}>
         <Text style={styles.loginText}>Login</Text>
       </TouchableOpacity>
       <TouchableOpacity onPress={() => navigation.navigate('SignUpScreen')}>

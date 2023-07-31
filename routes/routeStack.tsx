@@ -1,5 +1,5 @@
-import {createNativeStackNavigator} from '@react-navigation/native-stack';
-import {NavigationContainer} from '@react-navigation/native';
+import { createNativeStackNavigator } from '@react-navigation/native-stack';
+import { NavigationContainer } from '@react-navigation/native';
 import LoginScreen from '../src/screens/loginScreen/loginScreen';
 import SignUpScreen from '../src/screens/signUpScreen/signUpScreen';
 import ForgotPassword from '../src/screens/forgotPasswordScreen/forgotPassword';
@@ -11,6 +11,7 @@ import NotificationScreen from '../src/screens/notificationScreen/notificationSc
 import StartInspection from '../src/screens/startInspection/startInspection';
 import ToolCheckList from '../src/screens/toolCheckList/toolCheckList';
 import SettingScreen from '../src/screens/settingScreen/settingScreen';
+import { OTPInput } from '../src/screens/otpScreen/otpScreen';
 
 const Stack = createNativeStackNavigator<RootStackParams>();
 
@@ -26,12 +27,17 @@ export type RootStackParams = {
   SettingScreen: undefined;
   StartInspection: undefined;
   ToolCheckList: undefined;
+  Header: undefined;
+  OTPInput: {
+    otpCodeChanged: any
+  }
+  ;
 };
 
 export default function RoutesStack() {
   return (
     <NavigationContainer>
-      <Stack.Navigator screenOptions={{headerShown: false}}>
+      <Stack.Navigator screenOptions={{ headerShown: false }}>
         <Stack.Screen name="SplashScreen" component={SplashScreen} />
         <Stack.Screen name="LoginScreen" component={LoginScreen} />
         <Stack.Screen name="SignUpScreen" component={SignUpScreen} />
@@ -52,6 +58,8 @@ export default function RoutesStack() {
         <Stack.Screen name="StartInspection" component={StartInspection} />
         <Stack.Screen name="ToolCheckList" component={ToolCheckList} />
         <Stack.Screen name="SettingScreen" component={SettingScreen} />
+        <Stack.Screen name="OTPInput" component={OTPInput} />
+
       </Stack.Navigator>
     </NavigationContainer>
   );
