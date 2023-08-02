@@ -3,25 +3,26 @@ import { View, Text, TextInput, TouchableOpacity, Image, StyleSheet, Dimensions 
 import { NativeStackScreenProps } from '@react-navigation/native-stack';
 import { RootStackParams } from '../../routes/routeStack';
 import { PRIMARY_COLOR, WHITE } from '../utils/colors';
+import { windowHeight, windowWidth } from '../utils/constants';
 
+type Props = {
+    navigation: any;
+    headerTitle: any;
+};
 
-const windowWidth = Dimensions.get('window').width;
-const windowHeight = Dimensions.get('window').height;
-
-type Props = NativeStackScreenProps<RootStackParams, 'Header'>;
-
-
-const Header = ({ navigation }: Props) => {
+const Header = ({ navigation, headerTitle }: Props) => {
 
     return (
         <View style={styles.header}>
             <TouchableOpacity onPress={() => navigation.goBack()}>
                 <Image
-                    source={require('../assets/images/back.png')}
+                    source={require('../.../../assets/images/back.png')}
                     style={{ height: 25, width: 25 }}
                 />
             </TouchableOpacity>
-            <Text style={styles.title}>Settings</Text>
+            <View style={{ width: windowWidth * 0.85, alignSelf: 'center', }}>
+                <Text style={styles.title}>{headerTitle}</Text>
+            </View>
         </View>
     );
 };
@@ -32,11 +33,17 @@ const styles = StyleSheet.create({
 
     header: {
         flexDirection: 'row',
-        justifyContent: 'space-between',
+        backgroundColor: WHITE,
         height: windowHeight * 0.05,
         marginHorizontal: '4%',
-        backgroundColor: WHITE,
         alignItems: 'center',
+    },
+    title: {
+        fontSize: 22,
+        fontWeight: '600',
+        alignSelf: 'center',
+        color: PRIMARY_COLOR,
+        left: '-4%'
     },
     providerName: { fontWeight: '500', fontSize: 20, color: PRIMARY_COLOR },
     iconView: {
@@ -45,11 +52,5 @@ const styles = StyleSheet.create({
         justifyContent: 'space-between',
         width: '18%'
     },
-    title: {
-        fontSize: 22,
-        fontWeight: '600',
-        marginBottom: '4%',
-        marginHorizontal: '30%',
-        color: PRIMARY_COLOR,
-    },
+
 })

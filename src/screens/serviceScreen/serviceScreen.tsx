@@ -10,19 +10,20 @@ import Header from '../../components/header';
 const windowWidth = Dimensions.get('window').width;
 const windowHeight = Dimensions.get('window').height;
 
-type Props = NativeStackScreenProps<RootStackParams, 'SettingScreen'>;
+type Props = NativeStackScreenProps<RootStackParams, 'ServiceScreen'>;
 
 
-const SettingScreen = ({ navigation }: Props) => {
+const ServiceScreen = ({ route, navigation }: Props) => {
+
+    const serviceName = route.params?.serviceName || '';
+
+    return (
+        <SafeAreaView style={[styles.container]}>
+            <Header navigation={navigation} headerTitle={serviceName} />
 
 
-  return (
-    <SafeAreaView style={[styles.container]}>
-      <Header navigation={navigation} headerTitle="Settings" />
-
-
-    </SafeAreaView>
-  );
+        </SafeAreaView>
+    );
 };
 
-export default SettingScreen;
+export default ServiceScreen;

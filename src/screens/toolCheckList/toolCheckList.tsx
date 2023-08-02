@@ -1,8 +1,9 @@
 import React, { useState } from 'react';
-import { View, Text, TextInput, TouchableOpacity } from 'react-native';
+import { View, Text, TextInput, TouchableOpacity, Image, SafeAreaView } from 'react-native';
 import { styles } from './styles';
 import { NativeStackScreenProps } from '@react-navigation/native-stack';
 import { RootStackParams } from '../../../routes/routeStack';
+import Header from '../../components/header';
 
 
 type Props = NativeStackScreenProps<RootStackParams, 'ToolCheckList'>;
@@ -13,24 +14,11 @@ const ToolCheckList = ({ navigation }: Props) => {
   const [number, onChangeNumber] = useState('');
 
   return (
-    <View style={[styles.container]}>
-      <Text style={styles.title}>ToolCheckList</Text>
+    <SafeAreaView style={[styles.container]}>
+      <Header navigation={navigation} headerTitle="Tool CheckList" />
 
-      <TextInput
-        style={styles.input}
-        onChangeText={onChangeNumber}
-        value={number}
-        placeholder="Enter Mobile Number"
-        keyboardType="numeric"
-      />
 
-      <TouchableOpacity style={styles.btn}>
-        <Text style={styles.btnText}>Reset</Text>
-      </TouchableOpacity>
-      <TouchableOpacity onPress={() => navigation.navigate('LoginScreen')}>
-        <Text style={styles.loginText}>back to login</Text>
-      </TouchableOpacity>
-    </View>
+    </SafeAreaView>
   );
 };
 

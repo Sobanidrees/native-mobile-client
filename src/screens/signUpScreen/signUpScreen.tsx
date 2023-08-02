@@ -16,22 +16,23 @@ const SignUpScreen = ({ navigation }: Props) => {
   const [fullName, setFullName] = useState('');
   const [emiratesId, setEmiratesId] = useState('');
 
-  // const handleRegistration = async () => {
+  const handleRegistration = async () => {
 
-  //   fetch('http://localhost:3001/api/v1/inspector/register/', {
-  //     method: 'POST',
-  //     headers: {
-  //       Accept: 'application/json',
-  //       'Content-Type': 'application/json',
-  //     },
-  //     body: JSON.stringify({
-  //       phoneNumber: phoneNumber,
-  //       fullName: fullName,
-  //       bio: bio,
-  //       emiratesId: emiratesId,
-  //     }),
-  //   });
-  // };
+    const respo: any = await fetch('http://localhost:3001/api/v1/inspector/register/', {
+      method: 'POST',
+      headers: {
+        Accept: 'application/json',
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({
+        phoneNumber: "123456126577",
+        fullName: "M Soban Idrees",
+        bio: "I am an experienced automotive inspector with a passion for assessing and evaluating vehicles.",
+        emiratesId: "784-1234-1234567-7"
+
+      }),
+    });
+  };
 
 
   return (
@@ -58,7 +59,7 @@ const SignUpScreen = ({ navigation }: Props) => {
         placeholder="Enter Your Emirates ID"
       />
 
-      <TouchableOpacity onPress={() => navigation.navigate('HomeScreen')} style={styles.btn}>
+      <TouchableOpacity onPress={handleRegistration} style={styles.btn}>
         <Text style={styles.btnText}>SignUp</Text>
       </TouchableOpacity>
       <TouchableOpacity

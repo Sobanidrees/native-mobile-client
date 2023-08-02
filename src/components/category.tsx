@@ -2,7 +2,7 @@ import { NativeStackScreenProps } from '@react-navigation/native-stack';
 import React from 'react';
 import { Image, StyleSheet, Text, TouchableOpacity, View } from 'react-native';
 import LinearGradient from 'react-native-linear-gradient';
-import { WHITE } from '../utils/colors';
+import { SOLID_BLACK, WHITE } from '../utils/colors';
 
 const Category = (props: any) => {
     return (
@@ -32,6 +32,6 @@ const styles = StyleSheet.create({
         fontSize: 16,
         bottom: -20,
         marginLeft: 6,
-        color: WHITE,
+        color: SOLID_BLACK,
     },
 });
