@@ -19,30 +19,36 @@ type Props = NativeStackScreenProps<RootStackParams, 'LoginScreen'>;
 const LoginScreen = ({ navigation }: Props) => {
 
   const [phoneNumber, setPhoneNumber] = useState('');
-  const [password, setPassword] = useState('');
   console.log(phoneNumber, '-------------------');
 
-  const handleRegistration = async () => {
-    try {
-      const response = await axios.post("http://localhost:3001/api/v1/inspector/register", {
-        phoneNumber: phoneNumber,
-      });
+  // const handleLogin = async () => {
+  //   try {
+  //     const response = await axios.post("http://localhost:3001/#/Inspector/InspectorController_login", {
+  //       method: 'POST',
+  //       headers: {
+  //         Accept: 'application/json',
+  //         'Content-Type': 'application/json',
+  //       },
+  //       body: JSON.stringify({
+  //         phoneNumbedr: "123456126577",
+  //       }),
+  //     });
+  //     console.log('response', response)
 
-      if (response.data.success) {
-        // Registration successful, show success alert
-        Alert.alert("Registration Successful", "User registered successfully!");
-        navigation.navigate("HomeScreen");
-      } else {
-        // Registration failed, show error alert
-        Alert.alert("Registration Failed", "Please check your phone number and try again.");
-      }
-    } catch (error) {
-      // Handle any network or server-related errors here
-      console.error("Error occurred:", error);
-      Alert.alert("Error", "An error occurred while processing your request.");
-    }
-  };
-
+  //     if (response.data.success) {
+  //       // Registration successful, show success alert
+  //       Alert.alert("Registration Successful", "User registered successfully!");
+  //       navigation.navigate("OTPInput");
+  //     } else {
+  //       // Registration failed, show error alert
+  //       Alert.alert("Registration Failed", "Please check your phone number and try again.");
+  //     }
+  //   } catch (error) {
+  //     // Handle any network or server-related errors here
+  //     console.error("Error occurred:", error);
+  //     Alert.alert("Error", "An error occurred while processing your request.");
+  //   }
+  // };
 
 
   return (
@@ -58,23 +64,8 @@ const LoginScreen = ({ navigation }: Props) => {
         placeholder="Mobile number"
         keyboardType="numeric"
       />
-      {/* <TextInput
-        style={styles.input}
-        onChangeText={setPassword}
-        // value={password}
-        placeholder="Enter Password"
-        secureTextEntry={true}
-      /> */}
 
-      {/* <TouchableOpacity>
-        <Text
-          onPress={() => navigation.navigate('ForgotPassword')}
-          style={styles.forgotBtn}>
-          Forgot Password?
-        </Text>
-      </TouchableOpacity> */}
-
-      <TouchableOpacity onPress={() => navigation.navigate('HomeScreen')} style={styles.loginButton}>
+      <TouchableOpacity onPress={() => navigation.navigate('OTPInput')} style={styles.loginButton}>
         <Text style={styles.loginText}>Login</Text>
       </TouchableOpacity>
       <TouchableOpacity onPress={() => navigation.navigate('SignUpScreen')}>
