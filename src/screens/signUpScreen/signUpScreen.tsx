@@ -25,13 +25,13 @@ const SignUpScreen = ({ navigation }: Props) => {
         'Content-Type': 'application/json',
       },
       body: JSON.stringify({
-        phoneNumber: "123456126577",
-        fullName: "M Soban Idrees",
-        bio: "I am an experienced automotive inspector with a passion for assessing and evaluating vehicles.",
-        emiratesId: "784-1234-1234567-7"
+        phoneNumber: "123456555555",
+        fullName: "Talha Shabbir",
+        emiratesId: "784-1234-1235555-5"
 
       }),
     });
+    console.log(respo, 'inspector registration')
   };
 
 

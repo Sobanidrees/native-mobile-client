@@ -21,7 +21,7 @@ export default Category;
 
 const styles = StyleSheet.create({
     linearGradient: {
-        height: 220,
+        height: 150,
         width: 160,
         borderRadius: 20,
         marginVertical: '2%',

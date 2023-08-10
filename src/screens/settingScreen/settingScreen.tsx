@@ -5,10 +5,8 @@ import { NativeStackScreenProps } from '@react-navigation/native-stack';
 import { RootStackParams } from '../../../routes/routeStack';
 import { GREY } from '../../utils/colors';
 import Header from '../../components/header';
+import { windowHeight, windowWidth } from '../../utils/constants';
 
-
-const windowWidth = Dimensions.get('window').width;
-const windowHeight = Dimensions.get('window').height;
 
 type Props = NativeStackScreenProps<RootStackParams, 'SettingScreen'>;
 
