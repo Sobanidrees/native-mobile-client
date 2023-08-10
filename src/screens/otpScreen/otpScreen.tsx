@@ -11,6 +11,7 @@ import { NativeStackScreenProps } from '@react-navigation/native-stack';
 import { RootStackParams } from '../../../routes/routeStack';
 import { PRIMARY_COLOR, RED_ERROR, WHITE } from '../../utils/colors';
 import { styles } from './styles';
+import Header from '../../components/header';
 type Props = NativeStackScreenProps<RootStackParams, 'OTPInput'>;
 
 const CELL_COUNT = 4;
@@ -30,7 +31,7 @@ export function OTPInput({ navigation }: Props) {
             if (ref.current) {
                 ref.current.focus();
             }
-        }, 2000);
+        }, 500);
 
         return () => {
             clearTimeout(timer);
@@ -54,31 +55,33 @@ export function OTPInput({ navigation }: Props) {
     };
 
     return (
-        <SafeAreaView style={styles.root}>
-            <Text style={styles.title}>Verification</Text>
-            <CodeField
-                ref={ref}
-                value={value}
-                onChangeText={setValue}
-                cellCount={CELL_COUNT}
-                rootStyle={styles.codeFieldRoot}
-                keyboardType="number-pad"
-                textContentType="oneTimeCode"
-                renderCell={({ index, symbol, isFocused }) => (
-                    <Text
-                        key={index}
-                        style={[styles.cell, isFocused && styles.focusCell]}
-                        onLayout={getCellOnLayoutHandler(index)}>
-                        {symbol || (isFocused ? <Cursor /> : null)}
-                    </Text>
-                )}
-            />
-            <TouchableOpacity>
-                <Text style={styles.resendOtp}>Resend otp</Text>
-            </TouchableOpacity>
-            <TouchableOpacity style={styles.verifyBtn} onPress={handleVerification}>
-                <Text style={styles.btnText}>Verify</Text>
-            </TouchableOpacity>
+        <SafeAreaView style={{ flex: 1, backgroundColor: WHITE }}>
+            <Header navigation={navigation} headerTitle="Verification" />
+            <View style={styles.root}>
+                <CodeField
+                    ref={ref}
+                    value={value}
+                    onChangeText={setValue}
+                    cellCount={CELL_COUNT}
+                    rootStyle={styles.codeFieldRoot}
+                    keyboardType="number-pad"
+                    textContentType="oneTimeCode"
+                    renderCell={({ index, symbol, isFocused }) => (
+                        <Text
+                            key={index}
+                            style={[styles.cell, isFocused && styles.focusCell]}
+                            onLayout={getCellOnLayoutHandler(index)}>
+                            {symbol || (isFocused ? <Cursor /> : null)}
+                        </Text>
+                    )}
+                />
+                <TouchableOpacity>
+                    <Text style={styles.resendOtp}>Resend otp</Text>
+                </TouchableOpacity>
+                <TouchableOpacity style={styles.verifyBtn} onPress={handleVerification}>
+                    <Text style={styles.btnText}>Verify</Text>
+                </TouchableOpacity>
+            </View>
         </SafeAreaView>
     );
 }

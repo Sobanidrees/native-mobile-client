@@ -1,7 +1,6 @@
-import {StyleSheet, Dimensions} from 'react-native';
-import {PRIMARY_COLOR, WHITE, RED_ERROR, GREEN} from '../../utils/colors';
-const windowWidth = Dimensions.get('window').width;
-const windowHeight = Dimensions.get('window').height;
+import { StyleSheet, Dimensions } from 'react-native';
+import { PRIMARY_COLOR, WHITE, RED_ERROR, GREEN } from '../../utils/colors';
+import { windowHeight, windowWidth } from '../../utils/constants';
 export const styles = StyleSheet.create({
   container: {
     // flex: 1,
@@ -15,7 +14,7 @@ export const styles = StyleSheet.create({
     backgroundColor: WHITE,
     alignItems: 'center',
   },
-  providerName: {fontWeight: '500', fontSize: 20, color: PRIMARY_COLOR},
+  providerName: { fontWeight: '500', fontSize: 20, color: PRIMARY_COLOR },
   iconView: {
     // backgroundColor: 'green',
     flexDirection: 'row',
@@ -23,12 +22,10 @@ export const styles = StyleSheet.create({
     width: '18%',
   },
   linearGradient: {
-    // alignItems: 'center',
-    justifyContent: 'center',
-    height: windowHeight * 0.28,
+    alignItems: 'center',
+    height: windowHeight * 0.46,
     width: windowWidth * 1,
     borderRadius: 30,
-    // borderBottomRightRadius: 30
   },
   bannerInnerView: {
     flexDirection: 'row',
@@ -41,17 +38,17 @@ export const styles = StyleSheet.create({
     backgroundColor: PRIMARY_COLOR,
     borderRadius: 18,
   },
-  subText: {fontSize: 16, fontWeight: '500', color: WHITE},
+  subText: { fontSize: 16, fontWeight: '500', color: WHITE },
   scrollView: {
-    backgroundColor: WHITE,
-    height: windowHeight * 0.62,
-    // marginTop: '0.5%',
+    // backgroundColor: WHITE,
+    // height: windowHeight * 0.22,
+    marginBottom: 30,
   },
   title: {
     fontSize: 24,
     fontWeight: '500',
-    marginBottom: '4%',
-    color: WHITE,
+    // marginBottom: '4%',
+    color: GREEN,
     marginHorizontal: '2%',
   },
 

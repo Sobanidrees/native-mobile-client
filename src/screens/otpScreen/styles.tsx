@@ -1,9 +1,6 @@
 import { Dimensions, StyleSheet } from 'react-native';
 import { PRIMARY_COLOR, RED_ERROR, WHITE } from '../../utils/colors';
-
-
-const windowWidth = Dimensions.get('window').width;
-const windowHeight = Dimensions.get('window').height;
+import { windowHeight, windowWidth } from '../../utils/constants';
 
 export const styles = StyleSheet.create({
     root: { flex: 1, padding: 60 },
