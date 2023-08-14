@@ -7,11 +7,11 @@
 #define TIMEOUT_SECONDS 600
 #define TEXT_TO_LOOK_FOR @"Welcome to React"
 
-@interface NativeMobileClientTests : XCTestCase
+@interface EfyxTests : XCTestCase
 
 @end
 
-@implementation NativeMobileClientTests
+@implementation EfyxTests
 
 - (BOOL)findSubviewInView:(UIView *)view matching:(BOOL (^)(UIView *view))test
 {

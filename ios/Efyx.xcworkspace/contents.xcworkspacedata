@@ -2,9 +2,12 @@
 <Workspace
    version = "1.0">
    <FileRef
-      location = "group:NativeMobileClient.xcodeproj">
+      location = "group:Efyx.xcodeproj">
    </FileRef>
    <FileRef
       location = "group:Pods/Pods.xcodeproj">
+   </FileRef>
+   <FileRef
+      location = "group:Efyx.xcodeproj">
    </FileRef>
 </Workspace>

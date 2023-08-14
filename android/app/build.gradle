@@ -73,9 +73,9 @@ android {
 
     compileSdkVersion rootProject.ext.compileSdkVersion
 
-    namespace "com.nativemobileclient"
+    namespace "com.Efyx"
     defaultConfig {
-        applicationId "com.nativemobileclient"
+        applicationId "com.Efyx"
         minSdkVersion rootProject.ext.minSdkVersion
         targetSdkVersion rootProject.ext.targetSdkVersion
         versionCode 1

@@ -15,9 +15,9 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "13B07F861A680F5B00A75B9A"
-               BuildableName = "NativeMobileClient.app"
-               BlueprintName = "NativeMobileClient"
-               ReferencedContainer = "container:NativeMobileClient.xcodeproj">
+               BuildableName = "Efyx.app"
+               BlueprintName = "Efyx"
+               ReferencedContainer = "container:Efyx.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
       </BuildActionEntries>
@@ -33,9 +33,9 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "00E356ED1AD99517003FC87E"
-               BuildableName = "NativeMobileClientTests.xctest"
-               BlueprintName = "NativeMobileClientTests"
-               ReferencedContainer = "container:NativeMobileClient.xcodeproj">
+               BuildableName = "EfyxTests.xctest"
+               BlueprintName = "EfyxTests"
+               ReferencedContainer = "container:Efyx.xcodeproj">
             </BuildableReference>
          </TestableReference>
       </Testables>
@@ -55,9 +55,9 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "13B07F861A680F5B00A75B9A"
-            BuildableName = "NativeMobileClient.app"
-            BlueprintName = "NativeMobileClient"
-            ReferencedContainer = "container:NativeMobileClient.xcodeproj">
+            BuildableName = "Efyx.app"
+            BlueprintName = "Efyx"
+            ReferencedContainer = "container:Efyx.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
    </LaunchAction>
@@ -72,9 +72,9 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "13B07F861A680F5B00A75B9A"
-            BuildableName = "NativeMobileClient.app"
-            BlueprintName = "NativeMobileClient"
-            ReferencedContainer = "container:NativeMobileClient.xcodeproj">
+            BuildableName = "Efyx.app"
+            BlueprintName = "Efyx"
+            ReferencedContainer = "container:Efyx.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
    </ProfileAction>
