@@ -1,4 +1,4 @@
-package com.nativemobileclient;
+package com.Efyx;
 
 import android.app.Application;
 import com.facebook.react.PackageList;
