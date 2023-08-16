@@ -1,17 +1,20 @@
-import React, {useState} from 'react';
-import {View, Text, TextInput, TouchableOpacity} from 'react-native';
-import {styles} from './styles';
-import {NativeStackScreenProps} from '@react-navigation/native-stack';
-import {RootStackParams} from '../../../routes/routeStack';
+import React, { useState } from 'react';
+import { View, Text, TextInput, TouchableOpacity, ImageBackground, Image } from 'react-native';
+import { styles } from './styles';
+import { NativeStackScreenProps } from '@react-navigation/native-stack';
+import { RootStackParams } from '../../../routes/routeStack';
 
 type Props = NativeStackScreenProps<RootStackParams, 'Login'>;
 
-const Login = ({navigation}: Props) => {
+const Login = ({ navigation }: Props) => {
   const [phoneNumber, setPhoneNumber] = useState('');
 
   return (
     <View style={[styles.container]}>
-      <Text style={styles.title}>EFYX</Text>
+      <Image
+        source={require('../../assets/logo/logo.png')}
+        style={{ height: 60, width: 120, resizeMode: 'contain', }}
+      />
 
       <TextInput
         style={styles.input}
