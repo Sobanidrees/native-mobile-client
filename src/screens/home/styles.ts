@@ -4,6 +4,7 @@ import {windowHeight, windowWidth} from '../../utils/constants';
 
 export const styles = StyleSheet.create({
   container: {
+    flex: 1,
     backgroundColor: WHITE,
   },
   header: {
@@ -20,17 +21,6 @@ export const styles = StyleSheet.create({
     justifyContent: 'space-between',
     width: '18%',
   },
-  linearGradient: {
-    alignItems: 'center',
-    height: windowHeight * 0.46,
-    width: windowWidth * 1,
-    borderRadius: 30,
-  },
-  bannerInnerView: {
-    flexDirection: 'row',
-    justifyContent: 'space-between',
-    alignItems: 'center',
-  },
   subCat: {
     paddingHorizontal: '3%',
     paddingVertical: '3%',
@@ -39,7 +29,11 @@ export const styles = StyleSheet.create({
   },
   subText: {fontSize: 16, fontWeight: '500', color: WHITE},
   scrollView: {
-    marginBottom: 30,
+    paddingBottom: '0%',
+    // backgroundColor: PRIMARY_COLOR,
+    alignItems: 'center',
+    borderRadius: 20,
+    height: '92%',
   },
   title: {
     fontSize: 24,

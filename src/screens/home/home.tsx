@@ -1,4 +1,4 @@
-import {NativeStackScreenProps} from '@react-navigation/native-stack';
+import { NativeStackScreenProps } from '@react-navigation/native-stack';
 import React from 'react';
 import {
   Image,
@@ -8,14 +8,14 @@ import {
   TouchableOpacity,
   View,
 } from 'react-native';
-import {RootStackParams} from '../../../routes/routeStack';
-import {styles} from './styles';
+import { RootStackParams } from '../../../routes/routeStack';
+import { styles } from './styles';
 import Category from '../../components/category/category';
 import ServiceRequest from '../../components/serviceRequest/serviceRequest';
 
 type Props = NativeStackScreenProps<RootStackParams, 'Home'>;
 
-const Home = ({navigation}: Props) => {
+const Home = ({ navigation }: Props) => {
   return (
     <SafeAreaView style={styles.container}>
       <View style={styles.header}>
@@ -24,18 +24,18 @@ const Home = ({navigation}: Props) => {
           <TouchableOpacity onPress={() => navigation.navigate('Settings')}>
             <Image
               source={require('../../assets/images/setting.png')}
-              style={{height: 25, width: 25}}
+              style={{ height: 25, width: 25 }}
             />
           </TouchableOpacity>
           <TouchableOpacity onPress={() => navigation.navigate('Login')}>
             <Image
               source={require('../../assets/images/power-off.png')}
-              style={{height: 25, width: 25}}
+              style={{ height: 25, width: 25 }}
             />
           </TouchableOpacity>
         </View>
       </View>
-      <View>
+      {/* <View>
         <View style={styles.categoryView}>
           <Category
             catImg={require('../../assets/images/technology.png')}
@@ -53,7 +53,7 @@ const Home = ({navigation}: Props) => {
             onPress={() => navigation.navigate('ProviderServiceHistory')}
           />
         </View>
-      </View>
+      </View> */}
       <View
         style={{
           flexDirection: 'row',
@@ -77,8 +77,8 @@ const Home = ({navigation}: Props) => {
         </TouchableOpacity>
       </View>
 
-      <ScrollView showsVerticalScrollIndicator={false}>
-        <View style={styles.scrollView}>
+      <View style={styles.scrollView}>
+        <ScrollView showsVerticalScrollIndicator={false}>
           <ServiceRequest
             carName={'Lamborghini'}
             dateTime={'14th August 10pm'}
@@ -107,8 +107,36 @@ const Home = ({navigation}: Props) => {
             img={require('../../assets/images/carImg.png')}
             onPress={() => navigation.navigate('Inspection01')}
           />
-        </View>
-      </ScrollView>
+          <ServiceRequest
+            carName={'Porsche'}
+            dateTime={'14th August 10pm'}
+            inspectionType={'Basic'}
+            img={require('../../assets/images/carImg.png')}
+            onPress={() => navigation.navigate('Inspection01')}
+          />
+          <ServiceRequest
+            carName={'Porsche'}
+            dateTime={'14th August 10pm'}
+            inspectionType={'Basic'}
+            img={require('../../assets/images/carImg.png')}
+            onPress={() => navigation.navigate('Inspection01')}
+          />
+          <ServiceRequest
+            carName={'Porsche'}
+            dateTime={'14th August 10pm'}
+            inspectionType={'Basic'}
+            img={require('../../assets/images/carImg.png')}
+            onPress={() => navigation.navigate('Inspection01')}
+          />
+          <ServiceRequest
+            carName={'Porsche'}
+            dateTime={'14th August 10pm'}
+            inspectionType={'Basic'}
+            img={require('../../assets/images/carImg.png')}
+            onPress={() => navigation.navigate('Inspection01')}
+          />
+        </ScrollView>
+      </View>
     </SafeAreaView>
   );
 };

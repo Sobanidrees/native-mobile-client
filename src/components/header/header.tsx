@@ -1,18 +1,20 @@
 import React from 'react';
-import {View, Text, TouchableOpacity, Image} from 'react-native';
-import {windowWidth} from '../../utils/constants';
-import {styles} from './styles';
+import { View, Text, TouchableOpacity, Image } from 'react-native';
+import { windowWidth } from '../../utils/constants';
+import { styles } from './styles';
 
 type Props = {
   navigation: any;
-  headerTitle: any;
+  headerTitle: string;
 };
 
-const Header = ({navigation, headerTitle}: Props) => {
+const Header = ({ navigation, headerTitle }: Props) => {
   return (
     <View style={styles.header}>
-      <TouchableOpacity onPress={() => navigation.goBack()}></TouchableOpacity>
-      <View style={{width: windowWidth * 0.85, alignSelf: 'center'}}>
+      <TouchableOpacity style={styles.iconView} onPress={() => navigation.goBack()}>
+        <Image style={styles.backIcon} source={require('../../assets/images/back.png')} />
+      </TouchableOpacity>
+      <View style={styles.titleView}>
         <Text style={styles.title}>{headerTitle}</Text>
       </View>
     </View>
