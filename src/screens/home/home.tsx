@@ -1,4 +1,4 @@
-import { NativeStackScreenProps } from '@react-navigation/native-stack';
+import {NativeStackScreenProps} from '@react-navigation/native-stack';
 import React from 'react';
 import {
   Image,
@@ -8,14 +8,13 @@ import {
   TouchableOpacity,
   View,
 } from 'react-native';
-import { RootStackParams } from '../../../routes/routeStack';
-import { styles } from './styles';
-import Category from '../../components/category/category';
+import {RootStackParams} from '../../../routes/routeStack';
+import {styles} from './styles';
 import ServiceRequest from '../../components/serviceRequest/serviceRequest';
 
 type Props = NativeStackScreenProps<RootStackParams, 'Home'>;
 
-const Home = ({ navigation }: Props) => {
+const Home = ({navigation}: Props) => {
   return (
     <SafeAreaView style={styles.container}>
       <View style={styles.header}>
@@ -24,13 +23,13 @@ const Home = ({ navigation }: Props) => {
           <TouchableOpacity onPress={() => navigation.navigate('Settings')}>
             <Image
               source={require('../../assets/images/setting.png')}
-              style={{ height: 25, width: 25 }}
+              style={{height: 25, width: 25}}
             />
           </TouchableOpacity>
           <TouchableOpacity onPress={() => navigation.navigate('Login')}>
             <Image
               source={require('../../assets/images/power-off.png')}
-              style={{ height: 25, width: 25 }}
+              style={{height: 25, width: 25}}
             />
           </TouchableOpacity>
         </View>

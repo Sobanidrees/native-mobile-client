@@ -1,50 +1,71 @@
-import React, { useEffect, useState } from 'react';
-import { Text, TouchableOpacity, View, SafeAreaView, Alert } from 'react-native';
-import { NativeStackScreenProps } from '@react-navigation/native-stack';
-import { RootStackParams } from '../../../routes/routeStack';
+import React, {useEffect, useState} from 'react';
+import {Text, TouchableOpacity, View, SafeAreaView, Alert} from 'react-native';
+import {NativeStackScreenProps} from '@react-navigation/native-stack';
+import {RootStackParams} from '../../../routes/routeStack';
 import {
   CodeField,
   Cursor,
   useBlurOnFulfill,
   useClearByFocusCell,
 } from 'react-native-confirmation-code-field';
-import { WHITE } from '../../utils/colors';
-import { styles } from './styles';
+import {styles} from './styles';
 import Header from '../../components/header/header';
+import {useDispatch} from 'react-redux';
+import {inspectorVerifyOtp} from '../../redux/actions/inspector';
+import {inspectorVerificationDto} from '../../models/inspector';
+import {unwrapResult} from '@reduxjs/toolkit';
 type Props = NativeStackScreenProps<RootStackParams, 'Otp'>;
 
 const CELL_COUNT = 4;
 const DEFAULT_OTP = '1234';
 
-const Otp = ({ navigation }: Props) => {
+const Otp = ({navigation, route}: Props) => {
+  const {user} = route.params;
   const [value, setValue] = useState('');
-  const ref = useBlurOnFulfill({ value, cellCount: CELL_COUNT });
+  const ref = useBlurOnFulfill({value, cellCount: CELL_COUNT});
   const [props, getCellOnLayoutHandler] = useClearByFocusCell({
     value,
     setValue,
   });
+
+  const dispatch = useDispatch();
+
   useEffect(() => {
     const timer = setTimeout(() => {
       ref.current?.focus();
     }, 500);
-
   }, []);
 
-
   const handleVerification = () => {
-    if (value === DEFAULT_OTP) {
-      navigation.navigate('Home'); // Navigate to home screen for correct OTP
-    } else {
-      Alert.alert('Incorrect OTP', 'Please enter the correct OTP.');
-    }
-  };
-  console.log(value, 'value');
+    const inspectorVerificationData: inspectorVerificationDto = {
+      phoneNumber: user.phoneNumber,
+      otp: value,
+    };
 
+    dispatch<any>(inspectorVerifyOtp(inspectorVerificationData))
+      .then(unwrapResult)
+      .then((inspector: any) => {
+        // TODO: Check for JWT instead of inspector
+        if (inspector) {
+          navigation.navigate('Home');
+        } else {
+          // TODO: Manage errors gracefully via snackbars / error shown to users
+          Alert.alert('Could not sign you up');
+        }
+      })
+      .catch((error: any) => {
+        // TODO: Manage errors gracefully via snackbars / error shown to users
+        Alert.alert('Could not sign you up');
+        console.log(error);
+      });
+  };
 
   return (
     <SafeAreaView style={styles.container}>
       <Header navigation={navigation} headerTitle="OTP Verification" />
-      <Text style={styles.verificationText}>Please Enter Verification Code Sent To</Text>
+      <Text style={styles.verificationText}>
+        Please Enter Verification Code Sent To
+      </Text>
       <Text style={styles.numberText}>+971-3202919700</Text>
 
       <CodeField
@@ -56,7 +77,7 @@ const Otp = ({ navigation }: Props) => {
         rootStyle={styles.codeFieldRoot}
         keyboardType="number-pad"
         textContentType="oneTimeCode"
-        renderCell={({ index, symbol, isFocused }) => (
+        renderCell={({index, symbol, isFocused}) => (
           <Text
             key={index}
             style={[styles.cell, isFocused && styles.focusCell]}
@@ -71,7 +92,6 @@ const Otp = ({ navigation }: Props) => {
       </TouchableOpacity>
       {/* </View> */}
       <Text style={styles.resendOtp}>Didn't receive the code? Re-send otp</Text>
-
     </SafeAreaView>
   );
 };
