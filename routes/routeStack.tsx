@@ -9,14 +9,14 @@ import Otp from '../src/screens/otp/otp';
 import ServiceDetail from '../src/screens/serviceDetail/serviceDetail';
 import Services from '../src/screens/services/services';
 import Home from '../src/screens/home/home';
-import Splash from '../src/screens/splash/splash';
 import Login from '../src/screens/login/login';
 import SignUp from '../src/screens/signUp/signUp';
+import {Inspector} from '../src/models/inspector';
+import DeciderWrapper from '../src/screens/deciderWrapper/deciderWrapper';
 
 const Stack = createNativeStackNavigator<RootStackParams>();
 
 export type RootStackParams = {
-  Splash: undefined;
   Login: undefined;
   SignUp: undefined;
   Home: undefined;
@@ -25,18 +25,21 @@ export type RootStackParams = {
   Settings: undefined;
   Inspection01: undefined;
   Tools: undefined;
-  Otp: undefined;
+  Otp: {
+    user: Inspector;
+  };
   ServiceDetail: {
     serviceName: any;
   };
   Services: undefined;
+  DeciderWrapper: undefined;
 };
 
 export default function RoutesStack() {
   return (
     <NavigationContainer>
       <Stack.Navigator screenOptions={{headerShown: false}}>
-        <Stack.Screen name="Splash" component={Splash} />
+        <Stack.Screen name="DeciderWrapper" component={DeciderWrapper} />
         <Stack.Screen name="Login" component={Login} />
         <Stack.Screen name="SignUp" component={SignUp} />
         <Stack.Screen name="Home" component={Home} />

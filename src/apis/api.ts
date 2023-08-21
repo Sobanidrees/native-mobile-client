@@ -6,6 +6,7 @@ const api = axios.create({
     baseURL: NEST_JS_API,
     headers: {
       'Content-Type': 'application/json',
+      // TODO: Add authorizatin (JWT) here
     },
 })
 

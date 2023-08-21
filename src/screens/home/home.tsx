@@ -10,7 +10,6 @@ import {
 } from 'react-native';
 import {RootStackParams} from '../../../routes/routeStack';
 import {styles} from './styles';
-import Category from '../../components/category/category';
 import ServiceRequest from '../../components/serviceRequest/serviceRequest';
 
 type Props = NativeStackScreenProps<RootStackParams, 'Home'>;
@@ -35,7 +34,7 @@ const Home = ({navigation}: Props) => {
           </TouchableOpacity>
         </View>
       </View>
-      <View>
+      {/* <View>
         <View style={styles.categoryView}>
           <Category
             catImg={require('../../assets/images/technology.png')}
@@ -53,7 +52,7 @@ const Home = ({navigation}: Props) => {
             onPress={() => navigation.navigate('ProviderServiceHistory')}
           />
         </View>
-      </View>
+      </View> */}
       <View
         style={{
           flexDirection: 'row',
@@ -77,8 +76,8 @@ const Home = ({navigation}: Props) => {
         </TouchableOpacity>
       </View>
 
-      <ScrollView showsVerticalScrollIndicator={false}>
-        <View style={styles.scrollView}>
+      <View style={styles.scrollView}>
+        <ScrollView showsVerticalScrollIndicator={false}>
           <ServiceRequest
             carName={'Lamborghini'}
             dateTime={'14th August 10pm'}
@@ -107,8 +106,36 @@ const Home = ({navigation}: Props) => {
             img={require('../../assets/images/carImg.png')}
             onPress={() => navigation.navigate('Inspection01')}
           />
-        </View>
-      </ScrollView>
+          <ServiceRequest
+            carName={'Porsche'}
+            dateTime={'14th August 10pm'}
+            inspectionType={'Basic'}
+            img={require('../../assets/images/carImg.png')}
+            onPress={() => navigation.navigate('Inspection01')}
+          />
+          <ServiceRequest
+            carName={'Porsche'}
+            dateTime={'14th August 10pm'}
+            inspectionType={'Basic'}
+            img={require('../../assets/images/carImg.png')}
+            onPress={() => navigation.navigate('Inspection01')}
+          />
+          <ServiceRequest
+            carName={'Porsche'}
+            dateTime={'14th August 10pm'}
+            inspectionType={'Basic'}
+            img={require('../../assets/images/carImg.png')}
+            onPress={() => navigation.navigate('Inspection01')}
+          />
+          <ServiceRequest
+            carName={'Porsche'}
+            dateTime={'14th August 10pm'}
+            inspectionType={'Basic'}
+            img={require('../../assets/images/carImg.png')}
+            onPress={() => navigation.navigate('Inspection01')}
+          />
+        </ScrollView>
+      </View>
     </SafeAreaView>
   );
 };

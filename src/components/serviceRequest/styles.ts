@@ -1,12 +1,12 @@
 import {StyleSheet} from 'react-native';
-import { PRIMARY_COLOR, WHITE } from '../../utils/colors';
+import {PRIMARY_COLOR, WHITE} from '../../utils/colors';
 import {windowWidth} from '../../utils/constants';
 
 export const styles = StyleSheet.create({
   requestView: {
     height: 100,
     width: windowWidth * 0.94,
-    backgroundColor: WHITE,
+    backgroundColor: PRIMARY_COLOR,
     marginVertical: '2%',
     borderRadius: 12,
   },
@@ -19,6 +19,6 @@ export const styles = StyleSheet.create({
   detailView: {justifyContent: 'center', marginHorizontal: 10},
   carName: {
     fontSize: 18,
-    color: PRIMARY_COLOR,
+    color: WHITE,
   },
 });
