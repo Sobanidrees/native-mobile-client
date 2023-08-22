@@ -11,7 +11,7 @@ export const styles = StyleSheet.create({
     justifyContent: 'space-between',
     height: windowHeight * 0.05,
     marginHorizontal: '4%',
-    backgroundColor: WHITE,
+    // backgroundColor: 'red',
     alignItems: 'center',
   },
   providerName: {fontWeight: '500', fontSize: 20, color: PRIMARY_COLOR},
@@ -39,7 +39,10 @@ export const styles = StyleSheet.create({
   },
   subText: {fontSize: 16, fontWeight: '500', color: WHITE},
   scrollView: {
+    height: windowHeight * 0.8,
     marginBottom: 30,
+    alignItems: 'center',
+    // backgroundColor: 'green',
   },
   title: {
     fontSize: 24,
