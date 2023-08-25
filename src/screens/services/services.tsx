@@ -14,7 +14,7 @@ import {PRIMARY_COLOR} from '../../utils/colors';
 import Header from '../../components/header/header';
 
 type Props = NativeStackScreenProps<RootStackParams, 'Services'>;
- 
+
 const Services = ({navigation}: Props) => {
   return (
     <SafeAreaView style={[styles.container]}>
