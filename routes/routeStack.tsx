@@ -1,5 +1,5 @@
-import { createNativeStackNavigator } from '@react-navigation/native-stack';
-import { NavigationContainer } from '@react-navigation/native';
+import {createNativeStackNavigator} from '@react-navigation/native-stack';
+import {NavigationContainer} from '@react-navigation/native';
 import ProviderServiceHistory from '../src/screens/providerServiceHistory/providerServiceHistory';
 import Notifications from '../src/screens/notifications/notifications';
 import Inspection01 from '../src/screens/inspection01/inspection01';
@@ -12,8 +12,6 @@ import Home from '../src/screens/home/home';
 import Splash from '../src/screens/splash/splash';
 import Login from '../src/screens/login/login';
 import SignUp from '../src/screens/signUp/signUp';
-import Profile from '../src/screens/profile/profile';
-import MyTabs from './bottomTab';
 
 const Stack = createNativeStackNavigator<RootStackParams>();
 
@@ -32,14 +30,12 @@ export type RootStackParams = {
     serviceName: any;
   };
   Services: undefined;
-  Profile: undefined;
-  MyTabs: undefined
 };
 
 export default function RoutesStack() {
   return (
     <NavigationContainer>
-      <Stack.Navigator screenOptions={{ headerShown: false }}>
+      <Stack.Navigator screenOptions={{headerShown: false}}>
         <Stack.Screen name="Splash" component={Splash} />
         <Stack.Screen name="Login" component={Login} />
         <Stack.Screen name="SignUp" component={SignUp} />
@@ -55,9 +51,6 @@ export default function RoutesStack() {
         <Stack.Screen name="Otp" component={Otp} />
         <Stack.Screen name="Services" component={Services} />
         <Stack.Screen name="ServiceDetail" component={ServiceDetail} />
-        <Stack.Screen name="Profile" component={Profile} />
-        <Stack.Screen name="MyTabs" component={MyTabs} />
-
       </Stack.Navigator>
     </NavigationContainer>
   );

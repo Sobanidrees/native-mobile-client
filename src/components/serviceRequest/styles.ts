@@ -1,5 +1,5 @@
 import {StyleSheet} from 'react-native';
-import {PRIMARY_COLOR, WHITE} from '../../utils/colors';
+import { PRIMARY_COLOR, WHITE } from '../../utils/colors';
 import {windowWidth} from '../../utils/constants';
 
 export const styles = StyleSheet.create({
@@ -9,8 +9,6 @@ export const styles = StyleSheet.create({
     backgroundColor: WHITE,
     marginVertical: '2%',
     borderRadius: 12,
-    borderWidth: 1,
-    borderColor: PRIMARY_COLOR,
   },
   imgView: {
     height: 100,
