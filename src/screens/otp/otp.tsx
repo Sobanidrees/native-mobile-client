@@ -1,28 +1,28 @@
-import React, {useEffect, useState} from 'react';
-import {Text, TouchableOpacity, View, SafeAreaView, Alert} from 'react-native';
-import {NativeStackScreenProps} from '@react-navigation/native-stack';
-import {RootStackParams} from '../../../routes/routeStack';
+import React, { useEffect, useState } from 'react';
+import { Text, TouchableOpacity, View, SafeAreaView, Alert } from 'react-native';
+import { NativeStackScreenProps } from '@react-navigation/native-stack';
+import { RootStackParams } from '../../../routes/routeStack';
 import {
   CodeField,
   Cursor,
   useBlurOnFulfill,
   useClearByFocusCell,
 } from 'react-native-confirmation-code-field';
-import {styles} from './styles';
+import { styles } from './styles';
 import Header from '../../components/header/header';
-import {useDispatch} from 'react-redux';
-import {inspectorVerifyOtp} from '../../redux/actions/inspector';
-import {inspectorVerificationDto} from '../../models/inspector';
-import {unwrapResult} from '@reduxjs/toolkit';
+import { useDispatch } from 'react-redux';
+import { inspectorVerifyOtp } from '../../redux/actions/inspector';
+import { inspectorVerificationDto } from '../../models/inspector';
+import { unwrapResult } from '@reduxjs/toolkit';
 type Props = NativeStackScreenProps<RootStackParams, 'Otp'>;
 
 const CELL_COUNT = 4;
 const DEFAULT_OTP = '1234';
 
-const Otp = ({navigation, route}: Props) => {
-  const {user} = route.params;
+const Otp = ({ navigation, route }: Props) => {
+  const { user } = route.params;
   const [value, setValue] = useState('');
-  const ref = useBlurOnFulfill({value, cellCount: CELL_COUNT});
+  const ref = useBlurOnFulfill({ value, cellCount: CELL_COUNT });
   const [props, getCellOnLayoutHandler] = useClearByFocusCell({
     value,
     setValue,
@@ -46,6 +46,7 @@ const Otp = ({navigation, route}: Props) => {
       .then(unwrapResult)
       .then((inspector: any) => {
         // TODO: Check for JWT instead of inspector
+        console.log("inspector: ", inspector)
         if (inspector) {
           navigation.navigate('Home');
         } else {
@@ -77,7 +78,7 @@ const Otp = ({navigation, route}: Props) => {
         rootStyle={styles.codeFieldRoot}
         keyboardType="number-pad"
         textContentType="oneTimeCode"
-        renderCell={({index, symbol, isFocused}) => (
+        renderCell={({ index, symbol, isFocused }) => (
           <Text
             key={index}
             style={[styles.cell, isFocused && styles.focusCell]}
