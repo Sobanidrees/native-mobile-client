@@ -3,7 +3,7 @@ import {
   InspectorRegisterDto,
   InspectorLoginDto,
   inspectorVerificationDto,
-  InspectorLogoutDto,
+  // InspectorLogoutDto,
   // InspectorLogoutDto
 } from '../../models/inspector';
 import {ActionTypes} from '../constants/actionTypes';

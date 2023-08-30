@@ -1,5 +1,5 @@
-import {createNativeStackNavigator} from '@react-navigation/native-stack';
-import {NavigationContainer} from '@react-navigation/native';
+import { createNativeStackNavigator } from '@react-navigation/native-stack';
+import { NavigationContainer } from '@react-navigation/native';
 import ProviderServiceHistory from '../src/screens/providerServiceHistory/providerServiceHistory';
 import Notifications from '../src/screens/notifications/notifications';
 import Inspection01 from '../src/screens/inspection01/inspection01';
@@ -11,13 +11,16 @@ import Services from '../src/screens/services/services';
 import Home from '../src/screens/home/home';
 import Login from '../src/screens/login/login';
 import SignUp from '../src/screens/signUp/signUp';
-import {Inspector} from '../src/models/inspector';
+import { Inspector } from '../src/models/inspector';
+
+import Profile from '../src/screens/profile/profile';
+import MyTabs from './bottomTab';
 import DeciderWrapper from '../src/screens/deciderWrapper/deciderWrapper';
 
 const Stack = createNativeStackNavigator<RootStackParams>();
 
 export type RootStackParams = {
-  Login: undefined;
+  Login: { phoneNumber: string };
   SignUp: undefined;
   Home: undefined;
   ProviderServiceHistory: undefined;
@@ -27,21 +30,26 @@ export type RootStackParams = {
   Tools: undefined;
   Otp: {
     user: Inspector;
+    phoneNumber: string
   };
   ServiceDetail: {
     serviceName: any;
   };
   Services: undefined;
   DeciderWrapper: undefined;
+
+  Profile: undefined;
+  MyTabs: undefined
 };
 
 export default function RoutesStack() {
   return (
     <NavigationContainer>
-      <Stack.Navigator screenOptions={{headerShown: false}}>
+      <Stack.Navigator screenOptions={{ headerShown: false }}>
         <Stack.Screen name="DeciderWrapper" component={DeciderWrapper} />
         <Stack.Screen name="Login" component={Login} />
         <Stack.Screen name="SignUp" component={SignUp} />
+        <Stack.Screen name="MyTabs" component={MyTabs} />
         <Stack.Screen name="Home" component={Home} />
         <Stack.Screen
           name="ProviderServiceHistory"
@@ -54,6 +62,8 @@ export default function RoutesStack() {
         <Stack.Screen name="Otp" component={Otp} />
         <Stack.Screen name="Services" component={Services} />
         <Stack.Screen name="ServiceDetail" component={ServiceDetail} />
+        <Stack.Screen name="Profile" component={Profile} />
+
       </Stack.Navigator>
     </NavigationContainer>
   );

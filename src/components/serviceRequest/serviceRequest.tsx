@@ -10,8 +10,8 @@ const ServiceRequest = (props: any) => {
         <ImageBackground style={styles.imgView} source={props.img} />
         <View style={styles.detailView}>
           <Text style={styles.carName}>{props.carName}</Text>
-          <Text style={{ color: WHITE }}>Type: {props.inspectionType}</Text>
-          <Text style={{ color: WHITE }}>Inspection Time: {props.dateTime}</Text>
+          <Text style={{}}>Type: {props.inspectionType}</Text>
+          <Text style={{}}>Inspection Time: {props.dateTime}</Text>
         </View>
       </View>
     </TouchableOpacity>

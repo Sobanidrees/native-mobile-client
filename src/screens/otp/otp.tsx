@@ -9,18 +9,18 @@ import {
   useClearByFocusCell,
 } from 'react-native-confirmation-code-field';
 import { styles } from './styles';
-import Header from '../../components/header/header';
 import { useDispatch } from 'react-redux';
 import { inspectorVerifyOtp } from '../../redux/actions/inspector';
 import { inspectorVerificationDto } from '../../models/inspector';
 import { unwrapResult } from '@reduxjs/toolkit';
+import PrimaryButton from '../../components/primaryButton/primaryButton';
 type Props = NativeStackScreenProps<RootStackParams, 'Otp'>;
 
 const CELL_COUNT = 4;
 const DEFAULT_OTP = '1234';
 
 const Otp = ({ navigation, route }: Props) => {
-  const { user } = route.params;
+  const { user, phoneNumber } = route.params;
   const [value, setValue] = useState('');
   const ref = useBlurOnFulfill({ value, cellCount: CELL_COUNT });
   const [props, getCellOnLayoutHandler] = useClearByFocusCell({
@@ -63,11 +63,11 @@ const Otp = ({ navigation, route }: Props) => {
 
   return (
     <SafeAreaView style={styles.container}>
-      <Header navigation={navigation} headerTitle="OTP Verification" />
+      <Text style={styles.headingText}>VERIFICATION CODE</Text>
       <Text style={styles.verificationText}>
         Please Enter Verification Code Sent To
       </Text>
-      <Text style={styles.numberText}>+971-3202919700</Text>
+      <Text style={styles.numberText}>{phoneNumber}</Text>
 
       <CodeField
         ref={ref}
@@ -87,12 +87,8 @@ const Otp = ({ navigation, route }: Props) => {
           </Text>
         )}
       />
-      {/* <View style={styles.root}> */}
-      <TouchableOpacity style={styles.verifyBtn} onPress={handleVerification}>
-        <Text style={styles.btnText}>Verify</Text>
-      </TouchableOpacity>
-      {/* </View> */}
-      <Text style={styles.resendOtp}>Didn't receive the code? Re-send otp</Text>
+      <PrimaryButton navigation={handleVerification} buttonTitle="Verify" />
+
     </SafeAreaView>
   );
 };

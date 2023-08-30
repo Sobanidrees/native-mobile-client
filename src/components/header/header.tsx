@@ -1,22 +1,25 @@
 import React from 'react';
-import { View, Text, TouchableOpacity, Image } from 'react-native';
-import { windowWidth } from '../../utils/constants';
-import { styles } from './styles';
+import {View, Text, TouchableOpacity, Image} from 'react-native';
+import {windowWidth} from '../../utils/constants';
+import {styles} from './styles';
+import {SvgXml} from 'react-native-svg';
+import {APP_ICON_WHITE, BACK_ICON} from '../../utils/assets';
 
 type Props = {
   navigation: any;
   headerTitle: string;
 };
 
-const Header = ({ navigation, headerTitle }: Props) => {
+const Header = ({navigation, headerTitle}: Props) => {
   return (
     <View style={styles.header}>
-      <TouchableOpacity style={styles.iconView} onPress={() => navigation.goBack()}>
-        <Image style={styles.backIcon} source={require('../../assets/images/back.png')} />
+      <TouchableOpacity onPress={() => navigation.goBack()}>
+        <SvgXml xml={BACK_ICON} />
       </TouchableOpacity>
-      <View style={styles.titleView}>
-        <Text style={styles.title}>{headerTitle}</Text>
-      </View>
+      <Text style={styles.title}>{headerTitle}</Text>
+      <TouchableOpacity>
+        <SvgXml xml={APP_ICON_WHITE} />
+      </TouchableOpacity>
     </View>
   );
 };

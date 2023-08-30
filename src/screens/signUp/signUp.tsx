@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React, { useState } from 'react';
 import {
   Alert,
   SafeAreaView,
@@ -6,24 +6,35 @@ import {
   TextInput,
   TouchableOpacity,
   View,
+  Keyboard,
+  TouchableWithoutFeedback,
 } from 'react-native';
-import {styles} from './styles';
-import {NativeStackScreenProps} from '@react-navigation/native-stack';
-import {RootStackParams} from '../../../routes/routeStack';
-import {SvgXml} from 'react-native-svg';
+import { styles } from './styles';
+import { NativeStackScreenProps } from '@react-navigation/native-stack';
+import { RootStackParams } from '../../../routes/routeStack';
+import { SvgXml } from 'react-native-svg';
 
-import {LOGIN_SCREEN_IMAGE} from '../../utils/assets';
-import {useDispatch} from 'react-redux';
-import {inspectorRegister} from '../../redux/actions/inspector';
-import {InspectorRegisterDto} from '../../models/inspector';
-import {unwrapResult} from '@reduxjs/toolkit';
+import { LOGIN_SCREEN_IMAGE } from '../../utils/assets';
+import { useDispatch } from 'react-redux';
+import { inspectorRegister } from '../../redux/actions/inspector';
+import { InspectorRegisterDto } from '../../models/inspector';
+import { unwrapResult } from '@reduxjs/toolkit';
+import PrimaryButton from '../../components/primaryButton/primaryButton';
+import { PRIMARY_DARK } from '../../utils/colors';
+import CheckBox from '../../components/checkbox/checkbox';
+import { BOLDTEXT } from '../../utils/constantStyle';
+
 type Props = NativeStackScreenProps<RootStackParams, 'SignUp'>;
 
-const SignUp = ({navigation}: Props) => {
+const SignUp = ({ navigation }: Props) => {
   const [phoneNumber, setPhoneNumber] = useState('');
   const [fullName, setFullName] = useState('');
   const [emiratesId, setEmiratesId] = useState('');
+  const [isChecked, setIsChecked] = useState(false);
 
+  const handleCheckBoxClick = () => {
+    setIsChecked(!isChecked);
+  };
   const dispatch = useDispatch();
 
   const handleRegistration = async () => {
@@ -38,7 +49,7 @@ const SignUp = ({navigation}: Props) => {
       .then((inspector: any) => {
         // handle result here
         if (inspector?.id) {
-          navigation.navigate('Otp', {user: inspector});
+          navigation.navigate('Otp', { user: inspector, phoneNumber: phoneNumber });
         } else {
           // TODO: Manage errors gracefully via snackbars / error shown to users
           Alert.alert('Could not sign you up');
@@ -51,46 +62,47 @@ const SignUp = ({navigation}: Props) => {
       });
   };
 
+  const handleScreenTap = () => {
+    // Hide the keyboard when the user taps on the screen
+    Keyboard.dismiss();
+  };
+
   return (
-    <SafeAreaView style={styles.container}>
-      <SvgXml style={{marginTop: '16%'}} xml={LOGIN_SCREEN_IMAGE} />
-
-      <Text style={styles.loginText}>Create Your New Account</Text>
-
-      <TextInput
-        style={styles.input}
-        onChangeText={setFullName}
-        value={fullName}
-        placeholder="Full Name"
-      />
-      <TextInput
-        style={styles.input}
-        onChangeText={setEmiratesId}
-        value={emiratesId}
-        placeholder="Enter Your Emirates ID"
-      />
-      <View style={styles.input}>
+    <TouchableWithoutFeedback onPress={handleScreenTap}>
+      <SafeAreaView style={styles.container}>
+        <Text style={styles.registerText}>Register Here</Text>
+        <Text style={styles.createAccText}>Create Your New Account</Text>
         <TextInput
-          onChangeText={setPhoneNumber}
-          value={phoneNumber}
-          placeholder="Mobile number"
-          keyboardType="numeric"
+          style={styles.input}
+          onChangeText={setFullName}
+          value={fullName}
+          placeholder="Full Name"
         />
-      </View>
+        <TextInput
+          style={styles.input}
+          onChangeText={setEmiratesId}
+          value={emiratesId}
+          placeholder="Enter Your Emirates ID"
+        />
+        <View style={[styles.input]}>
+          <Text>+971 - </Text>
+          <TextInput
+            style={{ width: '85%', height: '80%' }}
+            onChangeText={setPhoneNumber}
+            keyboardType="numeric"
+          />
+        </View>
 
-      <TouchableOpacity onPress={handleRegistration} style={styles.btn}>
-        <Text style={styles.btnText}>SignUp</Text>
-      </TouchableOpacity>
-      <Text style={styles.enterNoText}>
-        Agree to our terms of services and privacy policies
-      </Text>
-
-      <TouchableOpacity
-        onPress={() => navigation.navigate('Login')}
-        style={{alignItems: 'flex-end'}}>
-        <Text style={styles.loginText}>back to login</Text>
-      </TouchableOpacity>
-    </SafeAreaView>
+        <PrimaryButton navigation={handleRegistration} buttonTitle="Register" />
+        <CheckBox checked={isChecked} onPress={handleCheckBoxClick} />
+        <View style={styles.alreadyToLogin}>
+          <Text>Already have an account? </Text>
+          <TouchableOpacity onPress={() => navigation.navigate('Login')}>
+            <Text style={styles.backText}>Login Here</Text>
+          </TouchableOpacity>
+        </View>
+      </SafeAreaView>
+    </TouchableWithoutFeedback>
   );
 };
 

@@ -33,7 +33,7 @@ export const styles = StyleSheet.create({
     // backgroundColor: PRIMARY_COLOR,
     alignItems: 'center',
     borderRadius: 20,
-    height: '92%',
+    height: '94%',
   },
   title: {
     fontSize: 24,
