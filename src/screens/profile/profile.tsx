@@ -5,7 +5,7 @@ import { NativeStackScreenProps } from '@react-navigation/native-stack';
 import { RootStackParams } from '../../../routes/routeStack';
 import Header from '../../components/header/header';
 import HomeHeader from '../../components/homeHeader/homeHeader';
-import ProfileText from '../../components/profileText/profileText';
+import ProfileText from '../../components/rowText/profileText';
 import PrimaryButton from '../../components/primaryButton/primaryButton';
 
 type Props = NativeStackScreenProps<RootStackParams, 'Profile'>;

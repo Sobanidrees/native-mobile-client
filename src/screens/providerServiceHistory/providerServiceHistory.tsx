@@ -20,7 +20,7 @@ type Props = NativeStackScreenProps<RootStackParams, 'ProviderServiceHistory'>;
 const ProviderServiceHistory = ({ navigation }: Props) => {
   return (
     <View style={[styles.container]}>
-      <HomeHeader headerTitle="Your Previous Service History" navigation={navigation} />
+      <HomeHeader headerTitle="Service History" navigation={navigation} />
       <View style={styles.scrollView}>
         <ScrollView
           style={{ marginBottom: 120 }} showsVerticalScrollIndicator={false}>
@@ -30,10 +30,12 @@ const ProviderServiceHistory = ({ navigation }: Props) => {
               <ServiceRequest
                 key={i.id}
                 carName={'Lamborghini'}
-                dateTime={'14th August 10pm'}
                 inspectionType={'Basic'}
+                location={'Paragon City, Lahore'}
+                date={'14th August'}
+                time={'12:00pm'}
                 img={require('../../assets/images/carImg.png')}
-                onPress={() => navigation.navigate('Inspection01')}
+                onPress={() => navigation.navigate('CarDetails')}
               />
             )
           })}

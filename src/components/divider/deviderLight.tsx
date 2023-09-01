@@ -1,20 +1,21 @@
 import React from 'react';
 import { StyleSheet, View } from 'react-native';
-import { GREY } from '../../utils/colors';
+import { GREY, LIGHT_GREY } from '../../utils/colors';
 import { BTN_INPUT_WIDTH } from '../../utils/constantStyle';
 type Props = {
 };
-const Divider = ({ }: Props) => {
+const DividerLight = ({ }: Props) => {
     return (
         <View style={styles.divider} />
     );
 };
-export default Divider;
+export default DividerLight;
 const styles = StyleSheet.create({
     divider: {
         width: BTN_INPUT_WIDTH,
-        borderWidth: 1,
-        borderColor: GREY,
-        alignSelf: 'center'
+        borderWidth: 0.8,
+        borderColor: LIGHT_GREY,
+        alignSelf: 'center',
+        marginVertical: '2%'
     }
 });

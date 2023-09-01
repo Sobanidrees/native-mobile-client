@@ -14,7 +14,7 @@ const DeciderWrapper = ({ navigation }: Props) => {
     let jwtToken = await AsyncStorage.getItem('jwtToken');
     if (jwtToken) {
       console.log("jwtToken: ", jwtToken)
-      navigation.navigate('MyTabs');
+      navigation.navigate('BottomTab');
 
       // if ((user?.inspector as any)?.id && !!jwtToken) {
       //   navigation.navigate('Home');

@@ -15,14 +15,15 @@ export type TabParams = {
     Profile: undefined;
 };
 
-const MyTabs = () => {
+const BottomTab = () => {
     return (
         <Tab.Navigator
             screenOptions={({ route }) => ({
                 headerShown: false,
                 tabBarStyle: {
-                    paddingHorizontal: 5,
-                    paddingTop: 0,
+                    // paddingHorizontal: 5,
+                    height: 72,
+                    paddingTop: 14,
                     backgroundColor: PRIMARY_COLOR_LIGHT,
                     position: 'absolute',
                     borderTopWidth: 0,
@@ -61,4 +62,4 @@ const MyTabs = () => {
     );
 };
 
-export default MyTabs;
+export default BottomTab;

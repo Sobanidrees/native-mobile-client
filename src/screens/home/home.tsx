@@ -1,8 +1,6 @@
 import { NativeStackScreenProps } from '@react-navigation/native-stack';
 import React from 'react';
 import {
-  Image,
-  SafeAreaView,
   ScrollView,
   Text,
   TouchableOpacity,
@@ -29,10 +27,13 @@ const Home = ({ navigation }: Props) => {
               <ServiceRequest
                 key={i.id}
                 carName={'Lamborghini'}
-                dateTime={'14th August 10pm'}
                 inspectionType={'Basic'}
+                timeAgo={'5 min ago'}
+                location={'Paragon City, Lahore'}
+                date={'14th August'}
+                time={'12:00pm'}
                 img={require('../../assets/images/carImg.png')}
-                onPress={() => navigation.navigate('Inspection01')}
+                onPress={() => navigation.navigate('CarDetails')}
               />
             )
           })}

@@ -14,14 +14,17 @@ import SignUp from '../src/screens/signUp/signUp';
 import { Inspector } from '../src/models/inspector';
 
 import Profile from '../src/screens/profile/profile';
-import MyTabs from './bottomTab';
+import BottomTab from './bottomTab';
 import DeciderWrapper from '../src/screens/deciderWrapper/deciderWrapper';
+import CarDetails from '../src/screens/carDetails/carDetails';
 
 const Stack = createNativeStackNavigator<RootStackParams>();
 
 export type RootStackParams = {
-  Login: { phoneNumber: string };
+  DeciderWrapper: undefined;
+  Login: undefined;
   SignUp: undefined;
+  BottomTab: undefined
   Home: undefined;
   ProviderServiceHistory: undefined;
   Notifications: undefined;
@@ -36,10 +39,9 @@ export type RootStackParams = {
     serviceName: any;
   };
   Services: undefined;
-  DeciderWrapper: undefined;
 
   Profile: undefined;
-  MyTabs: undefined
+  CarDetails: undefined;
 };
 
 export default function RoutesStack() {
@@ -49,7 +51,7 @@ export default function RoutesStack() {
         <Stack.Screen name="DeciderWrapper" component={DeciderWrapper} />
         <Stack.Screen name="Login" component={Login} />
         <Stack.Screen name="SignUp" component={SignUp} />
-        <Stack.Screen name="MyTabs" component={MyTabs} />
+        <Stack.Screen name="BottomTab" component={BottomTab} />
         <Stack.Screen name="Home" component={Home} />
         <Stack.Screen
           name="ProviderServiceHistory"
@@ -63,6 +65,7 @@ export default function RoutesStack() {
         <Stack.Screen name="Services" component={Services} />
         <Stack.Screen name="ServiceDetail" component={ServiceDetail} />
         <Stack.Screen name="Profile" component={Profile} />
+        <Stack.Screen name="CarDetails" component={CarDetails} />
 
       </Stack.Navigator>
     </NavigationContainer>

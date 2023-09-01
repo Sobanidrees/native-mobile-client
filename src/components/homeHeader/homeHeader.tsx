@@ -26,9 +26,9 @@ const HomeHeader = ({ navigation, headerTitle }: Props) => {
     }
     return (
         <View style={styles.header}>
-            <TouchableOpacity onPress={() => navigation.navigate('MyTabs')}>
-                <SvgXml xml={APP_ICON_WHITE} />
-            </TouchableOpacity>
+            {/* <TouchableOpacity onPress={() => navigation.navigate('BottomTab')}> */}
+            <SvgXml xml={APP_ICON_WHITE} />
+            {/* </TouchableOpacity> */}
             <Text style={styles.title}>{headerTitle}</Text>
             <TouchableOpacity onPress={Logout}>
                 <SvgXml xml={LOGOUT_ICON} />

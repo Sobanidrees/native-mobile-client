@@ -22,7 +22,6 @@ const inspectorSlice = createSlice({
     // Inspector Register
     [inspectorRegister.pending.toString()]: (state: any) => {
       state.loading = true;
-      state.error = null;
     },
     [inspectorRegister.fulfilled.toString()]: (state: any, {payload}: any) => {
       state.loading = false;

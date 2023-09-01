@@ -1,7 +1,7 @@
 export const BG_COLOR = '#FF6600';
 export const WHITE = '#FFFFFF';
 export const SOLID_BLACK = '#000000';
-export const LIGHT_GREY = '#393A3D';
+export const LIGHT_GREY = '#E5E5E5';
 export const GREY = '#9E9E9E';
 export const RED = '#FF0000';
 export const SCREEN_BG = '#EBEBEB';

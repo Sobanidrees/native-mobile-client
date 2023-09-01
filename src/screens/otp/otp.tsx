@@ -68,7 +68,6 @@ const Otp = ({ navigation, route }: Props) => {
         Please Enter Verification Code Sent To
       </Text>
       <Text style={styles.numberText}>{phoneNumber}</Text>
-
       <CodeField
         ref={ref}
         {...props}

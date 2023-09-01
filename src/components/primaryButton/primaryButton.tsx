@@ -1,6 +1,7 @@
 import React from 'react';
-import { Text, TouchableOpacity, ViewStyle } from 'react-native';
-import { styles } from './styles';
+import { StyleSheet, Text, TouchableOpacity, ViewStyle } from 'react-native';
+import { PRIMARY_DARK, WHITE } from '../../utils/colors';
+import { BOLDTEXT, BTN_INPUT_HEIGHT, BTN_INPUT_WIDTH, LARGETEXT, MEDIUMTEXT } from '../../utils/constantStyle';
 
 type Props = {
     navigation: any;
@@ -17,3 +18,21 @@ const PrimaryButton = ({ navigation, buttonTitle, buttonStyle }: Props) => {
 };
 
 export default PrimaryButton;
+
+const styles = StyleSheet.create({
+    button: {
+        backgroundColor: PRIMARY_DARK,
+        height: BTN_INPUT_HEIGHT,
+        width: BTN_INPUT_WIDTH,
+        borderRadius: 10,
+        justifyContent: 'center',
+        alignSelf: 'center',
+        marginVertical: '2%',
+    },
+    buttonTitle: {
+        fontSize: MEDIUMTEXT,
+        fontWeight: BOLDTEXT,
+        alignSelf: 'center',
+        color: WHITE,
+    },
+});
