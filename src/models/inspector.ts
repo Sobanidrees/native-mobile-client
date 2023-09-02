@@ -8,7 +8,7 @@ export type InspectorLoginDto = {
   phoneNumber: string;
 };
 
-export type inspectorVerificationDto = {
+export type InspectorVerificationDto = {
   phoneNumber: string;
   otp: string;
 };
@@ -20,7 +20,3 @@ export type Inspector = {
   otpVerified?: boolean;
   phoneNumber: string;
 };
-
-// export type InspectorLogoutDto = {
-//   jwtToken: null;
-// };

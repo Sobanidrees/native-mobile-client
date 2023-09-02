@@ -8,26 +8,34 @@ import { RootStackParams } from '../../../routes/routeStack';
 type Props = NativeStackScreenProps<RootStackParams, 'DeciderWrapper'>;
 
 const DeciderWrapper = ({ navigation }: Props) => {
-  const user = useSelector((state: RootState) => state.inspector);
+  const user = useSelector((state: RootState) => { state.inspector, state.consumer },);
 
-  const mountAction = async () => {
-    let jwtToken = await AsyncStorage.getItem('jwtToken');
-    if (jwtToken) {
-      console.log("jwtToken: ", jwtToken)
+  const inspectorMountAction = async () => {
+    let inspectorJwtToken = await AsyncStorage.getItem('jwtToken');
+    if (inspectorJwtToken) {
+      console.log("jwtToken: ", inspectorJwtToken)
       navigation.navigate('BottomTab');
 
-      // if ((user?.inspector as any)?.id && !!jwtToken) {
-      //   navigation.navigate('Home');
-      // } else {
-      //   navigation.navigate('Login');
-      // }
-    } else {
+    }
+    else {
       navigation.navigate('Login');
     }
   }
+  // const consumerMountAction = async () => {
+  //   let consumerJwtToken = await AsyncStorage.getItem('jwtToken');
+  //   if (consumerJwtToken) {
+  //     console.log("jwtToken: ", consumerJwtToken)
+  //     navigation.navigate('Home');
+
+  //   }
+  //   else {
+  //     navigation.navigate('Login');
+  //   }
+  // }
   useEffect(() => {
     console.log("user: ", user)
-    mountAction()
+    inspectorMountAction();
+    // consumerMountAction();
   }, [])
 
 

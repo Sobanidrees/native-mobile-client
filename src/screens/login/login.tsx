@@ -20,39 +20,60 @@ import { unwrapResult } from '@reduxjs/toolkit';
 import UserTypeButton from '../../components/userTypeButton/userTypeButton';
 import PrimaryButton from '../../components/primaryButton/primaryButton';
 import { PRIMARY_COLOR_LIGHT, PRIMARY_DARK } from '../../utils/colors';
+import { consumerLogin } from '../../redux/actions/consumer';
+import { ConsumerLoginDto } from '../../models/consumer';
 
 type Props = NativeStackScreenProps<RootStackParams, 'Login'>;
 
 const Login = ({ navigation }: Props) => {
   const [phoneNumber, setPhoneNumber] = useState('');
-  const [userType, setUserType] = useState('');
+  const [userType, setUserType] = useState('consumer');
 
   const dispatch = useDispatch();
 
   const handleLogin = async () => {
-    const inspectorLoginData: InspectorLoginDto = {
+    const InspectorLoginData: InspectorLoginDto = {
       phoneNumber: phoneNumber,
     };
+    const ConsumerLoginData: ConsumerLoginDto = {
+      phoneNumber: phoneNumber,
+    };
+    console.log("phoneNumber", phoneNumber);
 
-    dispatch<any>(inspectorLogin(inspectorLoginData))
-      .then(unwrapResult)
-      .then((inspector: any) => {
-        if (inspector) {
-          navigation.navigate('Otp', { user: inspector, phoneNumber: phoneNumber });
-        } else {
+    if (userType === "consumer") {
+      dispatch<any>(consumerLogin(ConsumerLoginData))
+        .then(unwrapResult)
+        .then((consumer: any) => {
+          if (consumer) {
+            navigation.navigate('Otp', { user: consumer, phoneNumber: phoneNumber });
+          } else {
+            Alert.alert('Could not log you in');
+          }
+        })
+        .catch((error: any) => {
           Alert.alert('Could not log you in');
-        }
-      })
-      .catch((error: any) => {
-        Alert.alert('Could not log you in');
-        console.log(error);
-      });
+          console.log(error);
+        });
+    } else {
+      dispatch<any>(inspectorLogin(InspectorLoginData))
+        .then(unwrapResult)
+        .then((inspector: any) => {
+          if (inspector) {
+            navigation.navigate('Otp', { user: inspector, phoneNumber: phoneNumber });
+          } else {
+            Alert.alert('Could not log you in');
+          }
+        })
+        .catch((error: any) => {
+          Alert.alert('Could not log you in');
+          console.log(error);
+        });
+    }
   };
 
   const handleUserTypeSelection = (selectedUserType: string) => {
     setUserType(selectedUserType); // Set the selected user type in the state
   };
-  console.log('fwef', userType)
 
   return (
     <View style={[styles.container]}>

@@ -16,13 +16,13 @@ const HomeHeader = ({ navigation, headerTitle }: Props) => {
     const user = useSelector((state: RootState) => state.inspector);
 
     const Logout = async () => {
-        let jwtToken = await AsyncStorage.removeItem('jwtToken');
-        // if (jwtToken) {
-        //     console.log("jwtToken: ", jwtToken)
-        navigation.navigate('Login');
-        // } else {
-        //     Alert.alert('no jwt token available')
-        // }
+        try {
+            await AsyncStorage.removeItem('jwtToken');
+            navigation.navigate('Login');
+        } catch (error) {
+            console.error('Error removing JWT token:', error);
+            // Handle the error here, e.g., show an error message.
+        }
     }
     return (
         <View style={styles.header}>

@@ -1,18 +1,19 @@
 import {createAsyncThunk} from '@reduxjs/toolkit';
-import {
-  InspectorRegisterDto,
-  InspectorLoginDto,
-  InspectorVerificationDto,
-} from '../../models/inspector';
+
 import {ActionTypes} from '../constants/actionTypes';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import {apiCall} from '../../apis/api';
+import {
+  ConsumerRegisterDto,
+  ConsumerVerificationDto,
+  ConsumerLoginDto,
+} from '../../models/consumer';
 
-export const inspectorRegister = createAsyncThunk(
-  ActionTypes.INSPECTOR_REGISTER,
-  async (params: InspectorRegisterDto, {rejectWithValue}) => {
+export const consumerRegister = createAsyncThunk(
+  ActionTypes.CONSUMER_REGISTER,
+  async (params: ConsumerRegisterDto, {rejectWithValue}) => {
     try {
-      return await apiCall('/inspector/register', 'post', params);
+      return await apiCall('/consumer/register', 'post', params);
     } catch (error: any) {
       // return custom error message from API if any
       if (error.response && error.response.data.message) {
@@ -24,11 +25,11 @@ export const inspectorRegister = createAsyncThunk(
   },
 );
 
-export const inspectorVerifyOtp = createAsyncThunk(
-  ActionTypes.VERIFY_OTP,
-  async (params: InspectorVerificationDto, {rejectWithValue}) => {
+export const consumerVerifyOtp = createAsyncThunk(
+  ActionTypes.CONSUMER_VERIFY_OTP,
+  async (params: ConsumerVerificationDto, {rejectWithValue}) => {
     try {
-      const token = await apiCall('/inspector/verify_otp', 'post', params);
+      const token = await apiCall('/consumer/verify_otp', 'post', params);
       console.log('token: ', token);
       await AsyncStorage.setItem('jwtToken', token);
       return token;
@@ -42,11 +43,11 @@ export const inspectorVerifyOtp = createAsyncThunk(
   },
 );
 
-export const inspectorLogin = createAsyncThunk(
-  ActionTypes.INSPECTOR_LOGIN,
-  async (params: InspectorLoginDto, {rejectWithValue}) => {
+export const consumerLogin = createAsyncThunk(
+  ActionTypes.CONSUMER_LOGIN,
+  async (params: ConsumerLoginDto, {rejectWithValue}) => {
     try {
-      return await apiCall('/inspector/login', 'post', params);
+      return await apiCall('/consumer/login', 'post', params);
     } catch (error: any) {
       // return custom error message from API if any
       if (error.response && error.response.data.message) {

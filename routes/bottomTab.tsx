@@ -16,6 +16,8 @@ export type TabParams = {
 };
 
 const BottomTab = () => {
+    console.log("BottomTab ran");
+
     return (
         <Tab.Navigator
             screenOptions={({ route }) => ({
@@ -47,7 +49,7 @@ const BottomTab = () => {
                             style={{
                                 height: 25,
                                 width: 25,
-                                resizeMode: 'contain',
+                                resizeMode: "contain",
                             }}
                         />
                     );

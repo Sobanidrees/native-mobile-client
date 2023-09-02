@@ -11,9 +11,10 @@ import {
 import { styles } from './styles';
 import { useDispatch } from 'react-redux';
 import { inspectorVerifyOtp } from '../../redux/actions/inspector';
-import { inspectorVerificationDto } from '../../models/inspector';
+import { InspectorVerificationDto } from '../../models/inspector';
 import { unwrapResult } from '@reduxjs/toolkit';
 import PrimaryButton from '../../components/primaryButton/primaryButton';
+import { consumerVerifyOtp } from '../../redux/actions/consumer';
 type Props = NativeStackScreenProps<RootStackParams, 'Otp'>;
 
 const CELL_COUNT = 4;
@@ -21,6 +22,7 @@ const DEFAULT_OTP = '1234';
 
 const Otp = ({ navigation, route }: Props) => {
   const { user, phoneNumber } = route.params;
+  // console.log("user", user, phoneNumber);
   const [value, setValue] = useState('');
   const ref = useBlurOnFulfill({ value, cellCount: CELL_COUNT });
   const [props, getCellOnLayoutHandler] = useClearByFocusCell({
@@ -37,28 +39,48 @@ const Otp = ({ navigation, route }: Props) => {
   }, []);
 
   const handleVerification = () => {
-    const inspectorVerificationData: inspectorVerificationDto = {
+    const userVerificationData: InspectorVerificationDto = {
       phoneNumber: user.phoneNumber,
       otp: value,
     };
 
-    dispatch<any>(inspectorVerifyOtp(inspectorVerificationData))
-      .then(unwrapResult)
-      .then((inspector: any) => {
-        // TODO: Check for JWT instead of inspector
-        console.log("inspector: ", inspector)
-        if (inspector) {
-          navigation.navigate('Home');
-        } else {
+    if (user?.emiratesId) {
+      dispatch<any>(inspectorVerifyOtp(userVerificationData))
+        .then(unwrapResult)
+        .then((inspector: any) => {
+          // TODO: Check for JWT instead of inspector
+          console.log("inspector: ", inspector)
+          if (inspector) {
+            navigation.navigate('BottomTab');
+          } else {
+            // TODO: Manage errors gracefully via snackbars / error shown to users
+            Alert.alert('Could not sign you up');
+          }
+        })
+        .catch((error: any) => {
           // TODO: Manage errors gracefully via snackbars / error shown to users
           Alert.alert('Could not sign you up');
-        }
-      })
-      .catch((error: any) => {
-        // TODO: Manage errors gracefully via snackbars / error shown to users
-        Alert.alert('Could not sign you up');
-        console.log(error);
-      });
+          console.log(error);
+        });
+    } else {
+      dispatch<any>(consumerVerifyOtp(userVerificationData))
+        .then(unwrapResult)
+        .then((token: any) => {
+          // TODO: Check for JWT instead of inspector
+          console.log("consumer token: ", token)
+          if (token) {
+            navigation.navigate('CarDetails');
+          } else {
+            // TODO: Manage errors gracefully via snackbars / error shown to users
+            Alert.alert('Could not sign you up');
+          }
+        })
+        .catch((error: any) => {
+          // TODO: Manage errors gracefully via snackbars / error shown to users
+          Alert.alert('Could not sign you up');
+          console.log(error);
+        });
+    }
   };
 
   return (
