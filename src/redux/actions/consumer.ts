@@ -7,7 +7,11 @@ import {
   ConsumerRegisterDto,
   ConsumerVerificationDto,
   ConsumerLoginDto,
+  ConsumerUpdateProfileDto,
+  UpdateVehicleDto,
 } from '../../models/consumer';
+import axios from 'axios';
+import {setUser} from '../reducers/userSlice';
 
 export const consumerRegister = createAsyncThunk(
   ActionTypes.CONSUMER_REGISTER,
@@ -15,7 +19,6 @@ export const consumerRegister = createAsyncThunk(
     try {
       return await apiCall('/consumer/register', 'post', params);
     } catch (error: any) {
-      // return custom error message from API if any
       if (error.response && error.response.data.message) {
         return rejectWithValue(error.response.data.message);
       } else {
@@ -30,7 +33,6 @@ export const consumerVerifyOtp = createAsyncThunk(
   async (params: ConsumerVerificationDto, {rejectWithValue}) => {
     try {
       const token = await apiCall('/consumer/verify_otp', 'post', params);
-      console.log('token: ', token);
       await AsyncStorage.setItem('jwtToken', token);
       return token;
     } catch (error: any) {
@@ -47,9 +49,27 @@ export const consumerLogin = createAsyncThunk(
   ActionTypes.CONSUMER_LOGIN,
   async (params: ConsumerLoginDto, {rejectWithValue}) => {
     try {
-      return await apiCall('/consumer/login', 'post', params);
+      const user = await apiCall('/consumer/login', 'post', params);
+      await AsyncStorage.setItem('user', JSON.stringify(user));
+      return user;
     } catch (error: any) {
-      // return custom error message from API if any
+      return rejectWithValue(error.message);
+    }
+  },
+);
+
+export const consumerUpdate = createAsyncThunk(
+  ActionTypes.CONSUMER_UPDATE,
+  async (params: ConsumerUpdateProfileDto, {rejectWithValue}) => {
+    try {
+      const updatedConsumer = await apiCall(
+        '/consumer/update_Profile',
+        'patch',
+        params,
+      );
+      await AsyncStorage.setItem('user', JSON.stringify(updatedConsumer));
+      return updatedConsumer;
+    } catch (error: any) {
       if (error.response && error.response.data.message) {
         return rejectWithValue(error.response.data.message);
       } else {
@@ -59,7 +79,23 @@ export const consumerLogin = createAsyncThunk(
   },
 );
 
-// export const inspectorLogout = createAsyncThunk(
-//   ActionTypes.INSPECTOR_LOGOUT,
-//   async (params: InspectorLogoutDto, {rejectWithValue}) => {},
-// );
+export const vehicleUpdate = createAsyncThunk(
+  ActionTypes.VEHICLE_UPDATE,
+  async (params: UpdateVehicleDto, {rejectWithValue}) => {
+    try {
+      const updatedVehicle = await apiCall(
+        '/consumer/update_Vehicle',
+        'patch',
+        params,
+      );
+      await AsyncStorage.setItem('user', JSON.stringify(updatedVehicle));
+      return updatedVehicle;
+    } catch (error: any) {
+      if (error.response && error.response.data.message) {
+        return rejectWithValue(error.response.data.message);
+      } else {
+        return rejectWithValue(error.message);
+      }
+    }
+  },
+);

@@ -1,51 +1,40 @@
 import React, { useEffect } from 'react';
-import { useSelector } from 'react-redux';
-import { RootState } from '../../redux/store';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import { NativeStackScreenProps } from '@react-navigation/native-stack';
 import { RootStackParams } from '../../../routes/routeStack';
+import jwt_decode from "jwt-decode";
 
 type Props = NativeStackScreenProps<RootStackParams, 'DeciderWrapper'>;
-
 const DeciderWrapper = ({ navigation }: Props) => {
-  const user = useSelector((state: RootState) => { state.inspector, state.consumer },);
 
-  const inspectorMountAction = async () => {
-    let inspectorJwtToken = await AsyncStorage.getItem('jwtToken');
-    if (inspectorJwtToken) {
-      console.log("jwtToken: ", inspectorJwtToken)
-      navigation.navigate('BottomTab');
+  const decideUser = async () => {
+    let jwtToken = await AsyncStorage.getItem('jwtToken');
+    let user;
+    const userTypeObject = await AsyncStorage.getItem('user');
 
+    if (userTypeObject) {
+      user = JSON.parse(userTypeObject)
     }
-    else {
+    if (!!jwtToken) {
+      const decodedToken: any = jwt_decode(jwtToken);
+      const userType = decodedToken?.emiratesId ? 'inspector' : 'consumer';
+      if (userType === 'inspector') {
+        navigation.navigate('BottomTab');
+      } else if (user.fullName && user.address) {
+        navigation.navigate('ConsumerHome');
+      } else if (userType === 'consumer') {
+        navigation.navigate('ConsumerProfile');
+      }
+    } else {
       navigation.navigate('Login');
     }
-  }
-  // const consumerMountAction = async () => {
-  //   let consumerJwtToken = await AsyncStorage.getItem('jwtToken');
-  //   if (consumerJwtToken) {
-  //     console.log("jwtToken: ", consumerJwtToken)
-  //     navigation.navigate('Home');
+  };
 
-  //   }
-  //   else {
-  //     navigation.navigate('Login');
-  //   }
-  // }
   useEffect(() => {
-    console.log("user: ", user)
-    inspectorMountAction();
-    // consumerMountAction();
-  }, [])
+    decideUser();
+  }, []);
 
-
-  // TODO: Find a better way to check the user id
-  // Also, if for some reason, user is not in
-  // redux store but jwtToken is in Async storage
-  // Fetch loggedIn user
-
-
-  // TODO: Implement loader
   return <></>;
 };
+
 export default DeciderWrapper;

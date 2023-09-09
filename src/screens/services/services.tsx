@@ -18,7 +18,7 @@ type Props = NativeStackScreenProps<RootStackParams, 'Services'>;
 const Services = ({ navigation }: Props) => {
   return (
     <SafeAreaView style={[styles.container]}>
-      <Header navigation={navigation} headerTitle="Service Details" />
+      <Header headerTitle="Service Details" />
 
       <ScrollView style={{ marginTop: '2%' }}>
         {ServicesArray.map(i => {

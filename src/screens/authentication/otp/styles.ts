@@ -4,8 +4,8 @@ import {
   PRIMARY_COLOR_LIGHT,
   RED_ERROR,
   WHITE,
-} from '../../utils/colors';
-import {BOLDTEXT, HEADINGTEXT} from '../../utils/constantStyle';
+} from '../../../utils/colors';
+import {BOLDTEXT, HEADINGTEXT} from '../../../utils/constantStyle';
 
 export const styles = StyleSheet.create({
   container: {flex: 1, backgroundColor: WHITE},

@@ -16,7 +16,6 @@ export type TabParams = {
 };
 
 const BottomTab = () => {
-    console.log("BottomTab ran");
 
     return (
         <Tab.Navigator

@@ -12,7 +12,9 @@ export const inspectorRegister = createAsyncThunk(
   ActionTypes.INSPECTOR_REGISTER,
   async (params: InspectorRegisterDto, {rejectWithValue}) => {
     try {
-      return await apiCall('/inspector/register', 'post', params);
+      const user = await apiCall('/inspector/register', 'post', params);
+      await AsyncStorage.setItem('user', JSON.stringify(user));
+      return user;
     } catch (error: any) {
       // return custom error message from API if any
       if (error.response && error.response.data.message) {
@@ -32,6 +34,7 @@ export const inspectorVerifyOtp = createAsyncThunk(
       console.log('token: ', token);
       await AsyncStorage.setItem('jwtToken', token);
       return token;
+      console.log('token======', token);
     } catch (error: any) {
       if (error.response && error.response.data.message) {
         return rejectWithValue(error.response.data.message);
@@ -44,9 +47,13 @@ export const inspectorVerifyOtp = createAsyncThunk(
 
 export const inspectorLogin = createAsyncThunk(
   ActionTypes.INSPECTOR_LOGIN,
-  async (params: InspectorLoginDto, {rejectWithValue}) => {
+  async (params: InspectorLoginDto, {dispatch, rejectWithValue}) => {
     try {
-      return await apiCall('/inspector/login', 'post', params);
+      const user = await apiCall('/inspector/login', 'post', params);
+      await AsyncStorage.setItem('user', JSON.stringify(user));
+      console.log(user, '========inspectorActionCalled=====');
+
+      return user;
     } catch (error: any) {
       // return custom error message from API if any
       if (error.response && error.response.data.message) {
@@ -57,8 +64,3 @@ export const inspectorLogin = createAsyncThunk(
     }
   },
 );
-
-// export const inspectorLogout = createAsyncThunk(
-//   ActionTypes.INSPECTOR_LOGOUT,
-//   async (params: InspectorLogoutDto, {rejectWithValue}) => {},
-// );

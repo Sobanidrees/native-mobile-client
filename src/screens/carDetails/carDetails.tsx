@@ -17,7 +17,7 @@ const CarDetails = ({ navigation }: Props) => {
     }
     return (
         <View style={[styles.container]}>
-            <Header headerTitle="Car Details" navigation={navigation} />
+            <Header headerTitle="Car Details" />
             <View style={styles.innerView}>
                 <DetailText title={'Talha Shabbir'} value={''} />
                 <DetailText title={'Dubai'} value={''} />

@@ -1,16 +1,19 @@
 import React from 'react';
-import {View, Text, TouchableOpacity, Image} from 'react-native';
-import {windowWidth} from '../../utils/constants';
-import {styles} from './styles';
-import {SvgXml} from 'react-native-svg';
-import {APP_ICON_WHITE, BACK_ICON} from '../../utils/assets';
+import { View, Text, TouchableOpacity, Image } from 'react-native';
+import { windowWidth } from '../../utils/constants';
+import { styles } from './styles';
+import { SvgXml } from 'react-native-svg';
+import { APP_ICON_WHITE, BACK_ICON } from '../../utils/assets';
+import { useNavigation } from '@react-navigation/native';
 
 type Props = {
-  navigation: any;
   headerTitle: string;
 };
 
-const Header = ({navigation, headerTitle}: Props) => {
+const Header = ({ headerTitle }: Props) => {
+
+  const navigation = useNavigation();
+
   return (
     <View style={styles.header}>
       <TouchableOpacity onPress={() => navigation.goBack()}>

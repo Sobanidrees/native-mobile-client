@@ -3,6 +3,7 @@ import {
   consumerRegister,
   consumerLogin,
   consumerVerifyOtp,
+  consumerUpdate,
 } from '../actions/consumer';
 
 const initialState = {
@@ -11,6 +12,8 @@ const initialState = {
   jwtToken: null, // for storing the JWT
   error: null,
   success: false,
+  fullName: '', // Initial values
+  address: '',
 };
 
 const consumerSlice = createSlice({
@@ -59,6 +62,16 @@ const consumerSlice = createSlice({
     [consumerVerifyOtp.rejected.toString()]: (state: any, {payload}: any) => {
       state.loading = false;
       state.error = payload;
+    },
+
+    //Update consumer profile
+    [consumerUpdate.fulfilled.toString()]: (state, action) => {
+      // Assuming the action.payload contains the updated profile data
+      state.fullName = action.payload.fullName;
+      state.address = action.payload.address;
+    },
+    [consumerUpdate.rejected.toString()]: (state, action) => {
+      state.error = action.payload;
     },
   },
 });

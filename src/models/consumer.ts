@@ -13,14 +13,25 @@ export type ConsumerVerificationDto = {
   otp: string;
 };
 
-//   export type Inspector = {
-//     adminVerfied?: string;
-//     emiratesId: string;
-//     fullName: string;
-//     otpVerified?: boolean;
-//     phoneNumber: string;
-//   };
+export type ConsumerUpdateProfileDto = {
+  fullName: string;
+  address: string;
+};
 
-// export type InspectorLogoutDto = {
-//   jwtToken: null;
-// };
+export type UpdateVehicleDto = {
+  year: string;
+  make: string;
+  model: string;
+};
+
+export type Consumer = {
+  phoneNumber: string;
+  fullName: string;
+  address: string;
+  otpVerified?: boolean;
+  vehicle: {
+    year: string;
+    make: string;
+    model: string;
+  };
+};

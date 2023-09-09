@@ -3,6 +3,7 @@ import {
   GREY,
   PRIMARY_COLOR,
   PRIMARY_COLOR_LIGHT,
+  RED_ERROR,
   WHITE,
 } from '../../utils/colors';
 import {
@@ -18,15 +19,18 @@ export const styles = StyleSheet.create({
     backgroundColor: WHITE,
     alignItems: 'center',
   },
+  keyboardAvoidingContainer: {},
   registerText: {
     fontSize: 32,
     fontWeight: BOLDTEXT,
     color: PRIMARY_COLOR_LIGHT,
     marginTop: '16%',
+    textAlign: 'center',
   },
   createAccText: {
     fontSize: BASICTEXT,
-    marginVertical: '2%',
+    marginVertical: '4%',
+    textAlign: 'center',
   },
   input: {
     flexDirection: 'row',
@@ -51,6 +55,11 @@ export const styles = StyleSheet.create({
     marginTop: '4%',
   },
   enterNoText: {fontSize: BASICTEXT, marginLeft: '4%'},
-  alreadyToLogin: {alignItems: 'center', flexDirection: 'row', marginTop: '4%'},
-  backText: {fontSize: BASICTEXT, fontWeight: BOLDTEXT},
+  alreadyToLogin: {
+    alignSelf: 'center',
+    flexDirection: 'row',
+    marginTop: '4%',
+  },
+  backText: {fontSize: BASICTEXT, fontWeight: BOLDTEXT, textAlign: 'center'},
+  errorText: {color: RED_ERROR},
 });

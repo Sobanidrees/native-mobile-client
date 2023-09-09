@@ -12,7 +12,7 @@ const ServiceDetail = ({ route, navigation }: Props) => {
 
   return (
     <View style={[styles.container]}>
-      <Header navigation={navigation} headerTitle={serviceName} />
+      <Header headerTitle={serviceName} />
     </View>
   );
 };

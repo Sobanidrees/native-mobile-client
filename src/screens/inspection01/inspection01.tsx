@@ -20,7 +20,7 @@ type Props = NativeStackScreenProps<RootStackParams, 'Inspection01'>;
 const Inspection01 = ({ navigation }: Props) => {
   return (
     <View style={[styles.container]}>
-      <Header navigation={navigation} headerTitle="Inspect" />
+      <Header headerTitle="Inspect" />
       <ScrollView style={{ marginTop: '2%' }}>
         {ServicesArray.map(i => {
           return (

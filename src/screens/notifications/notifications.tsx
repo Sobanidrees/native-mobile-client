@@ -18,7 +18,7 @@ type Props = NativeStackScreenProps<RootStackParams, 'Notifications'>;
 const Notifications = ({navigation}: Props) => {
   return (
     <SafeAreaView style={[styles.container]}>
-      <Header navigation={navigation} headerTitle="Notification" />
+      <Header headerTitle="Notification" />
 
       <ScrollView style={{marginTop: '2%'}}>
         {ServicesArray.map(i => {

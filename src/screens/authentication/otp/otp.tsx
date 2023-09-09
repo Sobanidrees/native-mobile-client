@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { Text, TouchableOpacity, View, SafeAreaView, Alert } from 'react-native';
 import { NativeStackScreenProps } from '@react-navigation/native-stack';
-import { RootStackParams } from '../../../routes/routeStack';
+import { RootStackParams } from '../../../../routes/routeStack';
 import {
   CodeField,
   Cursor,
@@ -10,19 +10,19 @@ import {
 } from 'react-native-confirmation-code-field';
 import { styles } from './styles';
 import { useDispatch } from 'react-redux';
-import { inspectorVerifyOtp } from '../../redux/actions/inspector';
-import { InspectorVerificationDto } from '../../models/inspector';
+import { inspectorVerifyOtp } from '../../../redux/actions/inspector';
+import { InspectorVerificationDto } from '../../../models/inspector';
 import { unwrapResult } from '@reduxjs/toolkit';
-import PrimaryButton from '../../components/primaryButton/primaryButton';
-import { consumerVerifyOtp } from '../../redux/actions/consumer';
+import PrimaryButton from '../../../components/primaryButton/primaryButton';
+import { consumerVerifyOtp } from '../../../redux/actions/consumer';
+import { ConsumerVerificationDto } from '../../../models/consumer';
+import AsyncStorage from '@react-native-async-storage/async-storage';
 type Props = NativeStackScreenProps<RootStackParams, 'Otp'>;
 
 const CELL_COUNT = 4;
-const DEFAULT_OTP = '1234';
 
 const Otp = ({ navigation, route }: Props) => {
-  const { user, phoneNumber } = route.params;
-  // console.log("user", user, phoneNumber);
+  const { phoneNumber, isInspector, consumer, inspector } = route.params;
   const [value, setValue] = useState('');
   const ref = useBlurOnFulfill({ value, cellCount: CELL_COUNT });
   const [props, getCellOnLayoutHandler] = useClearByFocusCell({
@@ -38,48 +38,42 @@ const Otp = ({ navigation, route }: Props) => {
     }, 500);
   }, []);
 
-  const handleVerification = () => {
+  const handleVerification = async () => {
     const userVerificationData: InspectorVerificationDto = {
-      phoneNumber: user.phoneNumber,
+      phoneNumber: phoneNumber,
       otp: value,
     };
+    let userType;
+    const userTypeObject = await AsyncStorage.getItem('user');
+    if (userTypeObject) {
+      userType = JSON.parse(userTypeObject)
+    }
+    try {
+      if ((userType?.emiratesId && inspector) || isInspector) {
+        const token = await dispatch<any>(inspectorVerifyOtp(userVerificationData));
+        if (token) {
+          navigation.navigate('BottomTab');
+        } else {
+          Alert.alert('Could not sign you up');
+        }
+      } else {
+        const token = await dispatch<any>(consumerVerifyOtp(userVerificationData));
+        if (token) {
 
-    if (user?.emiratesId) {
-      dispatch<any>(inspectorVerifyOtp(userVerificationData))
-        .then(unwrapResult)
-        .then((inspector: any) => {
-          // TODO: Check for JWT instead of inspector
-          console.log("inspector: ", inspector)
-          if (inspector) {
-            navigation.navigate('BottomTab');
+          if (userType.fullName && userType.address) {
+            navigation.navigate('ConsumerHome');
           } else {
-            // TODO: Manage errors gracefully via snackbars / error shown to users
-            Alert.alert('Could not sign you up');
+            navigation.navigate('ConsumerProfile');
           }
-        })
-        .catch((error: any) => {
-          // TODO: Manage errors gracefully via snackbars / error shown to users
+        } else {
           Alert.alert('Could not sign you up');
-          console.log(error);
-        });
-    } else {
-      dispatch<any>(consumerVerifyOtp(userVerificationData))
-        .then(unwrapResult)
-        .then((token: any) => {
-          // TODO: Check for JWT instead of inspector
-          console.log("consumer token: ", token)
-          if (token) {
-            navigation.navigate('CarDetails');
-          } else {
-            // TODO: Manage errors gracefully via snackbars / error shown to users
-            Alert.alert('Could not sign you up');
-          }
-        })
-        .catch((error: any) => {
-          // TODO: Manage errors gracefully via snackbars / error shown to users
-          Alert.alert('Could not sign you up');
-          console.log(error);
-        });
+        }
+      }
+    }
+    catch (error) {
+      // Handle errors gracefully via snackbars / error shown to users
+      Alert.alert('Could not sign you up');
+      console.error(error);
     }
   };
 
@@ -108,7 +102,7 @@ const Otp = ({ navigation, route }: Props) => {
           </Text>
         )}
       />
-      <PrimaryButton navigation={handleVerification} buttonTitle="Verify" />
+      <PrimaryButton navigation={handleVerification} buttonTitle="Verify" buttonStyle={{}} />
 
     </SafeAreaView>
   );
