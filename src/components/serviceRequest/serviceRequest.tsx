@@ -1,11 +1,10 @@
 import React from 'react';
 import { ImageBackground, Text, TouchableOpacity, View } from 'react-native';
 import { styles } from './styles';
-import { WHITE } from '../../utils/colors';
+import { LIGHT_GREY, WHITE } from '../../utils/colors';
 import { SvgXml } from 'react-native-svg';
 import { CALENDAR_ICON, LOCATION_ICON, TIME_ICON } from '../../utils/assets';
 import Divider from '../divider/divider';
-import DividerLight from '../divider/deviderLight';
 
 const ServiceRequest = (props: any) => {
   return (
@@ -22,7 +21,7 @@ const ServiceRequest = (props: any) => {
           <SvgXml xml={LOCATION_ICON} />
           <Text style={styles.dateTimeText}>{props.location}</Text>
         </View>
-        <DividerLight />
+        <Divider color={LIGHT_GREY} />
         <View style={styles.rowView}>
           <View style={styles.iconTextView}>
             <SvgXml xml={CALENDAR_ICON} />

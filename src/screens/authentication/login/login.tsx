@@ -24,7 +24,7 @@ const Login = ({ navigation }: Props) => {
   const dispatch = useDispatch();
 
   const handleLogin = async () => {
-    if (phoneNumber.length === 13) {
+    if (phoneNumber.length === 14) {
       setError('Enter a valid phone number');
       return;
     }

@@ -70,6 +70,8 @@ export const inspectorLogout = createAsyncThunk(
   async () => {
     try {
       await apiCall('/inspector/logout', 'post');
+      await AsyncStorage.removeItem('jwtToken');
+
       console.log('logged out');
     } catch (error: any) {
       // return custom error message from API if any

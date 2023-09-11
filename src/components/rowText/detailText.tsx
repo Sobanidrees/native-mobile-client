@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { Text, TouchableOpacity, TextInput, StyleSheet, View } from 'react-native';
 import Divider from '../divider/divider';
 import { MEDIUMTEXT } from '../../utils/constantStyle';
+import { GREY } from '../../utils/colors';
 
 const DetailText = (props: any) => {
     return (
@@ -10,7 +11,7 @@ const DetailText = (props: any) => {
                 <Text style={styles.title}>{props.title}</Text>
                 <Text style={styles.value}>{props.value}</Text>
             </View>
-            <Divider />
+            <Divider color={GREY}/>
         </View>
     );
 };

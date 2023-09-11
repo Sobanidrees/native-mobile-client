@@ -36,7 +36,7 @@ const ProfileText = ({ value, onChange, placeholder }: Props) => {
                 />
 
             </View>
-            <Divider />
+            <Divider color={GREY} />
 
         </>
     );
