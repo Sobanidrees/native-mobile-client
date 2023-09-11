@@ -100,7 +100,6 @@ const SignUp = ({ navigation }: Props) => {
       .then((inspector: any) => {
         if (inspector?.id) {
           navigation.navigate('Otp', {
-            isConsumer: false,
             inspector: inspectorRegisterData,
             isInspector: true,
             phoneNumber: formData.phoneNumber,

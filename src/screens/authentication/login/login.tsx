@@ -1,22 +1,22 @@
-import React, {useState} from 'react';
-import {View, Text, TextInput, TouchableOpacity, Alert} from 'react-native';
-import {styles} from './styles';
-import {NativeStackScreenProps} from '@react-navigation/native-stack';
-import {RootStackParams} from '../../../../routes/routeStack';
-import {LOGIN_SCREEN_IMAGE} from '../../../utils/assets';
-import {InspectorLoginDto} from '../../../models/inspector';
-import {useDispatch} from 'react-redux';
-import {inspectorLogin} from '../../../redux/actions/inspector';
-import {unwrapResult} from '@reduxjs/toolkit';
+import React, { useState } from 'react';
+import { View, Text, TextInput, TouchableOpacity, Alert } from 'react-native';
+import { styles } from './styles';
+import { NativeStackScreenProps } from '@react-navigation/native-stack';
+import { RootStackParams } from '../../../../routes/routeStack';
+import { LOGIN_SCREEN_IMAGE } from '../../../utils/assets';
+import { InspectorLoginDto } from '../../../models/inspector';
+import { useDispatch } from 'react-redux';
+import { inspectorLogin } from '../../../redux/actions/inspector';
+import { unwrapResult } from '@reduxjs/toolkit';
 import UserTypeButton from '../../../components/userTypeButton/userTypeButton';
 import PrimaryButton from '../../../components/primaryButton/primaryButton';
-import {PRIMARY_COLOR_LIGHT, PRIMARY_DARK} from '../../../utils/colors';
-import {consumerLogin} from '../../../redux/actions/consumer';
-import {ConsumerLoginDto} from '../../../models/consumer';
+import { PRIMARY_COLOR_LIGHT, PRIMARY_DARK } from '../../../utils/colors';
+import { consumerLogin } from '../../../redux/actions/consumer';
+import { ConsumerLoginDto } from '../../../models/consumer';
 
 type Props = NativeStackScreenProps<RootStackParams, 'Login'>;
 
-const Login = ({navigation}: Props) => {
+const Login = ({ navigation }: Props) => {
   const [phoneNumber, setPhoneNumber] = useState('');
   const [userType, setUserType] = useState('consumer');
   const [error, setError] = useState('');
@@ -24,10 +24,10 @@ const Login = ({navigation}: Props) => {
   const dispatch = useDispatch();
 
   const handleLogin = async () => {
-    // if (phoneNumber.length < 14) {
-    //     setError('Enter a valid phone number');
-    //     return;
-    // }
+    if (phoneNumber.length === 13) {
+      setError('Enter a valid phone number');
+      return;
+    }
 
     const InspectorLoginData: InspectorLoginDto = {
       phoneNumber: phoneNumber,
@@ -89,11 +89,11 @@ const Login = ({navigation}: Props) => {
       <View
         style={[
           styles.input,
-          {borderColor: phoneNumber ? PRIMARY_DARK : PRIMARY_COLOR_LIGHT},
+          { borderColor: phoneNumber ? PRIMARY_DARK : PRIMARY_COLOR_LIGHT },
         ]}>
         <Text>+971 - </Text>
         <TextInput
-          style={{width: '85%', height: '80%'}}
+          style={{ width: '85%', height: '80%' }}
           // onChangeText={(text) => {
           //     const numericText = text.replace(/[^0-9]/g, '');
           //     setPhoneNumber(phoneNumber);

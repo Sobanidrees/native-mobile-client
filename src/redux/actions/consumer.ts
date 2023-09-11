@@ -10,8 +10,6 @@ import {
   ConsumerUpdateProfileDto,
   UpdateVehicleDto,
 } from '../../models/consumer';
-import axios from 'axios';
-import {setUser} from '../reducers/userSlice';
 
 export const consumerRegister = createAsyncThunk(
   ActionTypes.CONSUMER_REGISTER,
@@ -54,6 +52,19 @@ export const consumerLogin = createAsyncThunk(
       return user;
     } catch (error: any) {
       return rejectWithValue(error.message);
+    }
+  },
+);
+
+export const consumerLogout = createAsyncThunk(
+  ActionTypes.CONSUMER_LOGOUT,
+  async () => {
+    try {
+      await apiCall('/consumer/logout', 'post');
+    } catch (error: any) {
+      if (error.response && error.response.data.message) {
+        return;
+      }
     }
   },
 );

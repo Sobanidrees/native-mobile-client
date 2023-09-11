@@ -18,6 +18,8 @@ import CarDetails from '../src/screens/carDetails/carDetails';
 import ConsumerProfile from '../src/screens/consumerFlow/consumerProfile/consumerProfile';
 import ConsumerHome from '../src/screens/consumerFlow/consumerHome/consumerHome';
 import UpdateVehicle from '../src/screens/consumerFlow/updateVehicle/updateVehicle';
+import { Inspector } from '../src/models/inspector';
+import { Consumer } from '../src/models/consumer';
 
 const Stack = createNativeStackNavigator<RootStackParams>();
 
@@ -34,9 +36,8 @@ export type RootStackParams = {
   Tools: undefined;
   Otp: {
     phoneNumber: string;
-    inspector?: object;
-    consumer?: string;
-    isConsumer?: boolean;
+    inspector?: Inspector;
+    consumer?: Consumer;
     isInspector?: boolean;
   };
   ServiceDetail: {

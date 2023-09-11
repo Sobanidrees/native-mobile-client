@@ -64,3 +64,18 @@ export const inspectorLogin = createAsyncThunk(
     }
   },
 );
+
+export const inspectorLogout = createAsyncThunk(
+  ActionTypes.INSPECTOR_LOGOUT,
+  async () => {
+    try {
+      await apiCall('/inspector/logout', 'post');
+      console.log('logged out');
+    } catch (error: any) {
+      // return custom error message from API if any
+      if (error.response && error.response.data.message) {
+        return;
+      }
+    }
+  },
+);

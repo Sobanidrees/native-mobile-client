@@ -22,7 +22,6 @@ const BottomTab = () => {
             screenOptions={({ route }) => ({
                 headerShown: false,
                 tabBarStyle: {
-                    // paddingHorizontal: 5,
                     height: 72,
                     paddingTop: 14,
                     backgroundColor: PRIMARY_COLOR_LIGHT,
@@ -35,11 +34,11 @@ const BottomTab = () => {
                     let iconName;
 
                     if (route.name === 'Home') {
-                        iconName = focused ? HOME_ICON : HOME_ICON;
+                        iconName = HOME_ICON;
                     } else if (route.name === 'ProviderServiceHistory') {
-                        iconName = focused ? RECENT_ICON : RECENT_ICON;
+                        iconName = RECENT_ICON;
                     } else if (route.name === 'Profile') {
-                        iconName = focused ? PROFILE_ICON : PROFILE_ICON;
+                        iconName = PROFILE_ICON;
                     }
 
                     return (

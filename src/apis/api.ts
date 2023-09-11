@@ -9,8 +9,6 @@ export const apiCall = async (
   params?: any,
 ) => {
   const asyncToken = await AsyncStorage.getItem('jwtToken');
-  console.log('async Token', asyncToken);
-
   const api = axios.create({
     baseURL: NEST_JS_API,
     headers: {
@@ -18,7 +16,6 @@ export const apiCall = async (
       Authorization: `Bearer ${asyncToken}`,
     },
   });
-
   try {
     const res = await api({url, method, data, params});
     return res.data;
