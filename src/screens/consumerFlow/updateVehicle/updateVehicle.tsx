@@ -37,7 +37,6 @@ const UpdateVehicle = ({ navigation, route }: Props) => {
         dispatch<any>(vehicleUpdate(updateVehicleParams))
             .then(unwrapResult)
             .then((consumer: any) => {
-                console.log('=========consumer', consumer)
                 if (consumer) {
 
                     navigation.navigate('ConsumerHome');

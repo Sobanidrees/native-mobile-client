@@ -1,30 +1,30 @@
-import React, { useEffect, useState } from 'react';
-import { Text, TouchableOpacity, View, SafeAreaView, Alert } from 'react-native';
-import { NativeStackScreenProps } from '@react-navigation/native-stack';
-import { RootStackParams } from '../../../../routes/routeStack';
+import React, {useEffect, useState} from 'react';
+import {Text, TouchableOpacity, View, SafeAreaView, Alert} from 'react-native';
+import {NativeStackScreenProps} from '@react-navigation/native-stack';
+import {RootStackParams} from '../../../../routes/routeStack';
 import {
   CodeField,
   Cursor,
   useBlurOnFulfill,
   useClearByFocusCell,
 } from 'react-native-confirmation-code-field';
-import { styles } from './styles';
-import { useDispatch } from 'react-redux';
-import { inspectorVerifyOtp } from '../../../redux/actions/inspector';
-import { InspectorVerificationDto } from '../../../models/inspector';
-import { unwrapResult } from '@reduxjs/toolkit';
+import {styles} from './styles';
+import {useDispatch} from 'react-redux';
+import {inspectorVerifyOtp} from '../../../redux/actions/inspector';
+import {InspectorVerificationDto} from '../../../models/inspector';
+import {unwrapResult} from '@reduxjs/toolkit';
 import PrimaryButton from '../../../components/primaryButton/primaryButton';
-import { consumerVerifyOtp } from '../../../redux/actions/consumer';
-import { ConsumerVerificationDto } from '../../../models/consumer';
+import {consumerVerifyOtp} from '../../../redux/actions/consumer';
+import {ConsumerVerificationDto} from '../../../models/consumer';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 type Props = NativeStackScreenProps<RootStackParams, 'Otp'>;
 
 const CELL_COUNT = 4;
 
-const Otp = ({ navigation, route }: Props) => {
-  const { phoneNumber, isInspector, consumer, inspector } = route.params;
+const Otp = ({navigation, route}: Props) => {
+  const {phoneNumber, isInspector, consumer, inspector} = route.params;
   const [value, setValue] = useState('');
-  const ref = useBlurOnFulfill({ value, cellCount: CELL_COUNT });
+  const ref = useBlurOnFulfill({value, cellCount: CELL_COUNT});
   const [props, getCellOnLayoutHandler] = useClearByFocusCell({
     value,
     setValue,
@@ -46,20 +46,23 @@ const Otp = ({ navigation, route }: Props) => {
     let userType;
     const userTypeObject = await AsyncStorage.getItem('user');
     if (userTypeObject) {
-      userType = JSON.parse(userTypeObject)
+      userType = JSON.parse(userTypeObject);
     }
     try {
       if ((userType?.emiratesId && inspector) || isInspector) {
-        const token = await dispatch<any>(inspectorVerifyOtp(userVerificationData));
+        const token = await dispatch<any>(
+          inspectorVerifyOtp(userVerificationData),
+        );
         if (token) {
           navigation.navigate('BottomTab');
         } else {
           Alert.alert('Could not sign you up');
         }
       } else {
-        const token = await dispatch<any>(consumerVerifyOtp(userVerificationData));
+        const token = await dispatch<any>(
+          consumerVerifyOtp(userVerificationData),
+        );
         if (token) {
-
           if (userType.fullName && userType.address) {
             navigation.navigate('ConsumerHome');
           } else {
@@ -69,8 +72,7 @@ const Otp = ({ navigation, route }: Props) => {
           Alert.alert('Could not sign you up');
         }
       }
-    }
-    catch (error) {
+    } catch (error) {
       // Handle errors gracefully via snackbars / error shown to users
       Alert.alert('Could not sign you up');
       console.error(error);
@@ -93,7 +95,7 @@ const Otp = ({ navigation, route }: Props) => {
         rootStyle={styles.codeFieldRoot}
         keyboardType="number-pad"
         textContentType="oneTimeCode"
-        renderCell={({ index, symbol, isFocused }) => (
+        renderCell={({index, symbol, isFocused}) => (
           <Text
             key={index}
             style={[styles.cell, isFocused && styles.focusCell]}
@@ -102,8 +104,11 @@ const Otp = ({ navigation, route }: Props) => {
           </Text>
         )}
       />
-      <PrimaryButton navigation={handleVerification} buttonTitle="Verify" buttonStyle={{}} />
-
+      <PrimaryButton
+        navigation={handleVerification}
+        buttonTitle="Verify"
+        buttonStyle={{}}
+      />
     </SafeAreaView>
   );
 };

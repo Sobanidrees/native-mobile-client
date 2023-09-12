@@ -3,6 +3,7 @@ import AsyncStorage from '@react-native-async-storage/async-storage';
 import { NativeStackScreenProps } from '@react-navigation/native-stack';
 import { RootStackParams } from '../../../routes/routeStack';
 import jwt_decode from "jwt-decode";
+import { Consumer } from '../../models/consumer';
 
 type Props = NativeStackScreenProps<RootStackParams, 'DeciderWrapper'>;
 const DeciderWrapper = ({ navigation }: Props) => {

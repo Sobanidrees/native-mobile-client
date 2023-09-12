@@ -31,10 +31,8 @@ export const inspectorVerifyOtp = createAsyncThunk(
   async (params: InspectorVerificationDto, {rejectWithValue}) => {
     try {
       const token = await apiCall('/inspector/verify_otp', 'post', params);
-      console.log('token: ', token);
       await AsyncStorage.setItem('jwtToken', token);
       return token;
-      console.log('token======', token);
     } catch (error: any) {
       if (error.response && error.response.data.message) {
         return rejectWithValue(error.response.data.message);
@@ -51,7 +49,6 @@ export const inspectorLogin = createAsyncThunk(
     try {
       const user = await apiCall('/inspector/login', 'post', params);
       await AsyncStorage.setItem('user', JSON.stringify(user));
-      console.log(user, '========inspectorActionCalled=====');
 
       return user;
     } catch (error: any) {
@@ -71,8 +68,6 @@ export const inspectorLogout = createAsyncThunk(
     try {
       await apiCall('/inspector/logout', 'post');
       await AsyncStorage.removeItem('jwtToken');
-
-      console.log('logged out');
     } catch (error: any) {
       // return custom error message from API if any
       if (error.response && error.response.data.message) {

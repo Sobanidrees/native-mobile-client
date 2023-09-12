@@ -13,6 +13,7 @@ import PrimaryButton from '../../../components/primaryButton/primaryButton';
 import { PRIMARY_COLOR_LIGHT, PRIMARY_DARK } from '../../../utils/colors';
 import { consumerLogin } from '../../../redux/actions/consumer';
 import { ConsumerLoginDto } from '../../../models/consumer';
+import AsyncStorage from '@react-native-async-storage/async-storage';
 
 type Props = NativeStackScreenProps<RootStackParams, 'Login'>;
 
@@ -23,7 +24,14 @@ const Login = ({ navigation }: Props) => {
 
   const dispatch = useDispatch();
 
+
   const handleLogin = async () => {
+    // let user;
+    // // const userTypeObject = await AsyncStorage.getItem('user');
+    // if (userTypeObject) {
+    //   user = JSON.parse(userTypeObject)
+
+    // }
     if (phoneNumber.length === 14) {
       setError('Enter a valid phone number');
       return;

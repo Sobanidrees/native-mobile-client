@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, {useState} from 'react';
 import {
   Alert,
   SafeAreaView,
@@ -12,19 +12,19 @@ import {
   KeyboardAvoidingView,
   Platform,
 } from 'react-native';
-import { styles } from './styles';
-import { NativeStackScreenProps } from '@react-navigation/native-stack';
-import { RootStackParams } from '../../../routes/routeStack';
-import { useDispatch } from 'react-redux';
-import { inspectorRegister } from '../../redux/actions/inspector';
-import { InspectorRegisterDto } from '../../models/inspector';
-import { unwrapResult } from '@reduxjs/toolkit';
+import {styles} from './styles';
+import {NativeStackScreenProps} from '@react-navigation/native-stack';
+import {RootStackParams} from '../../../routes/routeStack';
+import {useDispatch} from 'react-redux';
+import {inspectorRegister} from '../../redux/actions/inspector';
+import {InspectorRegisterDto} from '../../models/inspector';
+import {unwrapResult} from '@reduxjs/toolkit';
 import PrimaryButton from '../../components/primaryButton/primaryButton';
 import CheckBox from '../../components/checkbox/checkbox';
 
 type Props = NativeStackScreenProps<RootStackParams, 'SignUp'>;
 
-const SignUp = ({ navigation }: Props) => {
+const SignUp = ({navigation}: Props) => {
   const [formData, setFormData] = useState({
     phoneNumber: '',
     fullName: '',
@@ -40,8 +40,8 @@ const SignUp = ({ navigation }: Props) => {
   });
 
   const handleCheckBoxClick = () => {
-    setFormData({ ...formData, isChecked: !formData.isChecked });
-    setErrors({ ...errors, isChecked: '' });
+    setFormData({...formData, isChecked: !formData.isChecked});
+    setErrors({...errors, isChecked: ''});
   };
 
   const dispatch = useDispatch();
@@ -55,7 +55,7 @@ const SignUp = ({ navigation }: Props) => {
     });
 
     if (!formData.fullName.trim()) {
-      setErrors({ ...errors, fullName: 'Please enter your Full Name' });
+      setErrors({...errors, fullName: 'Please enter your Full Name'});
       return;
     }
 
@@ -132,8 +132,8 @@ const SignUp = ({ navigation }: Props) => {
             <TextInput
               style={styles.input}
               onChangeText={text => {
-                setFormData({ ...formData, fullName: text });
-                setErrors({ ...errors, fullName: '' });
+                setFormData({...formData, fullName: text});
+                setErrors({...errors, fullName: ''});
               }}
               value={formData.fullName}
               placeholder="Full Name"
@@ -144,8 +144,8 @@ const SignUp = ({ navigation }: Props) => {
             <TextInput
               style={styles.input}
               onChangeText={text => {
-                setFormData({ ...formData, emiratesId: text });
-                setErrors({ ...errors, emiratesId: '' });
+                setFormData({...formData, emiratesId: text});
+                setErrors({...errors, emiratesId: ''});
               }}
               value={formData.emiratesId}
               placeholder="Enter Your Emirates ID"
@@ -157,10 +157,10 @@ const SignUp = ({ navigation }: Props) => {
             <View style={[styles.input]}>
               <Text>+971 - </Text>
               <TextInput
-                style={{ width: '85%', height: '80%' }}
+                style={{width: '85%', height: '80%'}}
                 onChangeText={text => {
-                  setFormData({ ...formData, phoneNumber: text });
-                  setErrors({ ...errors, phoneNumber: '' });
+                  setFormData({...formData, phoneNumber: text});
+                  setErrors({...errors, phoneNumber: ''});
                 }}
                 keyboardType="numeric"
               />

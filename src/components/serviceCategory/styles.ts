@@ -1,5 +1,5 @@
 import {StyleSheet} from 'react-native';
-import {PRIMARY_COLOR_LIGHT, SOLID_BLACK, WHITE} from '../../utils/colors';
+import {PRIMARY_COLOR_LIGHT, WHITE} from '../../utils/colors';
 
 export const styles = StyleSheet.create({
   service: {

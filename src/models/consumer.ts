@@ -26,12 +26,8 @@ export type UpdateVehicleDto = {
 
 export type Consumer = {
   phoneNumber: string;
-  fullName: string;
-  address: string;
-  otpVerified?: boolean;
-  vehicle: {
-    year: string;
-    make: string;
-    model: string;
-  };
+  fullName?: string;
+  address?: string;
+  vehicle: [];
 };
+
