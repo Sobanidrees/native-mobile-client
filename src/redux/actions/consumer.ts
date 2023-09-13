@@ -1,5 +1,4 @@
 import {createAsyncThunk} from '@reduxjs/toolkit';
-
 import {ActionTypes} from '../constants/actionTypes';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import {apiCall} from '../../apis/api';

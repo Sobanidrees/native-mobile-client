@@ -10,7 +10,6 @@ export const inspectorRegister = createAsyncThunk(
       const user = await apiCall('/inspector/register', 'post', params);
       return user;
     } catch (error: any) {
-      // return custom error message from API if any
       if (error.response && error.response.data.message) {
         return rejectWithValue(error.response.data.message);
       } else {

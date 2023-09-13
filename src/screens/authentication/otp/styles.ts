@@ -1,11 +1,6 @@
 import {StyleSheet} from 'react-native';
-import {
-  PRIMARY_COLOR,
-  PRIMARY_COLOR_LIGHT,
-  RED_ERROR,
-  WHITE,
-} from '../../../utils/colors';
-import {BOLDTEXT, HEADINGTEXT} from '../../../utils/constantStyle';
+import {PRIMARY_COLOR, PRIMARY_COLOR_LIGHT, WHITE} from '../../../utils/colors';
+import {BOLDTEXT} from '../../../utils/constantStyle';
 
 export const styles = StyleSheet.create({
   container: {flex: 1, backgroundColor: WHITE},
@@ -62,9 +57,6 @@ export const styles = StyleSheet.create({
   },
   resendOtp: {
     fontSize: 16,
-    // marginHorizontal: '8%',
-    // marginTop: '2%',
-    // color: PRIMARY_COLOR,
     alignSelf: 'center',
   },
 });

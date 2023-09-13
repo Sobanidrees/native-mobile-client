@@ -1,6 +1,6 @@
 import {StyleSheet} from 'react-native';
-import {PRIMARY_COLOR, PRIMARY_COLOR_LIGHT, WHITE} from '../../utils/colors';
-import {windowHeight, windowWidth} from '../../utils/constants';
+import {PRIMARY_COLOR_LIGHT, WHITE} from '../../utils/colors';
+import {windowHeight} from '../../utils/constantStyle';
 
 export const styles = StyleSheet.create({
   header: {

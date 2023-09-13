@@ -1,6 +1,5 @@
 import React from 'react';
-import {View, Text, TouchableOpacity, Image} from 'react-native';
-import {windowWidth} from '../../utils/constants';
+import {View, Text, TouchableOpacity} from 'react-native';
 import {styles} from './styles';
 import {SvgXml} from 'react-native-svg';
 import {APP_ICON_WHITE, BACK_ICON} from '../../utils/assets';

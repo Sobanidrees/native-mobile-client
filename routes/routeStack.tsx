@@ -1,8 +1,8 @@
-import { createNativeStackNavigator } from '@react-navigation/native-stack';
-import { NavigationContainer } from '@react-navigation/native';
+import {createNativeStackNavigator} from '@react-navigation/native-stack';
+import {NavigationContainer} from '@react-navigation/native';
 import ProviderServiceHistory from '../src/screens/providerServiceHistory/providerServiceHistory';
 import Notifications from '../src/screens/notifications/notifications';
-import Inspection01 from '../src/screens/inspection01/inspection01';
+import Inspection from '../src/screens/inspection/inspection';
 import Tools from '../src/screens/tools/tools';
 import Settings from '../src/screens/settings/settings';
 import Otp from '../src/screens/authentication/otp/otp';
@@ -18,8 +18,8 @@ import CarDetails from '../src/screens/carDetails/carDetails';
 import ConsumerProfile from '../src/screens/consumerFlow/consumerProfile/consumerProfile';
 import ConsumerHome from '../src/screens/consumerFlow/consumerHome/consumerHome';
 import UpdateVehicle from '../src/screens/consumerFlow/updateVehicle/updateVehicle';
-import { Inspector } from '../src/models/inspector';
-import { Consumer } from '../src/models/consumer';
+import {Inspector} from '../src/models/inspector';
+import {Consumer} from '../src/models/consumer';
 
 const Stack = createNativeStackNavigator<RootStackParams>();
 
@@ -27,12 +27,12 @@ export type RootStackParams = {
   DeciderWrapper: undefined;
   Login: undefined;
   SignUp: undefined;
-  BottomTab: undefined
+  BottomTab: undefined;
   Home: undefined;
   ProviderServiceHistory: undefined;
   Notifications: undefined;
   Settings: undefined;
-  Inspection01: undefined;
+  Inspection: undefined;
   Tools: undefined;
   Otp: {
     phoneNumber: string;
@@ -48,13 +48,13 @@ export type RootStackParams = {
   Profile: undefined;
   ConsumerProfile: undefined;
   ConsumerHome: undefined;
-  UpdateVehicle: undefined
+  UpdateVehicle: undefined;
 };
 
 export default function RoutesStack() {
   return (
     <NavigationContainer>
-      <Stack.Navigator screenOptions={{ headerShown: false }}>
+      <Stack.Navigator screenOptions={{headerShown: false}}>
         <Stack.Screen name="DeciderWrapper" component={DeciderWrapper} />
         <Stack.Screen name="Login" component={Login} />
         <Stack.Screen name="SignUp" component={SignUp} />
@@ -65,7 +65,7 @@ export default function RoutesStack() {
           component={ProviderServiceHistory}
         />
         <Stack.Screen name="Notifications" component={Notifications} />
-        <Stack.Screen name="Inspection01" component={Inspection01} />
+        <Stack.Screen name="Inspection" component={Inspection} />
         <Stack.Screen name="Tools" component={Tools} />
         <Stack.Screen name="Settings" component={Settings} />
         <Stack.Screen name="Otp" component={Otp} />
@@ -76,8 +76,6 @@ export default function RoutesStack() {
         <Stack.Screen name="ConsumerProfile" component={ConsumerProfile} />
         <Stack.Screen name="ConsumerHome" component={ConsumerHome} />
         <Stack.Screen name="UpdateVehicle" component={UpdateVehicle} />
-
-
       </Stack.Navigator>
     </NavigationContainer>
   );

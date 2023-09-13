@@ -1,7 +1,6 @@
 import {StyleSheet} from 'react-native';
 import {PRIMARY_COLOR, WHITE} from '../../../utils/colors';
-import {windowHeight, windowWidth} from '../../../utils/constants';
-
+import {windowHeight} from '../../../utils/constantStyle';
 export const styles = StyleSheet.create({
   container: {
     flex: 1,

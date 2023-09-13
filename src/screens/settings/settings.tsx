@@ -1,13 +1,13 @@
 import React from 'react';
-import { SafeAreaView } from 'react-native';
-import { styles } from './styles';
-import { NativeStackScreenProps } from '@react-navigation/native-stack';
-import { RootStackParams } from '../../../routes/routeStack';
+import {SafeAreaView} from 'react-native';
+import {styles} from './styles';
+import {NativeStackScreenProps} from '@react-navigation/native-stack';
+import {RootStackParams} from '../../../routes/routeStack';
 import Header from '../../components/header/header';
 
 type Props = NativeStackScreenProps<RootStackParams, 'Settings'>;
 
-const Settings = ({ navigation }: Props) => {
+const Settings = () => {
   return (
     <SafeAreaView style={[styles.container]}>
       <Header headerTitle="Settings" />

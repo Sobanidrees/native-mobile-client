@@ -1,9 +1,8 @@
 import React from 'react';
-import { ImageBackground, Text, TouchableOpacity, View } from 'react-native';
-import { styles } from './styles';
-import { LIGHT_GREY, WHITE } from '../../utils/colors';
-import { SvgXml } from 'react-native-svg';
-import { CALENDAR_ICON, LOCATION_ICON, TIME_ICON } from '../../utils/assets';
+import {Text, TouchableOpacity, View} from 'react-native';
+import {styles} from './styles';
+import {SvgXml} from 'react-native-svg';
+import {CALENDAR_ICON, LOCATION_ICON, TIME_ICON} from '../../utils/assets';
 import Divider from '../divider/divider';
 
 const ServiceRequest = (props: any) => {
@@ -17,15 +16,17 @@ const ServiceRequest = (props: any) => {
             </Text>
             <Text style={styles.inspectionType}>{props.inspectionType}</Text>
           </View>
-          <View style={{ width: '20%' }}>
-            <Text numberOfLines={1} style={{}}>{props.timeAgo}</Text>
+          <View style={{width: '20%'}}>
+            <Text numberOfLines={1} style={{}}>
+              {props.timeAgo}
+            </Text>
           </View>
         </View>
         <View style={styles.iconTextView}>
           <SvgXml xml={LOCATION_ICON} />
           <Text style={styles.dateTimeText}>{props.location}</Text>
         </View>
-        <Divider color={LIGHT_GREY} />
+        <Divider />
         <View style={styles.rowView}>
           <View style={styles.iconTextView}>
             <SvgXml xml={CALENDAR_ICON} />

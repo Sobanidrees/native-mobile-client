@@ -1,5 +1,5 @@
 import React, {useState} from 'react';
-import {ImageBackground, View, Text, ScrollView, TextInput} from 'react-native';
+import {ImageBackground, View, ScrollView} from 'react-native';
 import {styles} from './styles';
 import {NativeStackScreenProps} from '@react-navigation/native-stack';
 import {RootStackParams} from '../../../routes/routeStack';
@@ -23,7 +23,7 @@ const CarDetails = ({navigation}: Props) => {
   });
 
   const handleInspection = () => {
-    navigation.navigate('Inspection01');
+    navigation.navigate('Inspection');
   };
   return (
     <View style={[styles.container]}>
@@ -31,7 +31,11 @@ const CarDetails = ({navigation}: Props) => {
       <View style={{flex: 1}}>
         <ScrollView>
           <View style={styles.innerView}>
-            
+            <ImageBackground
+              source={require('../../assets/images/profileImage.png')}
+              style={styles.profileImage}
+            />
+
             <ProfileText
               value={formData.engineCapacity}
               onChange={text =>

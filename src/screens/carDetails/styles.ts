@@ -1,6 +1,6 @@
 import {StyleSheet} from 'react-native';
-import {PRIMARY_COLOR, WHITE} from '../../utils/colors';
-import {windowHeight, windowWidth} from '../../utils/constants';
+import {WHITE} from '../../utils/colors';
+import {windowHeight, windowWidth} from '../../utils/constantStyle';
 import {MEDIUMTEXT} from '../../utils/constantStyle';
 
 export const styles = StyleSheet.create({
@@ -10,8 +10,11 @@ export const styles = StyleSheet.create({
   },
   innerView: {
     marginTop: '8%',
-    // height: windowHeight * 0.7,
     marginHorizontal: '8%',
+  },
+  profileImage: {
+    height: windowHeight * 0.23,
+    width: windowWidth * 0.5,
   },
   textView: {
     marginVertical: '6%',

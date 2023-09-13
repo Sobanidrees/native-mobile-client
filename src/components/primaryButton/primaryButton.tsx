@@ -1,6 +1,6 @@
 import React from 'react';
-import { StyleSheet, Text, TouchableOpacity, ViewStyle } from 'react-native';
-import { PRIMARY_DARK, WHITE } from '../../utils/colors';
+import {StyleSheet, Text, TouchableOpacity, ViewStyle} from 'react-native';
+import {PRIMARY_DARK, WHITE} from '../../utils/colors';
 import {
   BOLDTEXT,
   BTN_INPUT_HEIGHT,
@@ -14,7 +14,7 @@ type Props = {
   buttonStyle?: ViewStyle;
 };
 
-const PrimaryButton = ({ onPress, buttonTitle, buttonStyle }: Props) => {
+const PrimaryButton = ({onPress, buttonTitle, buttonStyle}: Props) => {
   return (
     <TouchableOpacity style={[styles.button, buttonStyle]} onPress={onPress}>
       <Text style={styles.buttonTitle}>{buttonTitle} </Text>

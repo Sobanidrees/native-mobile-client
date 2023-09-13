@@ -7,13 +7,10 @@ export const assignedServiceRequest = createAsyncThunk(
   async () => {
     try {
       const res = await apiCall('/inspector/InspectorAssignedSrs', 'get');
-      console.log('res>>>>>>>>>', res);
       return res;
     } catch (error: any) {
       if (error.response && error.response.data.message) {
-        // return rejectWithValue(error.response.data.message);
       } else {
-        // return rejectWithValue(error.message);
       }
     }
   },

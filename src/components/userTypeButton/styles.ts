@@ -1,6 +1,4 @@
 import {StyleSheet} from 'react-native';
-import {PRIMARY_COLOR, WHITE} from '../../utils/colors';
-import {windowHeight} from '../../utils/constants';
 import {BTN_INPUT_HEIGHT, BTN_INPUT_WIDTH} from '../../utils/constantStyle';
 
 export const styles = StyleSheet.create({

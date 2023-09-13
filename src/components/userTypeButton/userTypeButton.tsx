@@ -1,8 +1,6 @@
 import React, {useState} from 'react';
 import {TouchableOpacity, View, Text} from 'react-native';
 import {styles} from './styles';
-import {NativeStackScreenProps} from '@react-navigation/native-stack';
-import {RootStackParams} from '../../../routes/routeStack';
 import {PRIMARY_COLOR_LIGHT, PRIMARY_DARK, WHITE} from '../../utils/colors';
 
 type Props = {

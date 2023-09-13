@@ -7,7 +7,7 @@ import Header from '../../components/header/header';
 
 type Props = NativeStackScreenProps<RootStackParams, 'Tools'>;
 
-const Tools = ({navigation}: Props) => {
+const Tools = () => {
   return (
     <SafeAreaView style={[styles.container]}>
       <Header headerTitle="Tool CheckList" />

@@ -7,7 +7,6 @@ import {
 import {ActionTypes} from '../constants/actionTypes';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import {apiCall} from '../../apis/api';
-import {ServiceRequestType} from '../../models/consumer';
 
 export const inspectorRegister = createAsyncThunk(
   ActionTypes.INSPECTOR_REGISTER,
@@ -17,7 +16,6 @@ export const inspectorRegister = createAsyncThunk(
       await AsyncStorage.setItem('user', JSON.stringify(user));
       return user;
     } catch (error: any) {
-      // return custom error message from API if any
       if (error.response && error.response.data.message) {
         return rejectWithValue(error.response.data.message);
       } else {
@@ -53,7 +51,6 @@ export const inspectorLogin = createAsyncThunk(
 
       return user;
     } catch (error: any) {
-      // return custom error message from API if any
       if (error.response && error.response.data.message) {
         return rejectWithValue(error.response.data.message);
       } else {
@@ -69,13 +66,10 @@ export const inspectorLogout = createAsyncThunk(
     try {
       await AsyncStorage.removeItem('jwtToken');
       await AsyncStorage.removeItem('user');
-      // await apiCall('/inspector/logout', 'get');
     } catch (error: any) {
-      // return custom error message from API if any
       if (error.response && error.response.data.message) {
         return;
       }
     }
   },
 );
-

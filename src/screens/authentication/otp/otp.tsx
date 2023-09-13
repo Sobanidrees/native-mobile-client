@@ -12,10 +12,8 @@ import { styles } from './styles';
 import { useDispatch } from 'react-redux';
 import { inspectorVerifyOtp } from '../../../redux/actions/inspector';
 import { InspectorVerificationDto } from '../../../models/inspector';
-import { unwrapResult } from '@reduxjs/toolkit';
 import PrimaryButton from '../../../components/primaryButton/primaryButton';
 import { consumerVerifyOtp } from '../../../redux/actions/consumer';
-import { ConsumerVerificationDto } from '../../../models/consumer';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import { SvgXml } from 'react-native-svg';
 import { BACK_ICON_OTP } from '../../../utils/assets';
@@ -48,11 +46,10 @@ const Otp = ({ navigation, route }: Props) => {
     };
     let user;
     const userTypeObject = await AsyncStorage.getItem('user');
-
+    
     if (userTypeObject) {
       user = JSON.parse(userTypeObject);
     }
-    console.log('user', user);
     try {
       if ((user?.emiratesId && inspector) || isInspector) {
         const token = await dispatch<any>(
@@ -86,7 +83,6 @@ const Otp = ({ navigation, route }: Props) => {
         }
       }
     } catch (error) {
-      // Handle errors gracefully via snackbars / error shown to users
       Alert.alert('Could not sign you up');
       console.error(error);
     }
@@ -96,16 +92,11 @@ const Otp = ({ navigation, route }: Props) => {
     <SafeAreaView style={styles.container}>
       <TouchableOpacity
         style={styles.backBtn}
-
         onPress={() => navigation.goBack()}>
-        <SvgXml
-          xml={BACK_ICON_OTP}
-        />
+        <SvgXml xml={BACK_ICON_OTP} />
       </TouchableOpacity>
       <Text style={styles.headingText}>VERIFICATION CODE</Text>
-      <Text style={styles.verificationText}>
-        {PEVCST}
-      </Text>
+      <Text style={styles.verificationText}>{PEVCST}</Text>
       <Text style={styles.numberText}>{phoneNumber}</Text>
       <CodeField
         ref={ref}
@@ -126,7 +117,7 @@ const Otp = ({ navigation, route }: Props) => {
         )}
       />
       <PrimaryButton
-        onPress={handleVerification}
+        onPress={() => handleVerification()}
         buttonTitle="Verify"
         buttonStyle={{}}
       />

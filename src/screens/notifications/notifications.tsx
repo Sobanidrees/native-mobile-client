@@ -15,7 +15,7 @@ import Header from '../../components/header/header';
 
 type Props = NativeStackScreenProps<RootStackParams, 'Notifications'>;
 
-const Notifications = ({navigation}: Props) => {
+const Notifications = () => {
   return (
     <SafeAreaView style={[styles.container]}>
       <Header headerTitle="Notification" />

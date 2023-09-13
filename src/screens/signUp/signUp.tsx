@@ -1,4 +1,4 @@
-import React, { useEffect, useRef, useState } from 'react';
+import React, {useState} from 'react';
 import {
   Alert,
   SafeAreaView,
@@ -12,21 +12,21 @@ import {
   KeyboardAvoidingView,
   Platform,
 } from 'react-native';
-import { styles } from './styles';
-import { NativeStackScreenProps } from '@react-navigation/native-stack';
-import { RootStackParams } from '../../../routes/routeStack';
-import { useDispatch } from 'react-redux';
-import { inspectorRegister } from '../../redux/actions/inspector';
-import { InspectorRegisterDto } from '../../models/inspector';
-import { unwrapResult } from '@reduxjs/toolkit';
+import {styles} from './styles';
+import {NativeStackScreenProps} from '@react-navigation/native-stack';
+import {RootStackParams} from '../../../routes/routeStack';
+import {useDispatch} from 'react-redux';
+import {inspectorRegister} from '../../redux/actions/inspector';
+import {InspectorRegisterDto} from '../../models/inspector';
+import {unwrapResult} from '@reduxjs/toolkit';
 import PrimaryButton from '../../components/primaryButton/primaryButton';
 import CheckBox from '../../components/checkbox/checkbox';
-import { Formik } from 'formik';
+import {Formik} from 'formik';
 import * as Yup from 'yup';
-import { AHAA, BYJ, CYNA } from '../../utils/textFile';
+import {AHAA, BYJ, CYNA} from '../../utils/textFile';
 type Props = NativeStackScreenProps<RootStackParams, 'SignUp'>;
 
-const SignUp = ({ navigation }: Props) => {
+const SignUp = ({navigation}: Props) => {
   const [isChecked, setIsChecked] = useState(false);
 
   type SignUpFormValues = {
@@ -63,11 +63,7 @@ const SignUp = ({ navigation }: Props) => {
       emiratesId: values.emiratesId,
       phoneNumber: values.phoneNumber,
     };
-    console.log(
-      values.fullName,
-      values.emiratesId,
-      values.phoneNumber,
-    );
+    console.log(values.fullName, values.emiratesId, values.phoneNumber);
 
     dispatch<any>(inspectorRegister(user))
       .then(unwrapResult)
@@ -79,12 +75,10 @@ const SignUp = ({ navigation }: Props) => {
             phoneNumber: user.phoneNumber,
           });
         } else {
-          // TODO: Manage errors gracefully via snackbars / error shown to users
           Alert.alert('Could not sign you up');
         }
       })
       .catch((error: any) => {
-        // TODO: Manage errors gracefully via snackbars / error shown to users
         Alert.alert('Could not sign you up');
         console.log(error);
       });
@@ -110,20 +104,10 @@ const SignUp = ({ navigation }: Props) => {
             onSubmit={values => {
               console.log(values);
             }}>
-            {({
-              values,
-              errors,
-              touched,
-              handleChange,
-              setFieldTouched,
-              setFieldValue,
-              isValid,
-            }) => (
+            {({values, errors, touched, handleChange, setFieldTouched}) => (
               <ScrollView showsVerticalScrollIndicator={false}>
                 <Text style={styles.registerText}>{BYJ}</Text>
-                <Text style={styles.createAccText}>
-                  {CYNA}
-                </Text>
+                <Text style={styles.createAccText}>{CYNA}</Text>
 
                 <TextInput
                   style={styles.input}
@@ -149,7 +133,7 @@ const SignUp = ({ navigation }: Props) => {
                 <View style={[styles.input]}>
                   <Text>+971 - </Text>
                   <TextInput
-                    style={{ width: '85%', height: '80%' }}
+                    style={{width: '85%', height: '80%'}}
                     value={values.phoneNumber}
                     keyboardType="numeric"
                     onChangeText={handleChange('phoneNumber')}
@@ -172,7 +156,7 @@ const SignUp = ({ navigation }: Props) => {
                   buttonTitle="Register"
                 />
                 <View style={styles.alreadyToLogin}>
-                  <Text>{AHAA} {' '}</Text>
+                  <Text>{AHAA} </Text>
                   <TouchableOpacity
                     onPress={() => navigation.navigate('Login')}>
                     <Text style={styles.backText}>Login Here</Text>

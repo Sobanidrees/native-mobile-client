@@ -2,7 +2,6 @@ import {StyleSheet} from 'react-native';
 import {
   WHITE,
   PRIMARY_COLOR_LIGHT,
-  RED,
   RED_ERROR,
   PRIMARY_DARK,
 } from '../../../utils/colors';
@@ -35,7 +34,6 @@ export const styles = StyleSheet.create({
     height: '6%',
     width: BTN_INPUT_WIDTH,
     borderWidth: 1,
-    // borderColor: '#9E9E9E',
     borderRadius: 10,
     marginVertical: '4%',
     paddingHorizontal: '4%',

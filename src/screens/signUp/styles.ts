@@ -1,11 +1,5 @@
 import {StyleSheet} from 'react-native';
-import {
-  GREY,
-  PRIMARY_COLOR,
-  PRIMARY_COLOR_LIGHT,
-  RED_ERROR,
-  WHITE,
-} from '../../utils/colors';
+import {GREY, PRIMARY_COLOR_LIGHT, RED_ERROR, WHITE} from '../../utils/colors';
 import {
   BASICTEXT,
   BOLDTEXT,

@@ -69,6 +69,3 @@ export const ServicesArray = [
 export const isIOS = () => {
   return Platform.OS === 'ios';
 };
-
-export const windowWidth = Dimensions.get('window').width;
-export const windowHeight = Dimensions.get('window').height;

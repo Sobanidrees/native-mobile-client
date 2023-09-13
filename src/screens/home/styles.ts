@@ -1,6 +1,6 @@
 import {StyleSheet} from 'react-native';
 import {PRIMARY_COLOR, WHITE} from '../../utils/colors';
-import {windowHeight, windowWidth} from '../../utils/constants';
+import {windowHeight} from '../../utils/constantStyle';
 
 export const styles = StyleSheet.create({
   container: {
@@ -20,6 +20,11 @@ export const styles = StyleSheet.create({
     flexDirection: 'row',
     justifyContent: 'space-between',
     width: '18%',
+  },
+  noServiceRequestsText: {
+    fontWeight: '500',
+    fontSize: 20,
+    color: PRIMARY_COLOR,
   },
   subCat: {
     paddingHorizontal: '3%',

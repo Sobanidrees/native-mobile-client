@@ -1,6 +1,6 @@
 import {StyleSheet} from 'react-native';
-import {PRIMARY_COLOR, PRIMARY_COLOR_LIGHT, WHITE} from '../../utils/colors';
-import {windowWidth} from '../../utils/constants';
+import {PRIMARY_COLOR_LIGHT, WHITE} from '../../utils/colors';
+import {windowWidth} from '../../utils/constantStyle';
 import {LARGETEXT, MEDIUMTEXT} from '../../utils/constantStyle';
 
 export const styles = StyleSheet.create({
@@ -21,16 +21,13 @@ export const styles = StyleSheet.create({
     flexDirection: 'row',
     justifyContent: 'space-between',
     alignItems: 'center',
-    // marginTop: '2%',
   },
   carName: {
     fontSize: LARGETEXT,
-    // fontWeight: '300',
     marginTop: '4%',
   },
   inspectionType: {
     fontSize: MEDIUMTEXT,
-    // fontWeight: '400',
     marginTop: '2%',
     marginBottom: '6%',
   },

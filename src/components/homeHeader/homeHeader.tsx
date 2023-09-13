@@ -16,8 +16,6 @@ type Props = {
 
 const HomeHeader = ({ navigation, headerTitle }: Props) => {
   const dispatch: ThunkDispatch<RootState, void, AnyAction> = useDispatch();
-  const user = useSelector((state: RootState) => state.inspector);
-
   const Logout = async () => {
     try {
       await dispatch(inspectorLogout());
