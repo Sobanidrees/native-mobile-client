@@ -10,7 +10,7 @@ type Props = NativeStackScreenProps<RootStackParams, 'Tools'>;
 const Tools = ({navigation}: Props) => {
   return (
     <SafeAreaView style={[styles.container]}>
-      <Header navigation={navigation} headerTitle="Tool CheckList" />
+      <Header headerTitle="Tool CheckList" />
     </SafeAreaView>
   );
 };

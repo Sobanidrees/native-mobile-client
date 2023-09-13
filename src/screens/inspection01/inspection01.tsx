@@ -6,45 +6,35 @@ import {
   SafeAreaView,
   ScrollView,
 } from 'react-native';
-import {styles} from './styles';
-import {NativeStackScreenProps} from '@react-navigation/native-stack';
-import {RootStackParams} from '../../../routes/routeStack';
-import {ServicesArray} from '../../utils/constants';
-import {PRIMARY_COLOR} from '../../utils/colors';
+import { styles } from './styles';
+import { NativeStackScreenProps } from '@react-navigation/native-stack';
+import { RootStackParams } from '../../../routes/routeStack';
+import { ServicesArray } from '../../utils/constants';
+import { PRIMARY_COLOR } from '../../utils/colors';
 import Header from '../../components/header/header';
+import ServiceCategory from '../../components/serviceCategory/serviceCategory';
+import PrimaryButton from '../../components/primaryButton/primaryButton';
 
 type Props = NativeStackScreenProps<RootStackParams, 'Inspection01'>;
 
-const Inspection01 = ({navigation}: Props) => {
+const Inspection01 = ({ navigation }: Props) => {
   return (
-    <SafeAreaView style={[styles.container]}>
-      <Header navigation={navigation} headerTitle="Inspect" />
-
-      <ScrollView style={{marginTop: '2%'}}>
+    <View style={[styles.container]}>
+      <Header headerTitle="Inspect" />
+      <ScrollView style={{ marginTop: '2%' }}>
         {ServicesArray.map(i => {
           return (
-            <View key={i.id} style={{marginHorizontal: '2%'}}>
-              <TouchableOpacity
-                onPress={() =>
-                  navigation.navigate('ServiceDetail', {
-                    serviceName: i.serviceName,
-                  })
-                }
-                style={{
-                  backgroundColor: PRIMARY_COLOR,
-                  marginVertical: '2%',
-                  padding: '5%',
-                  borderRadius: 10,
-                }}>
-                <Text style={{fontSize: 18, fontWeight: '600', color: 'white'}}>
-                  {i.serviceName}
-                </Text>
-              </TouchableOpacity>
-            </View>
+            <ServiceCategory key={i.id} onPress={() =>
+              navigation.navigate('ServiceDetail', {
+                serviceName: i.serviceName,
+              })}
+              serviceName={i.serviceName} />
           );
         })}
       </ScrollView>
-    </SafeAreaView>
+      <PrimaryButton onPress={{}} buttonTitle='Submit' buttonStyle={{ marginBottom: 30, width: '96%' }} />
+
+    </View>
   );
 };
 
