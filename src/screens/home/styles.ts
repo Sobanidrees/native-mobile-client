@@ -1,5 +1,5 @@
 import {StyleSheet} from 'react-native';
-import {PRIMARY_COLOR, WHITE, GREEN} from '../../utils/colors';
+import {PRIMARY_COLOR, WHITE} from '../../utils/colors';
 import {windowHeight, windowWidth} from '../../utils/constants';
 
 export const styles = StyleSheet.create({
@@ -29,16 +29,14 @@ export const styles = StyleSheet.create({
   },
   subText: {fontSize: 16, fontWeight: '500', color: WHITE},
   scrollView: {
-    paddingBottom: '0%',
-    // backgroundColor: PRIMARY_COLOR,
+    marginTop: '2%',
     alignItems: 'center',
     borderRadius: 20,
-    height: '92%',
+    height: '94%',
   },
   title: {
     fontSize: 24,
     fontWeight: '500',
-    color: GREEN,
     marginHorizontal: '2%',
   },
 

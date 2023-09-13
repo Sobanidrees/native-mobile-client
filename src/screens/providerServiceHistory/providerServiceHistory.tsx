@@ -6,45 +6,43 @@ import {
   ScrollView,
   SafeAreaView,
 } from 'react-native';
-import {styles} from './styles';
-import {NativeStackScreenProps} from '@react-navigation/native-stack';
-import {RootStackParams} from '../../../routes/routeStack';
+import { styles } from './styles';
+import { NativeStackScreenProps } from '@react-navigation/native-stack';
+import { RootStackParams } from '../../../routes/routeStack';
 import Header from '../../components/header/header';
-import {ServicesArray} from '../../utils/constants';
-import {PRIMARY_COLOR} from '../../utils/colors';
+import { ServicesArray } from '../../utils/constants';
+import { PRIMARY_COLOR } from '../../utils/colors';
+import HomeHeader from '../../components/homeHeader/homeHeader';
+import ServiceRequest from '../../components/serviceRequest/serviceRequest';
 
 type Props = NativeStackScreenProps<RootStackParams, 'ProviderServiceHistory'>;
 
-const ProviderServiceHistory = ({navigation}: Props) => {
+const ProviderServiceHistory = ({ navigation }: Props) => {
   return (
-    <SafeAreaView style={[styles.container]}>
-      <Header navigation={navigation} headerTitle="Completed Inspections" />
+    <View style={[styles.container]}>
+      <HomeHeader headerTitle="Service History" navigation={navigation} />
+      <View style={styles.scrollView}>
+        <ScrollView
+          style={{ marginBottom: 120 }} showsVerticalScrollIndicator={false}>
 
-      <ScrollView style={{marginTop: '2%'}}>
-        {ServicesArray.map(i => {
-          return (
-            <View key={i.id} style={{marginHorizontal: '2%'}}>
-              <TouchableOpacity
-                onPress={() =>
-                  navigation.navigate('ServiceDetail', {
-                    serviceName: i.serviceName,
-                  })
-                }
-                style={{
-                  backgroundColor: PRIMARY_COLOR,
-                  marginVertical: '2%',
-                  padding: '5%',
-                  borderRadius: 10,
-                }}>
-                <Text style={{fontSize: 18, fontWeight: '600', color: 'white'}}>
-                  {i.desc}
-                </Text>
-              </TouchableOpacity>
-            </View>
-          );
-        })}
-      </ScrollView>
-    </SafeAreaView>
+          {ServicesArray.map((i) => {
+            return (
+              <ServiceRequest
+                key={i.id}
+                carName={'Lamborghini'}
+                inspectionType={'Basic'}
+                location={'Paragon City, Lahore'}
+                date={'14th August'}
+                time={'12:00pm'}
+                img={require('../../assets/images/carImg.png')}
+                onPress={() => navigation.navigate('CarDetails')}
+              />
+            )
+          })}
+
+        </ScrollView>
+      </View>
+    </View>
   );
 };
 

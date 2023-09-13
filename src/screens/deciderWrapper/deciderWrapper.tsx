@@ -1,27 +1,49 @@
-import React from 'react';
-import {useSelector} from 'react-redux';
-import {RootState} from '../../redux/store';
+import React, { useEffect } from 'react';
 import AsyncStorage from '@react-native-async-storage/async-storage';
-import {NativeStackScreenProps} from '@react-navigation/native-stack';
-import {RootStackParams} from '../../../routes/routeStack';
+import { NativeStackScreenProps } from '@react-navigation/native-stack';
+import { RootStackParams } from '../../../routes/routeStack';
+import jwt_decode from "jwt-decode";
+import { Consumer } from '../../models/consumer';
 
 type Props = NativeStackScreenProps<RootStackParams, 'DeciderWrapper'>;
+const DeciderWrapper = ({ navigation }: Props) => {
 
-const DeciderWrapper = ({navigation}: Props) => {
-  const user = useSelector((state: RootState) => state.inspector);
-  const jwtToken = AsyncStorage.getItem('jwtToken');
+  const decideUser = async () => {
+    let jwtToken = await AsyncStorage.getItem('jwtToken');
+    let user;
+    const userTypeObject = await AsyncStorage.getItem('user');
 
-  // TODO: Find a better way to check the user id
-  // Also, if for some reason, user is not in
-  // redux store but jwtToken is in Async storage
-  // Fetch loggedIn user
-  if ((user?.inspector as any)?.id && !!jwtToken) {
-    navigation.navigate('Home');
-  } else {
-    navigation.navigate('Login');
-  }
+    if (userTypeObject) {
+      user = JSON.parse(userTypeObject);
+    }
 
-  // TODO: Implement loader
+    if (!!jwtToken) {
+      const decodedToken: any = jwt_decode(jwtToken);
+      const userType = decodedToken?.emiratesId ? 'inspector' : 'consumer';
+
+      if (userType === 'inspector') {
+        navigation.navigate('BottomTab');
+      } else if (!user.fullName && !user.address) {
+        navigation.navigate('ConsumerProfile');
+      } else if (
+        user.fullName &&
+        user.address &&
+        (!user.vehicle || (!user.vehicle.year && !user.vehicle.make && !user.vehicle.model))
+      ) {
+        navigation.navigate('UpdateVehicle');
+      } else if (user.fullName && user.address && user.vehicle) {
+        navigation.navigate('ConsumerProfile');
+      }
+    } else {
+      navigation.navigate('Login');
+    }
+  };
+
+  useEffect(() => {
+    decideUser();
+  }, []);
+
   return <></>;
 };
+
 export default DeciderWrapper;

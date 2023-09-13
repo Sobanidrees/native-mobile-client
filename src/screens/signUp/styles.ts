@@ -1,16 +1,44 @@
 import {StyleSheet} from 'react-native';
-import {PRIMARY_COLOR, WHITE} from '../../utils/colors';
+import {
+  GREY,
+  PRIMARY_COLOR,
+  PRIMARY_COLOR_LIGHT,
+  RED_ERROR,
+  WHITE,
+} from '../../utils/colors';
+import {
+  BASICTEXT,
+  BOLDTEXT,
+  BTN_INPUT_HEIGHT,
+  BTN_INPUT_WIDTH,
+} from '../../utils/constantStyle';
 
 export const styles = StyleSheet.create({
-  container: {flex: 1, backgroundColor: WHITE, alignItems: 'center'},
-  title: {fontSize: 28, fontWeight: '500', color: WHITE, marginTop: '0%'},
+  container: {
+    flex: 1,
+    backgroundColor: WHITE,
+    alignItems: 'center',
+  },
+  keyboardAvoidingContainer: {},
+  registerText: {
+    fontSize: 32,
+    fontWeight: BOLDTEXT,
+    color: PRIMARY_COLOR_LIGHT,
+    marginTop: '16%',
+    textAlign: 'center',
+  },
+  createAccText: {
+    fontSize: BASICTEXT,
+    marginVertical: '4%',
+    textAlign: 'center',
+  },
   input: {
     flexDirection: 'row',
     alignItems: 'center',
-    height: '6%',
-    width: '90%',
+    height: BTN_INPUT_HEIGHT,
+    width: BTN_INPUT_WIDTH,
     borderWidth: 1,
-    borderColor: '#9E9E9E',
+    borderColor: GREY,
     borderRadius: 10,
     marginVertical: '3%',
     padding: 10,
@@ -20,16 +48,18 @@ export const styles = StyleSheet.create({
     shadowColor: '#000000',
     shadowOpacity: 0.2,
   },
-  btn: {
-    backgroundColor: PRIMARY_COLOR,
-    height: '6%',
-    width: '90%',
-    borderRadius: 10,
+  checkboxView: {
+    flexDirection: 'row',
     alignItems: 'center',
-    justifyContent: 'center',
-    marginVertical: '4%',
+    width: BTN_INPUT_WIDTH,
+    marginTop: '4%',
   },
-  btnText: {fontSize: 20, fontWeight: 'bold', color: WHITE},
-  loginText: {fontSize: 15, color: PRIMARY_COLOR, marginTop: '2%'},
-  enterNoText: {fontSize: 13, marginTop: '4%'},
+  enterNoText: {fontSize: BASICTEXT, marginLeft: '4%'},
+  alreadyToLogin: {
+    alignSelf: 'center',
+    flexDirection: 'row',
+    marginTop: '4%',
+  },
+  backText: {fontSize: BASICTEXT, fontWeight: BOLDTEXT, textAlign: 'center'},
+  errorText: {color: RED_ERROR},
 });
