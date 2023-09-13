@@ -32,7 +32,7 @@ const Inspection01 = ({ navigation }: Props) => {
           );
         })}
       </ScrollView>
-      <PrimaryButton navigation={{}} buttonTitle='Submit' buttonStyle={{ marginBottom: 30, width: '96%' }} />
+      <PrimaryButton onPress={{}} buttonTitle='Submit' buttonStyle={{ marginBottom: 30, width: '96%' }} />
 
     </View>
   );

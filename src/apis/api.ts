@@ -18,8 +18,6 @@ export const apiCall = async (
   });
   try {
     const res = await api({url, method, data, params});
-    console.log(res, '==== res =====');
-    console.log(res.data, '==== res.data =====');
     return res.data;
   } catch (error) {
     // Handle errors here

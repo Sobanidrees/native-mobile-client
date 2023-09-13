@@ -7,6 +7,7 @@ import {
 import {ActionTypes} from '../constants/actionTypes';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import {apiCall} from '../../apis/api';
+import {ServiceRequestType} from '../../models/consumer';
 
 export const inspectorRegister = createAsyncThunk(
   ActionTypes.INSPECTOR_REGISTER,
@@ -66,8 +67,9 @@ export const inspectorLogout = createAsyncThunk(
   ActionTypes.INSPECTOR_LOGOUT,
   async () => {
     try {
-      await apiCall('/inspector/logout', 'post');
       await AsyncStorage.removeItem('jwtToken');
+      await AsyncStorage.removeItem('user');
+      // await apiCall('/inspector/logout', 'get');
     } catch (error: any) {
       // return custom error message from API if any
       if (error.response && error.response.data.message) {
@@ -76,3 +78,4 @@ export const inspectorLogout = createAsyncThunk(
     }
   },
 );
+

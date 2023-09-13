@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React, { useState } from 'react';
 import {
   Text,
   TouchableOpacity,
@@ -7,21 +7,29 @@ import {
   View,
 } from 'react-native';
 import Divider from '../divider/divider';
-import {MEDIUMTEXT} from '../../utils/constantStyle';
-import {GREY} from '../../utils/colors';
+import { MEDIUMTEXT } from '../../utils/constantStyle';
+import { GREY } from '../../utils/colors';
 
-const DetailText = (props: any) => {
+type Props = {
+  placeholder: string;
+  value: string;
+  onChangeText: () => void;
+};
+const TextInputComponent = ({ placeholder, value, onChangeText }: Props) => {
   return (
     <View style={styles.textView}>
       <View style={styles.rowView}>
-        <Text style={styles.title}>{props.title}</Text>
-        <Text style={styles.value}>{props.value}</Text>
+        <TextInput
+          placeholder={placeholder}
+          value={value}
+          onChangeText={onChangeText}
+        />
       </View>
-      <Divider color={GREY} />
+      <Divider />
     </View>
   );
 };
-export default DetailText;
+export default TextInputComponent;
 const styles = StyleSheet.create({
   textView: {
     marginVertical: '6%',

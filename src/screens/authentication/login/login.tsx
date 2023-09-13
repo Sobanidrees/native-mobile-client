@@ -13,7 +13,7 @@ import PrimaryButton from '../../../components/primaryButton/primaryButton';
 import { PRIMARY_COLOR_LIGHT, PRIMARY_DARK } from '../../../utils/colors';
 import { consumerLogin } from '../../../redux/actions/consumer';
 import { ConsumerLoginDto } from '../../../models/consumer';
-import AsyncStorage from '@react-native-async-storage/async-storage';
+import { DHAA, EYPNT } from '../../../utils/textFile';
 
 type Props = NativeStackScreenProps<RootStackParams, 'Login'>;
 
@@ -26,12 +26,6 @@ const Login = ({ navigation }: Props) => {
 
 
   const handleLogin = async () => {
-    // let user;
-    // // const userTypeObject = await AsyncStorage.getItem('user');
-    // if (userTypeObject) {
-    //   user = JSON.parse(userTypeObject)
-
-    // }
     if (phoneNumber.length === 14) {
       setError('Enter a valid phone number');
       return;
@@ -91,7 +85,7 @@ const Login = ({ navigation }: Props) => {
       <UserTypeButton onSelectUserType={handleUserTypeSelection} />
       <Text style={styles.welcomeText}>Welcome</Text>
       <Text style={styles.enterNoText}>
-        Enter Your Phone Number To{' '}
+        {EYPNT}{' '}
         <Text style={styles.authText}>Authenticate</Text>
       </Text>
       <View
@@ -102,11 +96,6 @@ const Login = ({ navigation }: Props) => {
         <Text>+971 - </Text>
         <TextInput
           style={{ width: '85%', height: '80%' }}
-          // onChangeText={(text) => {
-          //     const numericText = text.replace(/[^0-9]/g, '');
-          //     setPhoneNumber(phoneNumber);
-          //     Error('');
-          // }}
           keyboardType="numeric"
           value={phoneNumber}
           onChangeText={setPhoneNumber}
@@ -114,13 +103,13 @@ const Login = ({ navigation }: Props) => {
       </View>
       {error !== '' && <Text style={styles.errorText}>{error}</Text>}
       <PrimaryButton
-        navigation={handleLogin}
+        onPress={handleLogin}
         buttonTitle="Authenticate"
         buttonStyle={{}}
       />
       {userType === 'inspector' && (
         <View style={styles.signView}>
-          <Text>Don't have any account? </Text>
+          <Text>{DHAA} </Text>
           <TouchableOpacity onPress={() => navigation.navigate('SignUp')}>
             <Text style={styles.signUpText}>Sign Up Here</Text>
           </TouchableOpacity>

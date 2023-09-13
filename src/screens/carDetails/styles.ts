@@ -10,7 +10,7 @@ export const styles = StyleSheet.create({
   },
   innerView: {
     marginTop: '8%',
-    height: windowHeight * 0.7,
+    // height: windowHeight * 0.7,
     marginHorizontal: '8%',
   },
   textView: {

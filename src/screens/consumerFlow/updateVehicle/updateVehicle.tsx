@@ -73,7 +73,7 @@ const UpdateVehicle = ({ navigation, route }: Props) => {
 
                 <PrimaryButton
                     buttonTitle="Update"
-                    navigation={updateVehicleInfo}
+                    onPress={updateVehicleInfo}
                     buttonStyle={{ marginTop: '48%' }}
                 />
             </View>

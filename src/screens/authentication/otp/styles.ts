@@ -9,7 +9,7 @@ import {BOLDTEXT, HEADINGTEXT} from '../../../utils/constantStyle';
 
 export const styles = StyleSheet.create({
   container: {flex: 1, backgroundColor: WHITE},
-  // root: {padding: 0},
+  backBtn: {marginLeft: '8%', marginTop: '6%'},
   headingText: {
     fontSize: 28,
     fontWeight: BOLDTEXT,

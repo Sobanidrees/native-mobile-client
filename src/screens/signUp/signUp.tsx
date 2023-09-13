@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import {
   Alert,
   SafeAreaView,
@@ -12,97 +12,71 @@ import {
   KeyboardAvoidingView,
   Platform,
 } from 'react-native';
-import {styles} from './styles';
-import {NativeStackScreenProps} from '@react-navigation/native-stack';
-import {RootStackParams} from '../../../routes/routeStack';
-import {useDispatch} from 'react-redux';
-import {inspectorRegister} from '../../redux/actions/inspector';
-import {InspectorRegisterDto} from '../../models/inspector';
-import {unwrapResult} from '@reduxjs/toolkit';
+import { styles } from './styles';
+import { NativeStackScreenProps } from '@react-navigation/native-stack';
+import { RootStackParams } from '../../../routes/routeStack';
+import { useDispatch } from 'react-redux';
+import { inspectorRegister } from '../../redux/actions/inspector';
+import { InspectorRegisterDto } from '../../models/inspector';
+import { unwrapResult } from '@reduxjs/toolkit';
 import PrimaryButton from '../../components/primaryButton/primaryButton';
 import CheckBox from '../../components/checkbox/checkbox';
-
+import { Formik } from 'formik';
+import * as Yup from 'yup';
+import { AHAA, BYJ, CYNA } from '../../utils/textFile';
 type Props = NativeStackScreenProps<RootStackParams, 'SignUp'>;
 
-const SignUp = ({navigation}: Props) => {
-  const [formData, setFormData] = useState({
-    phoneNumber: '',
-    fullName: '',
-    emiratesId: '',
-    isChecked: false,
-  });
+const SignUp = ({ navigation }: Props) => {
+  const [isChecked, setIsChecked] = useState(false);
 
-  const [errors, setErrors] = useState({
-    phoneNumber: '',
-    fullName: '',
-    emiratesId: '',
-    isChecked: '',
-  });
-
-  const handleCheckBoxClick = () => {
-    setFormData({...formData, isChecked: !formData.isChecked});
-    setErrors({...errors, isChecked: ''});
+  type SignUpFormValues = {
+    fullName: string;
+    emiratesId: string;
+    phoneNumber: string;
   };
 
+  const SignupSchema = Yup.object().shape({
+    fullName: Yup.string()
+      .min(6, 'Too Short!')
+      .max(50, 'Too Long!')
+      .required('Please Enter Your Full Name'),
+    emiratesId: Yup.string()
+      .matches(
+        /^\d{3}-\d{4}-\d{7}-\d{1}$/,
+        'Invalid Emirates ID format (xxx-xxxx-xxxxxxx-x)',
+      )
+      .required('Please Enter Your Emirates ID'),
+    phoneNumber: Yup.string()
+      .min(13, 'Enter Valid Phone Number')
+      .max(13, 'Enter Valid Phone Number')
+      .required('Please Enter Your Phone Number'),
+  });
+
   const dispatch = useDispatch();
-
-  const handleRegistration = async () => {
-    setErrors({
-      phoneNumber: '',
-      fullName: '',
-      emiratesId: '',
-      isChecked: '',
-    });
-
-    if (!formData.fullName.trim()) {
-      setErrors({...errors, fullName: 'Please enter your Full Name'});
+  const handleRegistration = async (values: SignUpFormValues) => {
+    if (!isChecked) {
+      Alert.alert('Please agree to our terms of services and policies');
       return;
     }
-
-    if (
-      !formData.emiratesId.trim() ||
-      formData.emiratesId.trim().length !== 18
-    ) {
-      setErrors({
-        ...errors,
-        emiratesId: 'Please enter a valid Emirates ID (xxx-xxxx-xxxxxxx-x)',
-      });
-      return;
-    }
-
-    if (
-      !formData.phoneNumber.trim() ||
-      formData.phoneNumber.trim().length !== 13
-    ) {
-      setErrors({
-        ...errors,
-        phoneNumber: 'Please enter a valid Phone Number (10 digits)',
-      });
-      return;
-    }
-
-    if (!formData.isChecked) {
-      setErrors({
-        ...errors,
-        isChecked: 'Please agree to our terms and policies',
-      });
-      return;
-    }
-
-    const inspectorRegisterData: InspectorRegisterDto = {
-      fullName: formData.fullName,
-      emiratesId: formData.emiratesId,
-      phoneNumber: formData.phoneNumber,
+    const user: InspectorRegisterDto = {
+      fullName: values.fullName,
+      emiratesId: values.emiratesId,
+      phoneNumber: values.phoneNumber,
     };
+    console.log(
+      values.fullName,
+      values.emiratesId,
+      values.phoneNumber,
+    );
 
-    dispatch<any>(inspectorRegister(inspectorRegisterData))
+    dispatch<any>(inspectorRegister(user))
       .then(unwrapResult)
       .then((inspector: any) => {
         if (inspector?.id) {
           navigation.navigate('Otp', {
-            inspector: inspectorRegisterData,
+            inspector: user,
             isInspector: true,
-            phoneNumber: formData.phoneNumber,
+            phoneNumber: user.phoneNumber,
           });
         } else {
           // TODO: Manage errors gracefully via snackbars / error shown to users
@@ -126,69 +100,87 @@ const SignUp = ({navigation}: Props) => {
         <KeyboardAvoidingView
           behavior={Platform.OS === 'ios' ? 'padding' : 'height'}
           style={styles.keyboardAvoidingContainer}>
-          <ScrollView showsVerticalScrollIndicator={false}>
-            <Text style={styles.registerText}>Begin Your Journey</Text>
-            <Text style={styles.createAccText}>Create Your New Account</Text>
-            <TextInput
-              style={styles.input}
-              onChangeText={text => {
-                setFormData({...formData, fullName: text});
-                setErrors({...errors, fullName: ''});
-              }}
-              value={formData.fullName}
-              placeholder="Full Name"
-            />
-            {errors.fullName ? (
-              <Text style={styles.errorText}>{errors.fullName}</Text>
-            ) : null}
-            <TextInput
-              style={styles.input}
-              onChangeText={text => {
-                setFormData({...formData, emiratesId: text});
-                setErrors({...errors, emiratesId: ''});
-              }}
-              value={formData.emiratesId}
-              placeholder="Enter Your Emirates ID"
-              keyboardType="numeric"
-            />
-            {errors.emiratesId ? (
-              <Text style={styles.errorText}>{errors.emiratesId}</Text>
-            ) : null}
-            <View style={[styles.input]}>
-              <Text>+971 - </Text>
-              <TextInput
-                style={{width: '85%', height: '80%'}}
-                onChangeText={text => {
-                  setFormData({...formData, phoneNumber: text});
-                  setErrors({...errors, phoneNumber: ''});
-                }}
-                keyboardType="numeric"
-              />
-            </View>
-            {errors.phoneNumber ? (
-              <Text style={styles.errorText}>{errors.phoneNumber}</Text>
-            ) : null}
+          <Formik
+            initialValues={{
+              phoneNumber: '',
+              fullName: '',
+              emiratesId: '',
+            }}
+            validationSchema={SignupSchema}
+            onSubmit={values => {
+              console.log(values);
+            }}>
+            {({
+              values,
+              errors,
+              touched,
+              handleChange,
+              setFieldTouched,
+              setFieldValue,
+              isValid,
+            }) => (
+              <ScrollView showsVerticalScrollIndicator={false}>
+                <Text style={styles.registerText}>{BYJ}</Text>
+                <Text style={styles.createAccText}>
+                  {CYNA}
+                </Text>
 
-            <CheckBox
-              checked={formData.isChecked}
-              onPress={handleCheckBoxClick}
-            />
-            {errors.isChecked ? (
-              <Text style={styles.errorText}>{errors.isChecked}</Text>
-            ) : null}
+                <TextInput
+                  style={styles.input}
+                  value={values.fullName}
+                  placeholder="Full Name"
+                  onChangeText={handleChange('fullName')}
+                  onBlur={() => setFieldTouched('fullName')}
+                />
+                {touched.fullName && errors.fullName ? (
+                  <Text style={styles.errorText}>{errors.fullName}</Text>
+                ) : null}
+                <TextInput
+                  style={styles.input}
+                  value={values.emiratesId}
+                  placeholder="Enter Your Emirates ID"
+                  keyboardType="numeric"
+                  onChangeText={handleChange('emiratesId')}
+                  onBlur={() => setFieldTouched('emiratesId')}
+                />
+                {touched.emiratesId && errors.emiratesId ? (
+                  <Text style={styles.errorText}>{errors.emiratesId}</Text>
+                ) : null}
+                <View style={[styles.input]}>
+                  <Text>+971 - </Text>
+                  <TextInput
+                    style={{ width: '85%', height: '80%' }}
+                    value={values.phoneNumber}
+                    keyboardType="numeric"
+                    onChangeText={handleChange('phoneNumber')}
+                    onBlur={() => setFieldTouched('phoneNumber')}
+                  />
+                </View>
+                {touched.phoneNumber && errors.phoneNumber ? (
+                  <Text style={styles.errorText}>{errors.phoneNumber}</Text>
+                ) : null}
 
-            <PrimaryButton
-              navigation={handleRegistration}
-              buttonTitle="Register"
-              buttonStyle={{}}
-            />
-            <View style={styles.alreadyToLogin}>
-              <Text>Already have an account? </Text>
-              <TouchableOpacity onPress={() => navigation.navigate('Login')}>
-                <Text style={styles.backText}>Login Here</Text>
-              </TouchableOpacity>
-            </View>
-          </ScrollView>
+                <CheckBox
+                  checked={isChecked}
+                  onPress={() => setIsChecked(!isChecked)}
+                />
+
+                <PrimaryButton
+                  onPress={() => {
+                    handleRegistration(values);
+                  }}
+                  buttonTitle="Register"
+                />
+                <View style={styles.alreadyToLogin}>
+                  <Text>{AHAA} {' '}</Text>
+                  <TouchableOpacity
+                    onPress={() => navigation.navigate('Login')}>
+                    <Text style={styles.backText}>Login Here</Text>
+                  </TouchableOpacity>
+                </View>
+              </ScrollView>
+            )}
+          </Formik>
         </KeyboardAvoidingView>
       </SafeAreaView>
     </TouchableWithoutFeedback>
