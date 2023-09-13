@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React, { useState } from 'react';
 import {
   Text,
   TouchableOpacity,
@@ -6,10 +6,10 @@ import {
   StyleSheet,
   View,
 } from 'react-native';
-import {windowWidth} from '../../utils/constants';
-import {GREY, PRIMARY_DARK, SUCCESS, WHITE} from '../../utils/colors';
-import {SvgXml} from 'react-native-svg';
-import {EDIT_ICON, SUCCESS_ICON} from '../../utils/assets';
+import { windowWidth } from '../../utils/constants';
+import { GREY, PRIMARY_DARK, SUCCESS, WHITE } from '../../utils/colors';
+import { SvgXml } from 'react-native-svg';
+import { EDIT_ICON, SUCCESS_ICON } from '../../utils/assets';
 import {
   BASICTEXT,
   BOLDTEXT,
@@ -17,7 +17,7 @@ import {
   BTN_INPUT_WIDTH,
 } from '../../utils/constantStyle';
 import Divider from '../divider/divider';
-import {MEDIUMTEXT} from '../../utils/constantStyle';
+import { MEDIUMTEXT } from '../../utils/constantStyle';
 
 type Props = {
   value: string;
@@ -25,7 +25,7 @@ type Props = {
   placeholder: string;
 };
 
-const ProfileText = ({value, onChange, placeholder}: Props) => {
+const ProfileText = ({ value, onChange, placeholder }: Props) => {
   const [editing, setEditing] = useState(false);
 
   const handleEdit = () => {
@@ -46,7 +46,7 @@ const ProfileText = ({value, onChange, placeholder}: Props) => {
           onChangeText={onChange}
         />
       </View>
-      <Divider color={GREY} />
+      <Divider />
     </>
   );
 };
@@ -59,10 +59,10 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     justifyContent: 'space-between',
     width: BTN_INPUT_WIDTH,
-    marginTop: '10%',
+    marginTop: '4%',
   },
-  enterNoText: {fontSize: MEDIUMTEXT},
-  valueText: {fontSize: MEDIUMTEXT},
+  enterNoText: { fontSize: MEDIUMTEXT },
+  valueText: { fontSize: MEDIUMTEXT },
   input: {
     flexDirection: 'row',
     alignItems: 'center',

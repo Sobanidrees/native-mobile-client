@@ -28,6 +28,30 @@ export type Consumer = {
   phoneNumber: string;
   fullName?: string;
   address?: string;
-  vehicle: [];
+  vehicle: Vehicle;
 };
 
+export type Vehicle = {
+  id: number;
+  color: string;
+  engineCapacity: string;
+  engineNo: string;
+  fuelType: string;
+  image: string;
+  milage: string;
+  registrationNo: string;
+  transmissionType: string;
+  vin: string;
+  updatedVehicle: UpdateVehicleDto;
+};
+
+export type ServiceRequestType = {
+  date: string;
+  id: number;
+  packageType: string;
+  status: string;
+  updatedAt: string;
+  time: string;
+  consumer: Consumer;
+  vehicle: Vehicle;
+};

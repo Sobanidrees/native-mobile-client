@@ -1,16 +1,16 @@
 import React from 'react';
-import {Text, TouchableOpacity, StyleSheet, View} from 'react-native';
-import { SUCCESS, WHITE} from '../../utils/colors';
-import {SvgXml} from 'react-native-svg';
-import {SUCCESS_ICON} from '../../utils/assets';
-import {BASICTEXT, BOLDTEXT, BTN_INPUT_WIDTH} from '../../utils/constantStyle';
+import { Text, TouchableOpacity, StyleSheet, View } from 'react-native';
+import { SUCCESS, WHITE } from '../../utils/colors';
+import { SvgXml } from 'react-native-svg';
+import { SUCCESS_ICON } from '../../utils/assets';
+import { BASICTEXT, BOLDTEXT, BTN_INPUT_WIDTH } from '../../utils/constantStyle';
 
 type Props = {
   checked: boolean;
   onPress: () => void;
 };
 
-const CheckBox = ({checked, onPress}: Props) => {
+const CheckBox = ({ checked, onPress }: Props) => {
   return (
     <View style={styles.checkboxView}>
       <TouchableOpacity style={styles.button} onPress={onPress}>
@@ -18,8 +18,8 @@ const CheckBox = ({checked, onPress}: Props) => {
       </TouchableOpacity>
       <Text style={styles.enterNoText}>
         Agree to our{' '}
-        <Text style={{fontWeight: BOLDTEXT}}>terms of services </Text>
-        and <Text style={{fontWeight: BOLDTEXT}}>privacy policies</Text>
+        <Text style={{ fontWeight: BOLDTEXT }}>terms of services </Text>
+        and <Text style={{ fontWeight: BOLDTEXT }}>privacy policies</Text>
       </Text>
     </View>
   );
@@ -51,5 +51,5 @@ const styles = StyleSheet.create({
     width: BTN_INPUT_WIDTH,
     marginTop: '4%',
   },
-  enterNoText: {fontSize: BASICTEXT, marginLeft: '4%'},
+  enterNoText: { fontSize: BASICTEXT, marginLeft: '4%' },
 });

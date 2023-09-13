@@ -14,16 +14,24 @@ const DeciderWrapper = ({ navigation }: Props) => {
     const userTypeObject = await AsyncStorage.getItem('user');
 
     if (userTypeObject) {
-      user = JSON.parse(userTypeObject)
+      user = JSON.parse(userTypeObject);
     }
+
     if (!!jwtToken) {
       const decodedToken: any = jwt_decode(jwtToken);
       const userType = decodedToken?.emiratesId ? 'inspector' : 'consumer';
+
       if (userType === 'inspector') {
         navigation.navigate('BottomTab');
-      } else if (user.fullName && user.address) {
-        navigation.navigate('ConsumerHome');
-      } else if (userType === 'consumer') {
+      } else if (!user.fullName && !user.address) {
+        navigation.navigate('ConsumerProfile');
+      } else if (
+        user.fullName &&
+        user.address &&
+        (!user.vehicle || (!user.vehicle.year && !user.vehicle.make && !user.vehicle.model))
+      ) {
+        navigation.navigate('UpdateVehicle');
+      } else if (user.fullName && user.address && user.vehicle) {
         navigation.navigate('ConsumerProfile');
       }
     } else {

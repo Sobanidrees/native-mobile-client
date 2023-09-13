@@ -1,30 +1,33 @@
-import React, {useEffect, useState} from 'react';
-import {Text, TouchableOpacity, View, SafeAreaView, Alert} from 'react-native';
-import {NativeStackScreenProps} from '@react-navigation/native-stack';
-import {RootStackParams} from '../../../../routes/routeStack';
+import React, { useEffect, useState } from 'react';
+import { Text, TouchableOpacity, View, SafeAreaView, Alert } from 'react-native';
+import { NativeStackScreenProps } from '@react-navigation/native-stack';
+import { RootStackParams } from '../../../../routes/routeStack';
 import {
   CodeField,
   Cursor,
   useBlurOnFulfill,
   useClearByFocusCell,
 } from 'react-native-confirmation-code-field';
-import {styles} from './styles';
-import {useDispatch} from 'react-redux';
-import {inspectorVerifyOtp} from '../../../redux/actions/inspector';
-import {InspectorVerificationDto} from '../../../models/inspector';
-import {unwrapResult} from '@reduxjs/toolkit';
+import { styles } from './styles';
+import { useDispatch } from 'react-redux';
+import { inspectorVerifyOtp } from '../../../redux/actions/inspector';
+import { InspectorVerificationDto } from '../../../models/inspector';
+import { unwrapResult } from '@reduxjs/toolkit';
 import PrimaryButton from '../../../components/primaryButton/primaryButton';
-import {consumerVerifyOtp} from '../../../redux/actions/consumer';
-import {ConsumerVerificationDto} from '../../../models/consumer';
+import { consumerVerifyOtp } from '../../../redux/actions/consumer';
+import { ConsumerVerificationDto } from '../../../models/consumer';
 import AsyncStorage from '@react-native-async-storage/async-storage';
+import { SvgXml } from 'react-native-svg';
+import { BACK_ICON_OTP } from '../../../utils/assets';
+import { PEVCST } from '../../../utils/textFile';
 type Props = NativeStackScreenProps<RootStackParams, 'Otp'>;
 
 const CELL_COUNT = 4;
 
-const Otp = ({navigation, route}: Props) => {
-  const {phoneNumber, isInspector, consumer, inspector} = route.params;
+const Otp = ({ navigation, route }: Props) => {
+  const { phoneNumber, isInspector, inspector } = route.params;
   const [value, setValue] = useState('');
-  const ref = useBlurOnFulfill({value, cellCount: CELL_COUNT});
+  const ref = useBlurOnFulfill({ value, cellCount: CELL_COUNT });
   const [props, getCellOnLayoutHandler] = useClearByFocusCell({
     value,
     setValue,
@@ -43,13 +46,15 @@ const Otp = ({navigation, route}: Props) => {
       phoneNumber: phoneNumber,
       otp: value,
     };
-    let userType;
+    let user;
     const userTypeObject = await AsyncStorage.getItem('user');
+
     if (userTypeObject) {
-      userType = JSON.parse(userTypeObject);
+      user = JSON.parse(userTypeObject);
     }
+    console.log('user', user);
     try {
-      if ((userType?.emiratesId && inspector) || isInspector) {
+      if ((user?.emiratesId && inspector) || isInspector) {
         const token = await dispatch<any>(
           inspectorVerifyOtp(userVerificationData),
         );
@@ -63,9 +68,17 @@ const Otp = ({navigation, route}: Props) => {
           consumerVerifyOtp(userVerificationData),
         );
         if (token) {
-          if (userType.fullName && userType.address) {
-            navigation.navigate('ConsumerHome');
-          } else {
+          if (!user.fullName && !user.address) {
+            navigation.navigate('ConsumerProfile');
+          } else if (
+            user.fullName &&
+            user.address &&
+            !user.vehicle.year &&
+            !user.vehicle.make &&
+            !user.vehicle.model
+          ) {
+            navigation.navigate('UpdateVehicle');
+          } else if (user.fullName && user.address && user.vehicle) {
             navigation.navigate('ConsumerProfile');
           }
         } else {
@@ -81,9 +94,17 @@ const Otp = ({navigation, route}: Props) => {
 
   return (
     <SafeAreaView style={styles.container}>
+      <TouchableOpacity
+        style={styles.backBtn}
+
+        onPress={() => navigation.goBack()}>
+        <SvgXml
+          xml={BACK_ICON_OTP}
+        />
+      </TouchableOpacity>
       <Text style={styles.headingText}>VERIFICATION CODE</Text>
       <Text style={styles.verificationText}>
-        Please Enter Verification Code Sent To
+        {PEVCST}
       </Text>
       <Text style={styles.numberText}>{phoneNumber}</Text>
       <CodeField
@@ -95,7 +116,7 @@ const Otp = ({navigation, route}: Props) => {
         rootStyle={styles.codeFieldRoot}
         keyboardType="number-pad"
         textContentType="oneTimeCode"
-        renderCell={({index, symbol, isFocused}) => (
+        renderCell={({ index, symbol, isFocused }) => (
           <Text
             key={index}
             style={[styles.cell, isFocused && styles.focusCell]}
@@ -105,7 +126,7 @@ const Otp = ({navigation, route}: Props) => {
         )}
       />
       <PrimaryButton
-        navigation={handleVerification}
+        onPress={handleVerification}
         buttonTitle="Verify"
         buttonStyle={{}}
       />

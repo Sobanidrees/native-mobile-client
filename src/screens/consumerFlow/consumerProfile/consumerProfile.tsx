@@ -62,7 +62,7 @@ const ConsumerProfile = ({ navigation }: Props) => {
 
                 <PrimaryButton
                     buttonTitle="Update"
-                    navigation={updateConsumerInfo}
+                    onPress={updateConsumerInfo}
                     buttonStyle={{ marginTop: '48%' }}
                 />
             </View>

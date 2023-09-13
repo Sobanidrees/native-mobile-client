@@ -48,7 +48,6 @@ export const consumerLogin = createAsyncThunk(
   async (params: ConsumerLoginDto, {rejectWithValue}) => {
     try {
       const user = await apiCall('/consumer/login', 'post', params);
-      console.log(user, '====== user consumerLogin =====');
       await AsyncStorage.setItem('user', JSON.stringify(user));
       return user;
     } catch (error: any) {

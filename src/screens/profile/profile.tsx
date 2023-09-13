@@ -23,11 +23,11 @@ const Profile = ({ navigation }: Props) => {
                     style={styles.profileImage}
                     source={require('../../assets/images/profileImage.png')}
                 />
-                <ProfileText value={name} onChange={setName} />
-                <ProfileText value={designation} onChange={setDesignation} />
-                <ProfileText value={phoneNumber} onChange={setPhoneNumber} />
+                <ProfileText placeholder='' value={name} onChange={setName} />
+                <ProfileText placeholder='' value={designation} onChange={setDesignation} />
+                <ProfileText placeholder='' value={phoneNumber} onChange={setPhoneNumber} />
 
-                <PrimaryButton buttonTitle="Submit" navigation={{}} buttonStyle={{ marginTop: '48%' }} />
+                <PrimaryButton buttonTitle="Submit" onPress={{}} buttonStyle={{ marginTop: '48%' }} />
             </View>
         </View>
     );
